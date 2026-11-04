@@ -205,7 +205,6 @@
 
   // Панель внизу: настоящие кнопки, которых нет в шапке. Подсказки как в Figma, на телефоне — тост.
   const ICON2 = {
-    back: '<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',
     link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
     up: '<path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>',
     mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
@@ -237,13 +236,12 @@
   root.classList.toggle('fig-clean', clean);
 
   const isCase = !!d.querySelector('.cs-hero');
-  const home = d.querySelector('.wordmark')?.getAttribute('href') || 'index.html';
+  // «Наверх» на всех страницах: в кейсе скролл длинный, а назад ведут стрелка у шапки и логотип
+  const up = { icon: ICON2.up, ru: 'Наверх', en: 'Back to top', run: () => scrollTo({ top: 0, behavior: calmMotion.matches ? 'auto' : 'smooth' }) };
   const items = isCase ? [
-    { icon: ICON2.back, ru: 'Все работы', en: 'All work', run: () => { location.href = home.replace(/index\.html$/, '') + 'index.html#work'; } },
+    up,
     { icon: ICON2.hand, ru: 'Попробовать цену', en: 'Try the fare', wide: true, run: () => { const el = d.getElementById('try'); el && el.scrollIntoView({ behavior: calmMotion.matches ? 'auto' : 'smooth', block: 'center' }); } },
-  ] : [
-    { icon: ICON2.up, ru: 'Наверх', en: 'Back to top', run: () => scrollTo({ top: 0, behavior: calmMotion.matches ? 'auto' : 'smooth' }) },
-  ];
+  ] : [up];
   items.push(
     { icon: ICON2.mail, ru: 'Скопировать почту', en: 'Copy email', run: async () => toast(await copy(mail) ? t('Почта скопирована: ', 'Email copied: ') + mail : mail) },
     { icon: ICON2.link, ru: 'Скопировать ссылку на страницу', en: 'Copy page link', run: async () => toast(await copy(location.href.split('#')[0]) ? t('Ссылка скопирована', 'Link copied') : location.href) },
