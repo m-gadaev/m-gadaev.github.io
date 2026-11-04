@@ -1,0 +1,747 @@
+<!doctype html>
+<html class="fig" lang="ru" data-lang="ru" data-title-ru="Локали Такси, кейс" data-title-en="Lokali Taxi, case study">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Локали Такси, кейс</title>
+<meta name="description" content="Два приложения такси с нуля внутри суперапа, для пассажира и для водителя: около 200 экранов и состояний, своя дизайн-система.">
+<meta name="theme-color" content="#19191B">
+<link rel="preload" href="../assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/figma.css">
+<script>
+// Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
+(function () {
+  var d = document.documentElement, s = {};
+  try { s.theme = localStorage.getItem('theme'); s.lang = localStorage.getItem('lang'); } catch (e) {}
+  var theme = s.theme || 'dark'; // по умолчанию тёмная, светлая — по переключателю
+  var lang = s.lang || ((navigator.language || 'ru').slice(0, 2) === 'ru' ? 'ru' : 'en');
+  d.dataset.theme = theme; d.dataset.lang = lang; d.lang = lang;
+  if (lang === 'en' && d.dataset.titleEn) document.title = d.dataset.titleEn;
+  try { if (localStorage.getItem('fig-clean') === '1') d.classList.add('fig-clean'); } catch (e) {}
+  d.classList.add('js');
+})();
+</script>
+</head>
+
+<body class="cs cs--taxi">
+<header class="bar">
+  <div class="bar__in">
+    <a class="wordmark" href="../index.html">gadaev</a>
+    <div class="bar__mid" data-bar-tabs aria-hidden="true"></div>
+    <div class="bar__end">
+      <div class="bar__settings" role="group" aria-label="Язык и тема / Language and theme">
+      <button type="button" class="set-btn set-btn--text" data-toggle-lang aria-label="Switch to English / Переключить на русский"><span lang="ru">EN</span><span lang="en">RU</span></button>
+      <button type="button" class="set-btn" data-toggle-theme aria-label="Сменить тему / Toggle theme">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      </div>
+      <a class="icon-btn" href="https://t.me/creaperson" aria-label="Telegram" title="Telegram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.54 21.69a.5.5 0 0 0 .94-.03l6.5-19a.5.5 0 0 0-.64-.63l-19 6.5a.5.5 0 0 0-.02.93l7.93 3.18a2 2 0 0 1 1.11 1.11z"/><path d="m21.85 2.15-10.94 10.94"/></svg>
+      </a>
+      <a class="icon-btn icon-btn--dark" href="../assets/gadaev-cv.pdf" aria-label="Резюме, PDF / CV, PDF" title="CV, PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="cs-hero__grid">
+      <a class="cs-back" href="../index.html#work"><span lang="ru">← Все работы</span><span lang="en">← All work</span></a>
+      <div class="cs-hero__text" data-fig="Header" data-fig-quiet>
+        <h1 class="reveal"><span class="cs-name">Локали Такси</span><span class="cs-tail"><span lang="ru">Два приложения с нуля: для пассажира и для водителя</span><span lang="en">Two apps from scratch: for passengers and for drivers</span></span></h1>
+        <dl class="facts reveal" style="--d:80ms">
+          <div><dt><span lang="ru">Роль</span><span lang="en">Role</span></dt><dd><span lang="ru">Единственный продуктовый дизайнер направления</span><span lang="en">The only product designer on the product</span></dd></div>
+          <div><dt><span lang="ru">Объём</span><span lang="en">Scope</span></dt><dd><span lang="ru">Около 200 экранов и состояний</span><span lang="en">About 200 screens and states</span></dd></div>
+          <div><dt><span lang="ru">Платформы</span><span lang="en">Platforms</span></dt><dd><span lang="ru">iOS и Android, пассажир и водитель</span><span lang="en">iOS and Android, passenger and driver</span></dd></div>
+          <div><dt><span lang="ru">Статус</span><span lang="en">Status</span></dt><dd><span lang="ru">Тестирование перед релизом</span><span lang="en">Testing before release</span></dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="wrap" data-fig="Cover · live prototype">
+      <div class="cs-cover reveal" id="try" style="--d:160ms">
+        <div class="cs-cover__bg" aria-hidden="true"><svg class="map" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="1200" height="800" fill="var(--map-ground)"/>
+<rect x="120" y="90" width="210" height="140" rx="18" fill="var(--map-park)"/>
+<rect x="640" y="520" width="260" height="170" rx="18" fill="var(--map-park)"/>
+<rect x="930" y="120" width="180" height="120" rx="18" fill="var(--map-park)"/>
+<rect x="60" y="560" width="150" height="160" rx="18" fill="var(--map-park)"/>
+<path d="M-20 430 C 180 380, 300 470, 470 430 S 760 330, 900 380 S 1100 470, 1230 420" fill="none" stroke="var(--map-water)" stroke-width="46" stroke-linecap="round"/>
+<g transform="rotate(-12 600 400)">
+<rect x="-184" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<line x1="-192" y1="-200" x2="-192" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-96" y1="-200" x2="-96" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="0" y1="-200" x2="0" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="96" y1="-200" x2="96" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="192" y1="-200" x2="192" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="288" y1="-200" x2="288" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="384" y1="-200" x2="384" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="480" y1="-200" x2="480" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="576" y1="-200" x2="576" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="672" y1="-200" x2="672" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="768" y1="-200" x2="768" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="864" y1="-200" x2="864" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="960" y1="-200" x2="960" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1056" y1="-200" x2="1056" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1152" y1="-200" x2="1152" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1248" y1="-200" x2="1248" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1344" y1="-200" x2="1344" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1440" y1="-200" x2="1440" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1536" y1="-200" x2="1536" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="-176" x2="1600" y2="-176" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="-88" x2="1600" y2="-88" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="0" x2="1600" y2="0" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="88" x2="1600" y2="88" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="176" x2="1600" y2="176" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="264" x2="1600" y2="264" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="352" x2="1600" y2="352" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="440" x2="1600" y2="440" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="528" x2="1600" y2="528" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="616" x2="1600" y2="616" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="704" x2="1600" y2="704" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="792" x2="1600" y2="792" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="880" x2="1600" y2="880" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="968" x2="1600" y2="968" stroke="var(--map-road)" stroke-width="8"/>
+</g>
+<path d="M-40 250 L 1240 120" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M-40 250 L 1240 120" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M200 -40 L 380 840" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M200 -40 L 380 840" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M-40 690 L 1240 560" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M-40 690 L 1240 560" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M860 -40 L 980 840" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M860 -40 L 980 840" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+</svg>
+</div>
+        <div class="cs-cover__phone">            <div class="phone" data-ui>
+              <div class="phone__screen">
+                <div class="phone__map"><svg class="map" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="1200" height="800" fill="var(--map-ground)"/>
+<rect x="120" y="90" width="210" height="140" rx="18" fill="var(--map-park)"/>
+<rect x="640" y="520" width="260" height="170" rx="18" fill="var(--map-park)"/>
+<rect x="930" y="120" width="180" height="120" rx="18" fill="var(--map-park)"/>
+<rect x="60" y="560" width="150" height="160" rx="18" fill="var(--map-park)"/>
+<path d="M-20 430 C 180 380, 300 470, 470 430 S 760 330, 900 380 S 1100 470, 1230 420" fill="none" stroke="var(--map-water)" stroke-width="46" stroke-linecap="round"/>
+<g transform="rotate(-12 600 400)">
+<rect x="-184" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<line x1="-192" y1="-200" x2="-192" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-96" y1="-200" x2="-96" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="0" y1="-200" x2="0" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="96" y1="-200" x2="96" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="192" y1="-200" x2="192" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="288" y1="-200" x2="288" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="384" y1="-200" x2="384" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="480" y1="-200" x2="480" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="576" y1="-200" x2="576" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="672" y1="-200" x2="672" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="768" y1="-200" x2="768" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="864" y1="-200" x2="864" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="960" y1="-200" x2="960" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1056" y1="-200" x2="1056" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1152" y1="-200" x2="1152" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1248" y1="-200" x2="1248" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1344" y1="-200" x2="1344" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1440" y1="-200" x2="1440" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1536" y1="-200" x2="1536" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="-176" x2="1600" y2="-176" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="-88" x2="1600" y2="-88" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="0" x2="1600" y2="0" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="88" x2="1600" y2="88" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="176" x2="1600" y2="176" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="264" x2="1600" y2="264" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="352" x2="1600" y2="352" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="440" x2="1600" y2="440" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="528" x2="1600" y2="528" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="616" x2="1600" y2="616" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="704" x2="1600" y2="704" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="792" x2="1600" y2="792" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="880" x2="1600" y2="880" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="968" x2="1600" y2="968" stroke="var(--map-road)" stroke-width="8"/>
+</g>
+<path d="M-40 250 L 1240 120" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M-40 250 L 1240 120" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M200 -40 L 380 840" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M200 -40 L 380 840" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M-40 690 L 1240 560" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M-40 690 L 1240 560" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M860 -40 L 980 840" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M860 -40 L 980 840" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+</svg>
+
+                  <svg class="phone__route" viewBox="0 0 300 640" aria-hidden="true"><path d="M86 150 C 120 210, 210 200, 190 280 S 120 360, 214 392" fill="none" stroke="#1C1C1F" stroke-width="5" stroke-linecap="round"/><circle cx="86" cy="150" r="9" fill="#FFC400" stroke="#1C1C1F" stroke-width="3"/><circle cx="214" cy="392" r="9" fill="#1C1C1F"/></svg>
+                </div>
+                <div class="phone__status" aria-hidden="true"><span>9:41</span><span class="phone__island"></span><span class="phone__sys"><i></i><i></i><b></b></span></div>
+                <div class="ui-taxi ui-taxi--sheet" data-taxi>
+                  <p class="ui-taxi__title"><span lang="ru">Укажите вашу цену</span><span lang="en">Offer your fare</span></p>
+                  <div class="ui-taxi__row">
+                    <button type="button" class="ui-round" data-step="-30" aria-label="−30 ₽">−</button>
+                    <output class="ui-taxi__price" data-price>450 ₽</output>
+                    <button type="button" class="ui-round" data-step="30" aria-label="+30 ₽">+</button>
+                  </div>
+                  <p class="ui-taxi__hint" data-hint></p>
+                  <span class="ui-taxi__cta"><span lang="ru">Заказать</span><span lang="en">Order</span></span>
+                  <span class="phone__home" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+</div>
+        <p class="cs-cover__note"><span lang="ru">Это работает: меняйте цену кнопками − и +</span><span lang="en">It works: change the fare with − and +</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-task">
+    <div class="cs-col" data-fig="Text / Task" data-fig-quiet>
+      <h2 id="s-task" class="reveal"><span lang="ru">Задача</span><span lang="en">The task</span></h2>
+      <p class="reveal" lang="ru">У холдинга уже был свой автопарк для доставки еды, и следующим шагом стали перевозки людей. Такси нужно было собрать с нуля внутри суперапа: два приложения, пассажира и водителя.</p>
+      <p class="reveal" lang="ru">Это рынок с двумя сторонами. Пассажиру нужна понятная цена и быстрая подача, водителю нужны заказы, которые выгодно брать.</p>
+      <p class="reveal" lang="en">The holding already ran its own fleet for food delivery, and moving people was the next step. The taxi had to be built from scratch inside the super app: two apps, one for passengers and one for drivers.</p>
+      <p class="reveal" lang="en">It is a two-sided market. Passengers need a clear price and a fast pickup; drivers need orders worth taking.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec" id="price" aria-labelledby="s-price">
+    <div class="cs-col" data-fig="Text / Fare" data-fig-quiet>
+      <h2 id="s-price" class="reveal"><span lang="ru">Пассажир сам назначает цену</span><span lang="en">The passenger sets the fare</span></h2>
+      <p class="reveal" lang="ru">Модель взяли у inDrive: цену поездки называет пассажир, водитель соглашается или нет. Шаг ±30 ₽ предложил бизнес-аналитик, его согласовали с владельцем. Моя часть: как это выглядит и ведёт себя: шторка с ценой, кнопки шага, потолок 9999 ₽, подсказка, рыночная ли цена, и поведение, когда цена устарела.</p>
+      <p class="reveal" lang="en">The model came from inDrive: the passenger names the fare, the driver accepts or not. The ±30 ₽ step was proposed by a business analyst and approved by the owner. My part was how it looks and behaves: the price sheet, the step buttons, the 9,999 ₽ cap, the hint about the market price, and what happens when a price goes stale.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Fare sheet states"><div class="shot"><span lang="ru">Состояния шторки цены: шаг, потолок, подсказка, устаревшая цена</span><span lang="en">Fare sheet states: step, cap, hint, stale price</span></div></div>
+    <div class="cs-col">
+      <details class="cs-more reveal">
+        <summary><span lang="ru">Что взял у конкурентов, а что поменял</span><span lang="en">What I took from competitors and what I changed</span></summary>
+        <p lang="ru">Перед проектированием разобрал inDrive и drivee по шагам: как пассажир называет цену, что видит водитель, что происходит, когда никто не берёт заказ. Ниже их экраны, подписанные как материал анализа.</p>
+        <p lang="en">Before designing I broke down inDrive and drivee step by step: how the passenger names a price, what the driver sees, what happens when nobody takes the order. Their screens below are labelled as research material.</p>
+        <div class="shot shot--in"><span lang="ru">Экраны inDrive и drivee с подписью «материал анализа»</span><span lang="en">inDrive and drivee screens labelled “research material”</span></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-drivers">
+    <div class="cs-col" data-fig="Text / Drivers" data-fig-quiet>
+      <h2 id="s-drivers" class="reveal"><span lang="ru">Почему водители не берут заказ</span><span lang="en">Why drivers skip orders</span></h2>
+      <p class="reveal" lang="ru">Продакт предложил добавить поднятие цены во время поиска машины. Прежде чем проектировать, я проверил, есть ли за этим настоящая боль.</p>
+      <p class="reveal" lang="ru">Я сам часто ждал машину дольше, чем обещала карта, хотя машины вокруг были. Я расспросил об этом около 50–60 водителей. Ответ почти у всех один: короткие и дешёвые поездки им невыгодны, и такие заказы они пропускают намеренно.</p>
+      <p class="reveal" lang="ru">Значит, долгий поиск говорит не о нехватке машин, а о цене, которая не устраивает водителя. Гипотеза подтвердилась, и я спроектировал поднятие цены прямо на экране поиска.</p>
+      <p class="reveal" lang="en">The PM suggested letting passengers raise the fare while a car is being found. Before designing it, I checked whether there was a real pain behind it.</p>
+      <p class="reveal" lang="en">I often waited longer than the map promised myself, even with cars around. I asked 50–60 drivers about it. Almost all said the same: short, cheap rides don’t pay, so they skip them on purpose.</p>
+      <p class="reveal" lang="en">So a long search is not a lack of cars, it is a price drivers don’t accept. The hypothesis held, and I designed the fare raise right on the search screen.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Search, raise fare"><div class="shot"><span lang="ru">Экран поиска машины с поднятием цены</span><span lang="en">Car search screen with the fare raise</span></div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-online">
+    <div class="cs-col" data-fig="Text / Online" data-fig-quiet>
+      <h2 id="s-online" class="reveal"><span lang="ru">Заказы видны ещё до выхода на линию</span><span lang="en">Orders are visible before going online</span></h2>
+      <p class="reveal" lang="ru">Продакт предлагал показывать водителю заказы только после выхода на линию, а до этого держать пустой экран. Я предложил обратное: водитель, который видит живые заказы рядом, охотнее выходит на линию, чем водитель перед пустой картой. Предложение одобрили, и в макетах заказы видны сразу.</p>
+      <p class="reveal" lang="en">The PM suggested showing drivers orders only after they go online, with an empty screen before that. I proposed the opposite: a driver who sees live orders nearby is more likely to go online than one staring at an empty map. The idea was approved, and orders are visible right away.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Driver offline"><div class="shot"><span lang="ru">Водитель не на линии, заказы рядом видны</span><span lang="en">Driver offline with nearby orders visible</span></div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-pair">
+    <div class="cs-col" data-fig="Text / Flow" data-fig-quiet>
+      <h2 id="s-pair" class="reveal"><span lang="ru">Один сценарий с двух сторон</span><span lang="en">One flow, two sides</span></h2>
+      <p class="reveal" lang="ru">Пассажир назначает цену, водитель за 30 секунд решает, брать ли заказ. Каждый шаг я проектировал парой экранов, чтобы обе стороны видели одно и то же событие по-своему.</p>
+      <p class="reveal" lang="en">The passenger sets a fare, the driver has 30 seconds to decide. I designed every step as a pair of screens so both sides see the same event from their own angle.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Flow / Passenger × Driver">
+      <p class="pair__legend"><span><span lang="ru">Пассажир</span><span lang="en">Passenger</span></span><span><span lang="ru">Водитель</span><span lang="en">Driver</span></span></p>
+      <ol class="pair">
+        <li><b><span lang="ru">Поиск</span><span lang="en">Search</span></b><span><span lang="ru">До 15 минут, цену можно поднять</span><span lang="en">Up to 15 minutes, fare can be raised</span></span><span><span lang="ru">Предложение с таймером 30 секунд</span><span lang="en">An offer with a 30-second timer</span></span></li>
+        <li><b><span lang="ru">Подача</span><span lang="en">Pickup</span></b><span><span lang="ru">Машина на карте и время в пути</span><span lang="en">The car on the map and ETA</span></span><span><span lang="ru">Маршрут к пассажиру</span><span lang="en">Route to the passenger</span></span></li>
+        <li><b><span lang="ru">Ожидание</span><span lang="en">Waiting</span></b><span><span lang="ru">3 минуты бесплатно</span><span lang="en">3 free minutes</span></span><span><span lang="ru">Отсчёт того же ожидания</span><span lang="en">The same waiting countdown</span></span></li>
+        <li><b><span lang="ru">Поездка</span><span lang="en">Ride</span></b><span><span lang="ru">До трёх промежуточных точек</span><span lang="en">Up to three stops</span></span><span><span lang="ru">Навигация и связь с пассажиром</span><span lang="en">Navigation and contact with the passenger</span></span></li>
+        <li><b><span lang="ru">Оценка</span><span lang="en">Rating</span></b><span><span lang="ru">Звёзды и комментарий</span><span lang="en">Stars and a comment</span></span><span><span lang="ru">Оценка пассажира</span><span lang="en">Passenger rating</span></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-ds">
+    <div class="cs-col" data-fig="Text / Design system" data-fig-quiet>
+      <h2 id="s-ds" class="reveal"><span lang="ru">Своя дизайн-система поверх материнской</span><span lang="en">Its own design system on top of the parent one</span></h2>
+      <p class="reveal" lang="ru">В материнской системе суперапа не было тем и компонентов для карты, заказов и водителя. Я достроил их сам: 90 семантических токенов, две темы с проверкой контраста по WCAG. Библиотеку я свёл с 400 фреймов до 150 состояний компонентов.</p>
+      <p class="reveal" lang="ru">Цвета живут в токенах, а не в экранах, поэтому тёмная тема и любые правки цвета расходятся по всем экранам сразу.</p>
+      <p class="reveal" lang="en">The super app’s parent system had no themes and no components for the map, orders or the driver. I built them myself: 90 semantic tokens and two themes with WCAG contrast checks. I cut the library from 400 frames to 150 component states.</p>
+      <p class="reveal" lang="en">Colours live in tokens rather than screens, so the dark theme and any colour change reach every screen at once.</p>
+    </div>
+    <div class="cs-wide cs-stats reveal" data-fig="Stats / Design system">
+      <div><b>90</b><span lang="ru">семантических токенов</span><span lang="en">semantic tokens</span></div>
+      <div><b>400 → 150</b><span lang="ru">фреймов в состояния</span><span lang="en">frames into states</span></div>
+      <div><b>2</b><span lang="ru">темы с проверкой контраста по WCAG</span><span lang="en">themes with WCAG contrast checks</span></div>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-hyp">
+    <div class="cs-col" data-fig="Text / Hypotheses" data-fig-quiet>
+      <h2 id="s-hyp" class="reveal"><span lang="ru">Гипотезы и что с ними стало</span><span lang="en">Hypotheses and what became of them</span></h2>
+      <p class="reveal" lang="ru">Одна гипотеза проверена разговорами с водителями, две ждут данных после запуска.</p>
+      <p class="reveal" lang="en">One hypothesis was tested in conversations with drivers, two are waiting for post-launch data.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Table / Hypotheses">
+      <div class="hyp-wrap"><table class="hyp"><thead><tr><th scope="col"><span lang="ru">Гипотеза</span><span lang="en">Hypothesis</span></th><th scope="col"><span lang="ru">Статус</span><span lang="en">Status</span></th><th scope="col"><span lang="ru">Как проверял</span><span lang="en">How I tested it</span></th><th scope="col"><span lang="ru">Что вышло</span><span lang="en">What came out</span></th><th scope="col"><span lang="ru">Что сделал</span><span lang="en">What I did</span></th></tr></thead><tbody><tr><th scope="row"><span lang="ru">Водители пропускают заказы из-за низкой цены, а не потому, что машин мало</span><span lang="en">Drivers skip orders because the fare is low, not because there are too few cars</span></th><td data-k-ru="Статус" data-k-en="Status"><span class="hyp-st hyp-st--ok"><span lang="ru">Подтверждена</span><span lang="en">Confirmed</span></span></td><td data-k-ru="Как проверял" data-k-en="How I tested it"><span lang="ru">Около 50–60 разговоров с водителями</span><span lang="en">About 50–60 conversations with drivers</span></td><td data-k-ru="Что вышло" data-k-en="What came out"><span lang="ru">Короткие и дешёвые поездки водители пропускают намеренно</span><span lang="en">Drivers skip short, cheap rides on purpose</span></td><td data-k-ru="Что сделал" data-k-en="What I did"><span lang="ru">Поднятие цены прямо на экране поиска машины</span><span lang="en">A fare raise right on the car search screen</span></td></tr><tr><th scope="row"><span lang="ru">Водитель, который видит живые заказы рядом, охотнее выходит на линию</span><span lang="en">A driver who sees live orders nearby is more likely to go online</span></th><td data-k-ru="Статус" data-k-en="Status"><span class="hyp-st hyp-st--wait"><span lang="ru">Принята в продукт</span><span lang="en">Adopted</span></span></td><td data-k-ru="Как проверял" data-k-en="How I tested it"><span lang="ru">Обосновал продакту через мотивацию водителей</span><span lang="en">Argued it to the PM through driver motivation</span></td><td data-k-ru="Что вышло" data-k-en="What came out"><span lang="ru">Продакт поменял решение: вместо пустого экрана заказы видны сразу</span><span lang="en">The PM changed course: orders show right away instead of an empty screen</span></td><td data-k-ru="Что сделал" data-k-en="What I did"><span lang="ru">Заказы на карте ещё до выхода на линию</span><span lang="en">Orders on the map before going online</span></td></tr><tr><th scope="row"><span lang="ru">Подсказка «найдётся ли машина за эту цену» поможет пассажиру назначить цену, которую примут</span><span lang="en">A hint on whether a car will come at this fare helps passengers set a fare that gets accepted</span></th><td data-k-ru="Статус" data-k-en="Status"><span class="hyp-st hyp-st--next"><span lang="ru">Следующая итерация</span><span lang="en">Next iteration</span></span></td><td data-k-ru="Как проверял" data-k-en="How I tested it"><span lang="ru">Сравнение с рынком: inDrive выпустил похожую подсказку в 2026 году</span><span lang="en">Market comparison: inDrive shipped a similar hint in 2026</span></td><td data-k-ru="Что вышло" data-k-en="What came out"><span lang="ru">Метрика успеха: доля поездок, где водитель принял цену с первого предложения</span><span lang="en">Success metric: share of rides where a driver accepts the first offer</span></td><td data-k-ru="Что сделал" data-k-en="What I did"><span lang="ru">Спроектировал подсказку к цене и метку «высокий спрос»</span><span lang="en">Designed the fare hint and a “high demand” label</span></td></tr></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-result">
+    <div class="cs-col" data-fig="Text / Outcome" data-fig-quiet>
+      <h2 id="s-result" class="reveal"><span lang="ru">Результат</span><span lang="en">Outcome</span></h2>
+      <p class="reveal" lang="ru">Около 200 экранов и состояний двух приложений переданы в разработку, сейчас идёт тестирование перед релизом.</p>
+      <p class="reveal" lang="en">About 200 screens and states across two apps went to development; the product is now in testing before release.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-next-step">
+    <div class="cs-col" data-fig="Text / Market review" data-fig-quiet>
+      <h2 id="s-next-step" class="reveal"><span lang="ru">Что бы я добавил дальше</span><span lang="en">What I would add next</span></h2>
+      <p class="reveal" lang="ru">После основной работы я сравнил наши макеты с тем, что Uber, inDrive и Яндекс Go выпустили за 2024–2026 годы. Задача была не скопировать, а понять, чего не хватает нашему аукциону цены и водителю. По итогам я спроектировал следующую итерацию продукта.</p>
+      <p class="reveal" lang="en">After the main work I compared our designs with what Uber, inDrive and Yandex Go shipped in 2024–2026. The goal was not to copy but to see what our fare auction and the driver app were missing. Based on it, I designed the next iteration of the product.</p>
+      <ol class="cs-list cs-steps reveal">
+        <li><span lang="ru">Прошёл все макеты: около 110 экранов пассажира и 250 водителя.</span><span lang="en">Went through every design: about 110 passenger screens and 250 driver screens.</span></li>
+        <li><span lang="ru">Собрал свежие релизы конкурентов по новостям и страницам компаний.</span><span lang="en">Collected recent competitor releases from news and company pages.</span></li>
+        <li><span lang="ru">Сравнил по функциям и решил по каждой: берём, потом или не сейчас, по пользе для пассажира, водителя и бизнеса.</span><span lang="en">Compared feature by feature and decided for each: add, later or not now, by value to passengers, drivers and the business.</span></li>
+      </ol>
+    </div>
+    <div class="cs-wide reveal" data-fig="Table / Passenger"><div class="cmp-scroll"><table class="cmp"><caption><span lang="ru">Пассажир</span><span lang="en">Passenger</span></caption><thead><tr><th scope="col"><span lang="ru">Функция</span><span lang="en">Feature</span></th><th scope="col"><span lang="ru">Решение</span><span lang="en">Decision</span></th><th scope="col">Uber</th><th scope="col">inDrive</th><th scope="col"><span lang="ru">Яндекс Go</span><span lang="en">Yandex Go</span></th><th scope="col"><span lang="ru">У нас</span><span lang="en">Ours</span></th></tr></thead><tbody><tr><th scope="row"><span lang="ru">Центр безопасности: поделиться поездкой, экстренная помощь</span><span lang="en">Safety centre: share trip, emergency help</span></th><td><span class="dec dec--take"><span lang="ru">Берём</span><span lang="en">Adding</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">Код при посадке</span><span lang="en">PIN at pickup</span></th><td><span class="dec dec--take"><span lang="ru">Берём</span><span lang="en">Adding</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td>—</td><td>—</td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">Аудиозапись поездки</span><span lang="en">Trip audio recording</span></th><td><span class="dec dec--take"><span lang="ru">Берём</span><span lang="en">Adding</span></span></td><td>—</td><td><span lang="ru">да, 2026</span><span lang="en">yes, 2026</span></td><td>—</td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">Live Activity и Dynamic Island</span><span lang="en">Live Activity and Dynamic Island</span></th><td><span class="dec dec--take"><span lang="ru">Берём</span><span lang="en">Adding</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td>—</td><td>—</td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">Подсказка к своей цене и метка «высокий спрос»</span><span lang="en">Hint on your own fare and a “high demand” label</span></th><td><span class="dec dec--take"><span lang="ru">Берём</span><span lang="en">Adding</span></span></td><td>—</td><td><span lang="ru">да, 2026</span><span lang="en">yes, 2026</span></td><td>—</td><td><span lang="ru">частично</span><span lang="en">partly</span></td></tr><tr><th scope="row"><span lang="ru">Экран оценки водителя</span><span lang="en">Driver rating screen</span></th><td><span class="dec dec--take"><span lang="ru">Берём</span><span lang="en">Adding</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">«Ваше предложение смотрят N водителей»</span><span lang="en">“N drivers are viewing your offer”</span></th><td><span class="dec dec--have"><span lang="ru">Уже есть</span><span lang="en">Already there</span></span></td><td>—</td><td><span lang="ru">да, 2026</span><span lang="en">yes, 2026</span></td><td><span lang="ru">время поиска</span><span lang="en">search time</span></td><td><span lang="ru">есть</span><span lang="en">yes</span></td></tr><tr><th scope="row"><span lang="ru">Отмена с причиной и быстрое исправление заказа</span><span lang="en">Cancel with a reason and quick order fix</span></th><td><span class="dec dec--later"><span lang="ru">Потом</span><span lang="en">Later</span></span></td><td>—</td><td><span lang="ru">да, 2026</span><span lang="en">yes, 2026</span></td><td>—</td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">Умные подсказки «Куда?»</span><span lang="en">Smart “Where to?” suggestions</span></th><td><span class="dec dec--later"><span lang="ru">Потом</span><span lang="en">Later</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td>—</td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">частично</span><span lang="en">partly</span></td></tr><tr><th scope="row"><span lang="ru">Удобные точки посадки</span><span lang="en">Better pickup points</span></th><td><span class="dec dec--later"><span lang="ru">Потом</span><span lang="en">Later</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td>—</td><td>—</td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">Отметка «водитель проверен»</span><span lang="en">“Verified driver” badge</span></th><td><span class="dec dec--later"><span lang="ru">Потом</span><span lang="en">Later</span></span></td><td><span lang="ru">частично</span><span lang="en">partly</span></td><td><span lang="ru">да, 2026</span><span lang="en">yes, 2026</span></td><td>—</td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">Заказ заранее, для другого человека, опции</span><span lang="en">Scheduled rides, rides for others, options</span></th><td><span class="dec dec--no"><span lang="ru">Не сейчас</span><span lang="en">Not now</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">частично</span><span lang="en">partly</span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr></tbody></table></div></div>
+    <div class="cs-wide reveal" data-fig="Table / Driver"><div class="cmp-scroll"><table class="cmp"><caption><span lang="ru">Водитель</span><span lang="en">Driver</span></caption><thead><tr><th scope="col"><span lang="ru">Функция</span><span lang="en">Feature</span></th><th scope="col"><span lang="ru">Решение</span><span lang="en">Decision</span></th><th scope="col">Uber Driver</th><th scope="col">inDrive</th><th scope="col"><span lang="ru">Яндекс Про</span><span lang="en">Yandex Pro</span></th><th scope="col"><span lang="ru">У нас</span><span lang="en">Ours</span></th></tr></thead><tbody><tr><th scope="row"><span lang="ru">Заработок за сегодня на главном и статистика по дням</span><span lang="en">Today’s earnings on home and daily stats</span></th><td><span class="dec dec--take"><span lang="ru">Берём</span><span lang="en">Adding</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">только баланс</span><span lang="en">balance only</span></td></tr><tr><th scope="row"><span lang="ru">Карта спроса: где и когда больше заказов</span><span lang="en">Demand map: where and when orders peak</span></th><td><span class="dec dec--take"><span lang="ru">Берём</span><span lang="en">Adding</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td>—</td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">Безопасность водителя: SOS, аудиозапись, код пассажира</span><span lang="en">Driver safety: SOS, audio, passenger PIN</span></th><td><span class="dec dec--later"><span lang="ru">Потом</span><span lang="en">Later</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td>—</td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">Фильтры ленты: цена, радиус, «по пути домой»</span><span lang="en">Feed filters: price, radius, “on my way home”</span></th><td><span class="dec dec--later"><span lang="ru">Потом</span><span lang="en">Later</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">Фотоконтроль и селфи-проверка</span><span lang="en">Photo checks and selfie verification</span></th><td><span class="dec dec--later"><span lang="ru">Потом</span><span lang="en">Later</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">Контроль времени на линии и напоминание об отдыхе</span><span lang="en">Online-time limits and rest reminders</span></th><td><span class="dec dec--ask"><span lang="ru">Вопрос к продакту</span><span lang="en">Question for PM</span></span></td><td>—</td><td>—</td><td>—</td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr><tr><th scope="row"><span lang="ru">Квесты, бонусы, уровни</span><span lang="en">Quests, bonuses, levels</span></th><td><span class="dec dec--no"><span lang="ru">Не сейчас</span><span lang="en">Not now</span></span></td><td><span lang="ru">да</span><span lang="en">yes</span></td><td>—</td><td><span lang="ru">да</span><span lang="en">yes</span></td><td><span lang="ru">нет</span><span lang="en">no</span></td></tr></tbody></table></div></div>
+    <div class="cs-col">
+      <p class="reveal cs-note" lang="ru">Счётчик «ваше предложение смотрят N водителей» был в наших макетах раньше, чем inDrive выпустил такой же в сентябре 2026 года.</p>
+      <p class="reveal cs-note" lang="en">The “N drivers are viewing your offer” counter was in our designs before inDrive shipped the same thing in September 2026.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="R&amp;D / Five new blocks">
+      <ul class="rnd"><li><h3><span lang="ru">Центр безопасности</span><span lang="en">Safety centre</span></h3><p><span lang="ru">Поделиться поездкой, экстренная помощь с готовым SMS, код при посадке, индикатор аудиозаписи.</span><span lang="en">Share the trip, emergency help with a ready SMS, a pickup PIN, an audio recording indicator.</span></p><div class="shot shot--mini"><span lang="ru">Экраны в работе</span><span lang="en">Screens in progress</span></div></li><li><h3><span lang="ru">Подсказка к цене</span><span lang="en">Fare hint</span></h3><p><span lang="ru">Наш аукцион без неё слепой: пассажир видит, найдётся ли машина за его цену, и почему сейчас дороже.</span><span lang="en">Without it our auction is blind: the passenger sees whether a car will come at their fare and why it costs more now.</span></p><div class="shot shot--mini"><span lang="ru">Экраны в работе</span><span lang="en">Screens in progress</span></div></li><li><h3><span lang="ru">Оценка водителя</span><span lang="en">Driver rating</span></h3><p><span lang="ru">Звёзды, комплименты и отдельный путь при низкой оценке, вплоть до «не назначать этого водителя».</span><span lang="en">Stars, compliments and a separate path for low ratings, up to “don’t assign this driver again”.</span></p><div class="shot shot--mini"><span lang="ru">Экраны в работе</span><span lang="en">Screens in progress</span></div></li><li><h3><span lang="ru">Live Activity и Dynamic Island</span><span lang="en">Live Activity and Dynamic Island</span></h3><p><span lang="ru">Поиск, подача, код посадки и поездка на экране блокировки, без открытия приложения.</span><span lang="en">Search, pickup, PIN and the ride on the lock screen without opening the app.</span></p><div class="shot shot--mini"><span lang="ru">Экраны в работе</span><span lang="en">Screens in progress</span></div></li><li><h3><span lang="ru">Заработок и карта спроса</span><span lang="en">Earnings and demand map</span></h3><p><span lang="ru">Водитель видит, сколько заработал сегодня и за неделю, и где и когда больше заказов.</span><span lang="en">Drivers see what they earned today and this week, and where and when orders peak.</span></p><div class="shot shot--mini"><span lang="ru">Экраны в работе</span><span lang="en">Screens in progress</span></div></li></ul>
+    </div>
+    <div class="cs-col">
+      <details class="cs-more reveal">
+        <summary><span lang="ru">Источники</span><span lang="en">Sources</span></summary>
+        <ul class="cs-list cs-sources">
+          <li><a href="https://www.uber.com/newsroom/onlyonuber24/" target="_blank" rel="noopener">Uber, Only on Uber 2024</a></li>
+          <li><a href="https://www.mobileworldlive.com/big-tech/uber-puts-passenger-safety-at-top-of-app-refresh/" target="_blank" rel="noopener">Mobile World Live: Uber puts passenger safety at top of app refresh</a></li>
+          <li><a href="https://www.iclarified.com/89412" target="_blank" rel="noopener">iClarified: Uber Live Activities and Dynamic Island</a></li>
+          <li><a href="https://www.uber.com/gb/en/drive/driver-app/earnings-trends/" target="_blank" rel="noopener">Uber Driver: Earnings Trends</a></li>
+          <li><a href="https://www.algerie-eco.com/2026/09/10/indrive-enrichit-lexperience-passager-avec-de-nouvelles-fonctionnalites-dans-son-application/" target="_blank" rel="noopener">Algérie Eco: новые функции пассажира inDrive, 10.09.2026</a></li>
+          <li><a href="https://techafricanews.com/2026/07/07/indrive-launches-trip-audio-recording-feature-to-boost-rider-safety/" target="_blank" rel="noopener">TechAfrica News: inDrive trip audio recording, 07.07.2026</a></li>
+          <li><a href="https://www.iphones.ru/iNotes/v-yandeks-taksi-poyavilsya-ii-kotoryy-predlagaet-marshruty-i-pokazyvaet-tochnoe-vremya-poiska-mashiny" target="_blank" rel="noopener">iPhones.ru: ИИ в Яндекс Такси, 23.04.2026</a></li>
+          <li><a href="https://bizmedia.kz/2024-06-12-indrive-i-yandeks-vvodyat-dlya-voditelej-v-kazahstane-identifikacziyu-po-liczu/" target="_blank" rel="noopener">Bizmedia.kz: идентификация водителей по лицу, 12.06.2024</a></li>
+          <li><a href="https://developer.apple.com/design/new-design-gallery-2026/" target="_blank" rel="noopener">Apple: New Design Gallery 2026</a></li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-check">
+    <div class="cs-col" data-fig="Text / Metrics" data-fig-quiet>
+      <h2 id="s-check" class="reveal"><span lang="ru">Как измеряем успех</span><span lang="en">How success is measured</span></h2>
+      <p class="reveal" lang="ru">Метрики, по которым оцениваем решения:</p>
+      <p class="reveal" lang="en">The metrics we use to judge the decisions:</p>
+      <ul class="cs-list reveal">
+        <li><span lang="ru">долю поездок, где водитель принял цену пассажира с первого предложения;</span><span lang="en">the share of rides where a driver accepts the passenger’s first offer;</span></li>
+        <li><span lang="ru">время от назначения цены до принятия водителем;</span><span lang="en">time from setting the fare to a driver accepting it;</span></li>
+        <li><span lang="ru">отмены после принятия как контрметрику: не слишком ли низкие цены предлагают;</span><span lang="en">cancellations after acceptance as a counter-metric: are offered fares too low;</span></li>
+        <li><span lang="ru">долю водителей, вышедших на линию в первую неделю после регистрации.</span><span lang="en">the share of drivers going online in their first week after signing up.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="cs-next" aria-labelledby="s-next">
+    <div class="wrap">
+      <h2 id="s-next"><span lang="ru">Другие кейсы</span><span lang="en">Other cases</span></h2>
+      <div class="cs-next__row" data-fig="Other cases" data-fig-quiet>
+        <a href="../delivery/index.html" style="--c: 20 184 166"><span lang="ru">Локали Доставка</span><span lang="en">Lokali Delivery</span></a>
+        <a href="../wallet/index.html" style="--c: 59 111 182"><span lang="ru">Кошелёк и админка</span><span lang="en">Wallet and admin</span></a>
+        <a href="../restaurant/index.html" style="--c: 228 52 52"><span lang="ru">Локали Ресторан и Crispy</span><span lang="en">Lokali Restaurant and Crispy</span></a>
+      </div>
+    </div>
+  </nav>
+</main>
+<a class="btn cs-float" href="#try" data-float><span lang="ru">Попробовать цену</span><span lang="en">Try the fare</span></a>
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__links">
+      <a class="foot__pill" href="mailto:muhammadgadaev376@gmail.com">muhammadgadaev376@gmail.com</a>
+      <a class="foot__pill" href="https://t.me/creaperson">Telegram</a>
+    </div>
+    <a class="foot__mark" href="../index.html">gadaev</a>
+    <p class="foot__copy">© <span lang="ru">Магомед Гадаев</span><span lang="en">Magomed Gadaev</span>, 2026</p>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+<script src="../assets/figma.js" defer></script>
+</body>
+</html>
+

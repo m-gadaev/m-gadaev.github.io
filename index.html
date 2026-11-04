@@ -1,0 +1,781 @@
+<!doctype html>
+<html class="fig" lang="ru" data-lang="ru" data-title-ru="Магомед Гадаев, продуктовый дизайнер" data-title-en="Magomed Gadaev, product designer">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Магомед Гадаев, продуктовый дизайнер</title>
+<meta name="description" content="Проектирую мобильные и веб-интерфейсы: от исследований и пользовательских сценариев до передачи в разработку.">
+<meta name="theme-color" content="#19191B">
+<link rel="preload" href="assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/figma.css">
+<script>
+// Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
+(function () {
+  var d = document.documentElement, s = {};
+  try { s.theme = localStorage.getItem('theme'); s.lang = localStorage.getItem('lang'); } catch (e) {}
+  var theme = s.theme || 'dark'; // по умолчанию тёмная, светлая — по переключателю
+  var lang = s.lang || ((navigator.language || 'ru').slice(0, 2) === 'ru' ? 'ru' : 'en');
+  d.dataset.theme = theme; d.dataset.lang = lang; d.lang = lang;
+  if (lang === 'en' && d.dataset.titleEn) document.title = d.dataset.titleEn;
+  try { if (localStorage.getItem('fig-clean') === '1') d.classList.add('fig-clean'); } catch (e) {}
+  d.classList.add('js');
+})();
+</script>
+</head>
+
+<body>
+<header class="bar">
+  <div class="bar__in">
+    <a class="wordmark" href="index.html">gadaev</a>
+    <div class="bar__mid" data-bar-tabs aria-hidden="true"></div>
+    <div class="bar__end">
+      <div class="bar__settings" role="group" aria-label="Язык и тема / Language and theme">
+      <button type="button" class="set-btn set-btn--text" data-toggle-lang aria-label="Switch to English / Переключить на русский"><span lang="ru">EN</span><span lang="en">RU</span></button>
+      <button type="button" class="set-btn" data-toggle-theme aria-label="Сменить тему / Toggle theme">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      </div>
+      <a class="icon-btn" href="https://t.me/creaperson" aria-label="Telegram" title="Telegram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.54 21.69a.5.5 0 0 0 .94-.03l6.5-19a.5.5 0 0 0-.64-.63l-19 6.5a.5.5 0 0 0-.02.93l7.93 3.18a2 2 0 0 1 1.11 1.11z"/><path d="m21.85 2.15-10.94 10.94"/></svg>
+      </a>
+      <a class="icon-btn icon-btn--dark" href="assets/gadaev-cv.pdf" aria-label="Резюме, PDF / CV, PDF" title="CV, PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero__grid" data-fig="Hero" data-fig-quiet>
+      <div>
+        <h1 class="reveal"><span lang="ru">Приветствую!<br> Я&nbsp;Магомед Гадаев,</span><span lang="en">Greetings!<br> I’m Magomed Gadaev,</span></h1>
+        <p class="hero__role reveal" style="--d:40ms"><span lang="ru">продуктовый дизайнер</span><span lang="en">a product designer</span></p>
+        <p class="hero__lead reveal" style="--d:80ms"><span lang="ru">Проектирую мобильные и веб-интерфейсы: от исследований и пользовательских сценариев до передачи в разработку. Пришёл из графического дизайна, поэтому логика и визуал у меня идут вместе.</span><span lang="en">I design mobile and web interfaces, from research and user flows to developer handoff. I came from graphic design, so logic and visuals go together in my work.</span></p>
+        <ul class="jobs reveal" style="--d:160ms">
+          <li><span><span lang="ru">Ресторан-групп, «Локали»</span><span lang="en">Restoran Group, Lokali</span></span><span>2024–2026</span><img class="jobs__logo" src="assets/img/logos/lokali.webp" width="160" height="160" alt=""></li>
+          <li><span>Rim Group</span><span>2023–2024</span><img class="jobs__logo only-light" src="assets/img/logos/rim.webp" width="160" height="160" alt=""><img class="jobs__logo only-dark" src="assets/img/logos/rim-dark.webp" width="160" height="160" alt=""></li>
+          <li><span><span lang="ru">Графический дизайн</span><span lang="en">Graphic design</span></span><span>2020–2023</span><span class="jobs__logo jobs__logo--draw" aria-hidden="true"><svg viewBox="0 0 32 32"><path fill="currentColor" d="M16 3.5c.5 0 .9.3 1.1.7l6.6 13.4c.3.6.2 1.3-.2 1.8l-4.4 5.1h-6.2l-4.4-5.1c-.4-.5-.5-1.2-.2-1.8l6.6-13.4c.2-.4.6-.7 1.1-.7Z"/><circle cx="16" cy="15.6" r="2.1" fill="var(--bg)"/><path d="M16 4.6v8.9" stroke="var(--bg)" stroke-width="1.3" stroke-linecap="round"/><rect x="11.6" y="25.4" width="8.8" height="3.1" rx="1.2" fill="#F2B705"/></svg></span></li>
+        </ul>
+      </div>
+      <div class="fig-avatar" data-fig="Avatar" data-fig-selected>
+      <figure class="portrait reveal" style="--d:120ms">
+        <img class="only-light" src="assets/img/portrait-studio.webp" width="640" height="640" alt="Магомед Гадаев">
+        <img class="only-dark" src="assets/img/portrait-studio-dark.webp" width="640" height="640" alt="Магомед Гадаев">
+      </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="work__head">
+        <h2 id="work-title"><span lang="ru">Работы</span><span lang="en">Work</span></h2>
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" id="tab-product" aria-controls="panel-product" aria-selected="true"><span lang="ru">Продукт</span><span lang="en">Products</span></button>
+          <button class="tab" role="tab" id="tab-how" aria-controls="panel-how" aria-selected="false" tabindex="-1"><span lang="ru">Как я работаю</span><span lang="en">How I work</span></button>
+        </div>
+      </div>
+
+      <div class="cases" role="tabpanel" id="panel-product" aria-labelledby="tab-product">
+
+        <div class="fig-card" data-fig="Case / Taxi">
+
+          <article class="case case--taxi" style="--glow: 255 196 0">
+          <div class="case__bg" aria-hidden="true"><svg class="map" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="1200" height="800" fill="var(--map-ground)"/>
+<rect x="120" y="90" width="210" height="140" rx="18" fill="var(--map-park)"/>
+<rect x="640" y="520" width="260" height="170" rx="18" fill="var(--map-park)"/>
+<rect x="930" y="120" width="180" height="120" rx="18" fill="var(--map-park)"/>
+<rect x="60" y="560" width="150" height="160" rx="18" fill="var(--map-park)"/>
+<path d="M-20 430 C 180 380, 300 470, 470 430 S 760 330, 900 380 S 1100 470, 1230 420" fill="none" stroke="var(--map-water)" stroke-width="46" stroke-linecap="round"/>
+<g transform="rotate(-12 600 400)">
+<rect x="-184" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<line x1="-192" y1="-200" x2="-192" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-96" y1="-200" x2="-96" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="0" y1="-200" x2="0" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="96" y1="-200" x2="96" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="192" y1="-200" x2="192" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="288" y1="-200" x2="288" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="384" y1="-200" x2="384" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="480" y1="-200" x2="480" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="576" y1="-200" x2="576" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="672" y1="-200" x2="672" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="768" y1="-200" x2="768" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="864" y1="-200" x2="864" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="960" y1="-200" x2="960" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1056" y1="-200" x2="1056" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1152" y1="-200" x2="1152" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1248" y1="-200" x2="1248" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1344" y1="-200" x2="1344" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1440" y1="-200" x2="1440" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1536" y1="-200" x2="1536" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="-176" x2="1600" y2="-176" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="-88" x2="1600" y2="-88" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="0" x2="1600" y2="0" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="88" x2="1600" y2="88" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="176" x2="1600" y2="176" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="264" x2="1600" y2="264" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="352" x2="1600" y2="352" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="440" x2="1600" y2="440" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="528" x2="1600" y2="528" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="616" x2="1600" y2="616" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="704" x2="1600" y2="704" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="792" x2="1600" y2="792" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="880" x2="1600" y2="880" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="968" x2="1600" y2="968" stroke="var(--map-road)" stroke-width="8"/>
+</g>
+<path d="M-40 250 L 1240 120" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M-40 250 L 1240 120" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M200 -40 L 380 840" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M200 -40 L 380 840" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M-40 690 L 1240 560" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M-40 690 L 1240 560" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M860 -40 L 980 840" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M860 -40 L 980 840" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+</svg>
+</div>
+          <header class="case__head">
+            <ul class="chips">
+              <li><span lang="ru">Мобильное приложение</span><span lang="en">Mobile app</span></li>
+              <li>2025–2026</li>
+              <li><span lang="ru">Перед релизом</span><span lang="en">Pre-release</span></li>
+            </ul>
+            <h3><span lang="ru">Локали Такси <span class="soft">два приложения с нуля: для пассажира и для водителя</span></span><span lang="en">Lokali Taxi <span class="soft">two apps from scratch: for passengers and for drivers</span></span></h3>
+          </header>
+          <div class="case__demo case__demo--phone">
+                        <div class="phone" data-ui>
+              <div class="phone__screen">
+                <div class="phone__map"><svg class="map" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="1200" height="800" fill="var(--map-ground)"/>
+<rect x="120" y="90" width="210" height="140" rx="18" fill="var(--map-park)"/>
+<rect x="640" y="520" width="260" height="170" rx="18" fill="var(--map-park)"/>
+<rect x="930" y="120" width="180" height="120" rx="18" fill="var(--map-park)"/>
+<rect x="60" y="560" width="150" height="160" rx="18" fill="var(--map-park)"/>
+<path d="M-20 430 C 180 380, 300 470, 470 430 S 760 330, 900 380 S 1100 470, 1230 420" fill="none" stroke="var(--map-water)" stroke-width="46" stroke-linecap="round"/>
+<g transform="rotate(-12 600 400)">
+<rect x="-184" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<line x1="-192" y1="-200" x2="-192" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-96" y1="-200" x2="-96" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="0" y1="-200" x2="0" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="96" y1="-200" x2="96" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="192" y1="-200" x2="192" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="288" y1="-200" x2="288" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="384" y1="-200" x2="384" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="480" y1="-200" x2="480" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="576" y1="-200" x2="576" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="672" y1="-200" x2="672" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="768" y1="-200" x2="768" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="864" y1="-200" x2="864" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="960" y1="-200" x2="960" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1056" y1="-200" x2="1056" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1152" y1="-200" x2="1152" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1248" y1="-200" x2="1248" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1344" y1="-200" x2="1344" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1440" y1="-200" x2="1440" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1536" y1="-200" x2="1536" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="-176" x2="1600" y2="-176" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="-88" x2="1600" y2="-88" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="0" x2="1600" y2="0" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="88" x2="1600" y2="88" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="176" x2="1600" y2="176" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="264" x2="1600" y2="264" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="352" x2="1600" y2="352" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="440" x2="1600" y2="440" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="528" x2="1600" y2="528" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="616" x2="1600" y2="616" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="704" x2="1600" y2="704" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="792" x2="1600" y2="792" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="880" x2="1600" y2="880" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="968" x2="1600" y2="968" stroke="var(--map-road)" stroke-width="8"/>
+</g>
+<path d="M-40 250 L 1240 120" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M-40 250 L 1240 120" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M200 -40 L 380 840" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M200 -40 L 380 840" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M-40 690 L 1240 560" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M-40 690 L 1240 560" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M860 -40 L 980 840" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M860 -40 L 980 840" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+</svg>
+
+                  <svg class="phone__route" viewBox="0 0 300 640" aria-hidden="true"><path d="M86 150 C 120 210, 210 200, 190 280 S 120 360, 214 392" fill="none" stroke="#1C1C1F" stroke-width="5" stroke-linecap="round"/><circle cx="86" cy="150" r="9" fill="#FFC400" stroke="#1C1C1F" stroke-width="3"/><circle cx="214" cy="392" r="9" fill="#1C1C1F"/></svg>
+                </div>
+                <div class="phone__status" aria-hidden="true"><span>9:41</span><span class="phone__island"></span><span class="phone__sys"><i></i><i></i><b></b></span></div>
+                <div class="ui-taxi ui-taxi--sheet" data-taxi>
+                  <p class="ui-taxi__title"><span lang="ru">Укажите вашу цену</span><span lang="en">Offer your fare</span></p>
+                  <div class="ui-taxi__row">
+                    <button type="button" class="ui-round" data-step="-30" aria-label="−30 ₽">−</button>
+                    <output class="ui-taxi__price" data-price>450 ₽</output>
+                    <button type="button" class="ui-round" data-step="30" aria-label="+30 ₽">+</button>
+                  </div>
+                  <p class="ui-taxi__hint" data-hint></p>
+                  <span class="ui-taxi__cta"><span lang="ru">Заказать</span><span lang="en">Order</span></span>
+                  <span class="phone__home" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <a class="btn btn--quiet case__open" href="taxi/index.html"><span lang="ru">Открыть кейс</span><span lang="en">Open case</span></a>
+        </article>
+
+        </div>
+
+        <div class="fig-card" data-fig="Case / Delivery">
+
+          <article class="case case--delivery" style="--glow: 20 184 166">
+          <header class="case__head">
+            <ul class="chips">
+              <li><span lang="ru">Мобильное приложение</span><span lang="en">Mobile app</span></li>
+              <li>2025–2026</li>
+              <li class="chip-link"><a href="https://apps.apple.com/ru/app/id1625790808" target="_blank" rel="noopener"><span lang="ru">App Store</span><span lang="en">App Store</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
+            </ul>
+            <h3><span lang="ru">Локали Доставка <span class="soft">редизайн до релиза и Live Activity</span></span><span lang="en">Lokali Delivery <span class="soft">redesign through to release and Live Activity</span></span></h3>
+          </header>
+          <div class="case__demo">
+            <button type="button" class="ui-la" data-ui data-la>
+              <span class="ui-la__top"><span class="ui-la__brand">Локали</span><span class="ui-la__eta" data-la-eta></span></span>
+              <span class="ui-la__stage" data-la-stage></span>
+              <span class="ui-la__bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="ui-la__note"><span lang="ru">Нажмите, чтобы сменить стадию</span><span lang="en">Tap to change the stage</span></span>
+            </button>
+          </div>
+          <a class="btn btn--quiet case__open" href="delivery/index.html"><span lang="ru">Открыть кейс</span><span lang="en">Open case</span></a>
+        </article>
+
+        </div>
+
+        <div class="fig-card" data-fig="Case / Wallet &amp; admin">
+
+          <article class="case case--wallet" style="--glow: 59 111 182">
+          <header class="case__head">
+            <ul class="chips">
+              <li><span lang="ru">Мобильное и десктоп</span><span lang="en">Mobile and desktop</span></li>
+              <li>2025–2026</li>
+              <li><span lang="ru">В проде</span><span lang="en">Live</span></li>
+            </ul>
+            <h3><span lang="ru">Кошелёк и админка <span class="soft">общая модель для водителя, курьера и ресторана</span></span><span lang="en">Wallet and admin <span class="soft">one model for drivers, couriers and restaurants</span></span></h3>
+          </header>
+          <div class="case__demo">
+            <div class="ui-wallet" data-ui data-wallet>
+              <div class="ui-seg" role="group">
+                <button type="button" aria-pressed="true" data-w="driver"><span lang="ru">Водитель</span><span lang="en">Driver</span></button>
+                <button type="button" aria-pressed="false" data-w="courier"><span lang="ru">Курьер</span><span lang="en">Courier</span></button>
+                <button type="button" aria-pressed="false" data-w="rest"><span lang="ru">Ресторан</span><span lang="en">Restaurant</span></button>
+              </div>
+              <div class="ui-wallet__card" data-w-card>
+                <span class="ui-wallet__label"><span lang="ru">Баланс</span><span lang="en">Balance</span></span>
+                <span class="ui-wallet__sum" data-w-sum></span>
+                <span class="ui-wallet__state" data-w-state></span>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn--quiet case__open" href="wallet/index.html"><span lang="ru">Открыть кейс</span><span lang="en">Open case</span></a>
+        </article>
+
+        </div>
+
+        <div class="fig-card" data-fig="Case / Restaurant &amp; Crispy">
+
+          <article class="case case--food" style="--glow: 228 52 52">
+          <header class="case__head">
+            <ul class="chips">
+              <li><span lang="ru">Два приложения</span><span lang="en">Two apps</span></li>
+              <li>2025–2026</li>
+              <li class="chip-link"><a href="https://apps.apple.com/ru/app/id6766522570" target="_blank" rel="noopener"><span lang="ru">Ресторан в App Store</span><span lang="en">Restaurant on App Store</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
+              <li class="chip-link"><a href="https://apps.apple.com/ru/app/id6779682555" target="_blank" rel="noopener"><span lang="ru">Crispy в App Store</span><span lang="en">Crispy on App Store</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
+            </ul>
+            <h3><span lang="ru">Локали Ресторан и Crispy <span class="soft">приложение для сотрудников и отдельное приложение ресторана-партнёра</span></span><span lang="en">Lokali Restaurant and Crispy <span class="soft">an app for restaurant staff and a standalone app for a partner restaurant</span></span></h3>
+          </header>
+          <div class="case__demo">
+            <div class="ui-order" data-ui data-order>
+              <div class="ui-order__guest">
+                <span class="ui-order__cap">Crispy · <span lang="ru">гость</span><span lang="en">guest</span></span>
+                <div class="ui-seg ui-seg--red" role="group">
+                  <button type="button" aria-pressed="true" data-o="go"><span lang="ru">С собой</span><span lang="en">To go</span></button>
+                  <button type="button" aria-pressed="false" data-o="here"><span lang="ru">В ресторане</span><span lang="en">Dine in</span></button>
+                </div>
+              </div>
+              <span class="ui-order__arrow" aria-hidden="true"></span>
+              <div class="ui-order__kitchen">
+                <span class="ui-order__cap"><span lang="ru">Кухня · Л.Ресторан</span><span lang="en">Kitchen · L.Restaurant</span></span>
+                <div class="ui-order__card">
+                  <span class="ui-order__icon" data-o-icon aria-hidden="true"></span>
+                  <span class="ui-order__num"><span lang="ru">Заказ</span><span lang="en">Order</span> #536</span>
+                  <span class="ui-order__chip" data-o-chip></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn--quiet case__open" href="restaurant/index.html"><span lang="ru">Открыть кейс</span><span lang="en">Open case</span></a>
+        </article>
+
+        </div>
+
+        <div class="fig-card" data-fig="Case / Rim Group">
+
+          <article class="case case--rim" style="--glow: 226 90 0">
+          <header class="case__head">
+            <ul class="chips">
+              <li><span lang="ru">Корпоративный сайт</span><span lang="en">Corporate website</span></li>
+              <li>2023–2024</li>
+              <li><span lang="ru">30+ страниц</span><span lang="en">30+ pages</span></li>
+            </ul>
+            <h3><span lang="ru">Rim Group <span class="soft">корпоративный сайт промышленного холдинга</span></span><span lang="en">Rim Group <span class="soft">corporate website for an industrial holding</span></span></h3>
+          </header>
+          <div class="case__demo">
+            <div class="ui-rim" data-ui data-rim>
+              <div class="ui-rim__bar" aria-hidden="true"><i></i><i></i><i></i><span>rimgroup.ru</span></div>
+              <div class="ui-rim__page" data-rim-page="before" aria-hidden="true">
+                <div class="ui-rim__before"><b></b><b></b><b></b><b></b><b></b><b></b><s></s><s></s><s></s><s></s><s></s><s></s></div>
+                <div class="ui-rim__after"><em></em><u></u><u></u><u></u><u></u><u></u><u></u></div>
+              </div>
+              <div class="ui-seg ui-seg--orange" role="group">
+                <button type="button" aria-pressed="true" data-r="before"><span lang="ru">Было</span><span lang="en">Before</span></button>
+                <button type="button" aria-pressed="false" data-r="after"><span lang="ru">Стало</span><span lang="en">After</span></button>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn--quiet case__open" href="rim-group/index.html"><span lang="ru">Открыть кейс</span><span lang="en">Open case</span></a>
+        </article>
+
+        </div>
+      </div>
+
+      <div class="how" role="tabpanel" id="panel-how" aria-labelledby="tab-how" hidden>
+        <div class="fig-card" data-fig="How / 1 Pain first">
+          <article class="how__item">
+          <h3><span lang="ru">Сначала проверяю, есть ли проблема</span><span lang="en">First I check the problem is real</span></h3>
+          <div>
+            <p lang="ru">Продакт предложил дать пассажиру поднимать цену во время поиска машины. Прежде чем рисовать, я расспросил около 50–60 водителей. Почти все сказали одно: короткие и дешёвые поездки они пропускают намеренно.</p>
+            <p lang="ru">Значит, долгий поиск — это цена, а не нехватка машин. Гипотеза подтвердилась, и я спроектировал поднятие цены прямо на экране поиска.</p>
+            <p lang="en">The PM suggested letting passengers raise the fare while a car is being found. Before drawing anything, I asked 50–60 drivers about it. Almost all said the same: they skip short, cheap rides on purpose.</p>
+            <p lang="en">So the long search was about the price, not a lack of cars. The hypothesis held, and I designed the fare raise right on the search screen.</p>
+          </div>
+        </article>
+        </div>
+        <div class="fig-card" data-fig="How / 2 Systems">
+          <article class="how__item">
+          <h3><span lang="ru">Строю систему, а не отдельные экраны</span><span lang="en">I build systems, not separate screens</span></h3>
+          <div>
+            <p lang="ru">В такси я собрал дизайн-систему на 90 семантических токенах в двух темах с проверкой контраста. Библиотеку свёл с 400 фреймов до 150 состояний компонентов.</p>
+            <p lang="ru">Цвета живут в токенах, а не в экранах, поэтому тёмная тема и правки цвета расходятся по всем экранам сразу.</p>
+            <p lang="en">For the taxi app I built a design system on 90 semantic tokens in two themes with contrast checks, and cut the library from 400 frames to 150 component states.</p>
+            <p lang="en">Colours live in tokens rather than screens, so the dark theme and colour changes reach every screen at once.</p>
+          </div>
+        </article>
+        </div>
+        <div class="fig-card" data-fig="How / 3 Figma + AI">
+          <article class="how__item">
+          <h3><span lang="ru">Работаю с Figma через ИИ</span><span lang="en">I work with Figma through AI</span></h3>
+          <div>
+            <p lang="ru">Подключаю модель к рабочему файлу Figma через MCP. Она вносит массовые правки сразу по десяткам экранов и проверяет файл перед сдачей в разработку: элементы, которые сливаются с фоном, мёртвые экраны, оборванные связи прототипа.</p>
+            <p lang="ru">Типовая задача сократилась с двух дней до половины дня. Результат после модели я каждый раз проверяю сам.</p>
+            <p lang="en">I connect a model to the working Figma file through MCP. It makes bulk edits across dozens of screens and audits the file before handoff: elements that blend into the background, dead screens, broken prototype links.</p>
+            <p lang="en">A typical task went from two days to half a day. I review every result myself.</p>
+          </div>
+        </article>
+        </div>
+        <div class="fig-card" data-fig="How / 4 Handoff">
+          <article class="how__item">
+          <h3><span lang="ru">Довожу до разработки и передаю дальше</span><span lang="en">I see it through and hand it over</span></h3>
+          <div>
+            <p lang="ru">Сверяю сборку с макетом и отдаю разработчикам список расхождений. Под конец работы участвовал в найме второго продуктового дизайнера: провёл техническое интервью, адаптировал его и передал направление по документации.</p>
+            <p lang="en">I check builds against the design and give developers a list of differences. Near the end I helped hire a second product designer: ran the technical interview, onboarded him and handed over the area with documentation.</p>
+          </div>
+        </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__links">
+      <a class="foot__pill" href="mailto:muhammadgadaev376@gmail.com">muhammadgadaev376@gmail.com</a>
+      <a class="foot__pill" href="https://t.me/creaperson">Telegram</a>
+    </div>
+    <a class="foot__mark" href="index.html">gadaev</a>
+    <p class="foot__copy">© <span lang="ru">Магомед Гадаев</span><span lang="en">Magomed Gadaev</span>, 2026</p>
+  </div>
+</footer>
+<script src="assets/site.js" defer></script>
+<script src="assets/figma.js" defer></script>
+</body>
+</html>
+
