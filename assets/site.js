@@ -395,3 +395,28 @@ revealAll(document);
     });
   });
 })();
+
+/* Экран кейса крупно: клик по миниатюре открывает её в модальном окне */
+(() => {
+  const d = document;
+  let lb, pic;
+  const open = img => {
+    if (!lb) {
+      lb = d.createElement('dialog'); lb.className = 'lb';
+      const en = d.documentElement.lang === 'en';
+      lb.innerHTML = '<img alt=""><button class="lb__close" type="button">×</button>';
+      lb.querySelector('.lb__close').setAttribute('aria-label', en ? 'Close' : 'Закрыть');
+      pic = lb.querySelector('img');
+      lb.addEventListener('click', e => { if (e.target !== pic) lb.close(); });
+      d.body.appendChild(lb);
+    }
+    pic.src = img.currentSrc || img.src; pic.alt = img.alt;
+    lb.showModal();
+  };
+  d.addEventListener('click', e => {
+    const b = e.target.closest('.gal .zoom');
+    if (!b) return;
+    e.preventDefault();
+    open(b.querySelector('img'));
+  });
+})();
