@@ -624,8 +624,73 @@ a:hover { text-decoration-thickness: 2px; }
 /* Просмотр экрана крупно */
 .lb { padding: 0; border: 0; background: none; max-width: 100vw; max-height: 100dvh; overflow: visible; }
 .lb::backdrop { background: rgb(0 0 0 / 0.72); }
-.lb img { display: block; width: auto; height: auto; max-width: min(92vw, 520px); max-height: 90dvh; border-radius: 28px; }
+.lb img { display: block; width: auto; height: auto; max-width: 94vw; max-height: 90dvh; border-radius: 20px; }
 .lb__close { position: fixed; top: 16px; right: 16px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgb(255 255 255 / 0.14); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
 .lb[open] { animation: lb-in 220ms var(--ease-out); }
 @keyframes lb-in { from { opacity: 0; transform: scale(0.96); } }
 @media (prefers-reduced-motion: reduce) { .lb[open] { animation: none; } .gal .zoom { transition: none; } }
+
+/* Процесс: «схема → финал» и широкие карты разбора */
+.gal__item--raw { width: calc(var(--scr) * var(--k, 1)); }
+.gal__item--raw img { border-radius: 12px; }
+.gal--evo { align-items: center; }
+.gal__arrow { flex: 0 0 auto; width: 40px; height: 2px; background: var(--muted); position: relative; opacity: .6; }
+.gal__arrow::after { content: ""; position: absolute; right: -1px; top: 50%; width: 10px; height: 10px; border-top: 2px solid var(--muted); border-right: 2px solid var(--muted); translate: 0 -50%; rotate: 45deg; }
+.evo__title { margin: 48px 0 8px; font-size: 1.25rem; line-height: 1.2; font-weight: 500; text-align: center; }
+.evo__title:first-child { margin-top: 0; }
+.evo__text { max-width: 60ch; margin: 0 auto 24px; color: var(--muted); text-align: center; text-wrap: pretty; }
+.wide-fig { margin: 0; display: grid; gap: 12px; }
+.wide-fig + .wide-fig { margin-top: 24px; }
+.wide-fig .zoom { display: block; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 20px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); }
+.wide-fig img { display: block; width: 100%; height: auto; }
+.wide-fig figcaption { font-size: var(--step-small); color: var(--muted); text-align: center; }
+.wide-fig .zoom:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+@media (max-width: 600px) { .gal__arrow { width: 24px; } .evo__title { margin-top: 32px; } }
+
+/* Юзерфлоу: превью с затуханием, целиком по клику */
+.flows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.flow { margin: 0; display: grid; gap: 12px; }
+.flow .zoom { position: relative; display: block; max-height: 560px; overflow: hidden; padding: 0; border: 0; border-radius: 20px; background: var(--surface); cursor: zoom-in; box-shadow: 0 0 0 1px var(--line); }
+.flow .zoom::after { content: ""; position: absolute; inset: auto 0 0 0; height: 160px; background: linear-gradient(to bottom, transparent, var(--bg)); pointer-events: none; }
+.flow img { display: block; width: 100%; height: auto; }
+.flow figcaption { font-size: var(--step-small); color: var(--muted); text-align: center; }
+.flow .zoom:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+@media (max-width: 600px) { .flows { grid-template-columns: 1fr; } .flow .zoom { max-height: 420px; } }
+.lb--tall { max-height: 100dvh; overflow-y: auto; overscroll-behavior: contain; }
+.lb--tall img { width: min(94vw, 960px); max-width: none; max-height: none; border-radius: 12px; }
+
+/* Обложка кейса: трейлер из реальных экранов в мокапе + главы, по которым можно перейти */
+.cs-cover--trailer { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; column-gap: clamp(24px, 4vw, 64px); }
+.cs-cover--trailer .cs-cover__phone { grid-column: 2; }
+.cs-cover__route { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cs-cover__route path { fill: none; stroke: rgb(var(--glow) / 0.55); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 14; animation: cs-route 18s linear infinite; }
+@keyframes cs-route { to { stroke-dashoffset: -320; } }
+.phone--video { aspect-ratio: auto; }
+.phone--video .phone__screen { height: auto; aspect-ratio: 600 / 1298; background: #fff; }
+.phone--video video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cs-chapters { grid-column: 1; justify-self: end; list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; counter-reset: ch; }
+.cs-chapters button { position: relative; display: flex; gap: 10px; align-items: baseline; width: 100%; padding: 7px 12px 7px 0; border: 0; background: none; color: var(--muted); font: inherit; font-size: var(--step-small); text-align: left; cursor: pointer; transition: color 200ms var(--ease-out); }
+.cs-chapters button::before { counter-increment: ch; content: counter(ch, decimal-leading-zero); font-variant-numeric: tabular-nums; font-size: 12px; opacity: 0.6; }
+.cs-chapters button::after { content: ""; position: absolute; left: 0; right: 12px; bottom: 2px; height: 2px; border-radius: 2px; background: var(--ink); transform: scaleX(var(--p, 0)); transform-origin: left; opacity: 0; }
+.cs-chapters li.is-on button { color: var(--ink); }
+.cs-chapters li.is-on button::after { opacity: 1; }
+@media (hover: hover) { .cs-chapters button:hover { color: var(--ink); } }
+.cs-chapters button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 6px; }
+
+/* Живой прототип цены внутри кейса */
+.cs-try { position: relative; isolation: isolate; overflow: hidden; display: grid; grid-template-columns: auto minmax(0, 420px); justify-content: center; align-items: center; gap: clamp(32px, 6vw, 96px); padding: clamp(40px, 5vw, 72px) 24px; border-radius: var(--radius-card); background: var(--surface); }
+.cs-try::after { content: ""; position: absolute; z-index: -1; inset: auto -10% -45% -10%; height: 75%; background: radial-gradient(closest-side, rgb(var(--glow) / 0.26), rgb(var(--glow) / 0)); } /* taste-skill-ignore: свечение продукта */
+.cs-try__kicker { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
+.cs-try__text h3 { margin: 0 0 12px; font-size: var(--step-head); line-height: 1.15; }
+.cs-try__text p:not(.cs-try__kicker) { margin: 0; color: var(--muted); }
+
+@media (max-width: 860px) {
+  .cs-cover--trailer { display: grid; grid-template-columns: 1fr; padding: 32px 16px 56px; }
+  .cs-cover--trailer .cs-cover__phone { grid-column: 1; height: auto; overflow: visible; display: flex; justify-content: center; -webkit-mask-image: none; mask-image: none; }
+  .cs-cover--trailer .phone--video { width: min(248px, 70vw); }
+  .cs-chapters { display: none; }
+  .cs-try { grid-template-columns: 1fr; justify-items: center; text-align: center; padding: 32px 16px 40px; }
+  .cs-try__phone .phone { width: 248px; }
+}
+@media (prefers-reduced-motion: reduce) { .cs-cover__route path { animation: none; } }
+.case__soon { opacity: 0.55; cursor: default; pointer-events: none; }

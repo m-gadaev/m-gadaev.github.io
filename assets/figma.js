@@ -180,12 +180,12 @@
 
   // Комментарий-подсказка на живом прототипе: показывает, что телефон можно трогать.
   // Это наша заметка, а не функция для посетителей — оставлять комментарии на сайте нельзя.
-  const live = d.querySelector('.fig-card:has(.case--taxi)') || d.querySelector('.fig-frame:has(.cs-cover)');
+  const live = d.querySelector('.fig-card:has(.case--taxi)') || d.querySelector('.fig-frame:has(.cs-try)');
   if (live) {
     const pin = d.createElement('div'); pin.className = 'fig-pin'; pin.setAttribute('aria-hidden', 'true');
     pin.innerHTML = '<b>МГ</b><p><strong>Магомед</strong><span lang="ru">Это работает: меняйте цену кнопками − и +</span><span lang="en">It works: change the fare with − and +</span></p>';
-    pin.style.left = live.querySelector('.case--taxi') ? '47%' : 'calc(50% + 170px)';
-    pin.style.top = live.querySelector('.case--taxi') ? '46%' : '22%';
+    pin.style.left = live.querySelector('.case--taxi') ? '47%' : 'calc(50% - 90px)';
+    pin.style.top = live.querySelector('.case--taxi') ? '46%' : '18%';
     live.append(pin);
   }
 
@@ -198,7 +198,7 @@
       || String(getSelection && getSelection()).length > 0;
     card.addEventListener('click', e => {
       if (skip(e) || e.button !== 0) return;
-      if (e.metaKey || e.ctrlKey) window.open(link.href, '_blank', 'noopener'); else location.href = link.href;
+      if (e.metaKey || e.ctrlKey || link.target === '_blank') window.open(link.href, '_blank', 'noopener'); else location.href = link.href;
     });
     card.addEventListener('auxclick', e => { if (e.button === 1 && !skip(e)) window.open(link.href, '_blank', 'noopener'); });
   });

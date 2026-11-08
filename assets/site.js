@@ -411,12 +411,48 @@ revealAll(document);
       d.body.appendChild(lb);
     }
     pic.src = img.currentSrc || img.src; pic.alt = img.alt;
+    lb.classList.toggle('lb--tall', img.naturalHeight / img.naturalWidth > 1.6 && img.naturalWidth > 1000);
     lb.showModal();
+    lb.scrollTop = 0;
   };
   d.addEventListener('click', e => {
-    const b = e.target.closest('.gal .zoom');
+    const b = e.target.closest('.zoom');
     if (!b) return;
     e.preventDefault();
     open(b.querySelector('img'));
   });
+})();
+
+// Обложка кейса: трейлер играет, пока виден; главы подсвечиваются по времени и перематывают ролик
+(() => {
+  const box = document.querySelector('[data-trailer]');
+  const v = box && box.querySelector('video');
+  if (!v) return;
+  const items = [...box.querySelectorAll('[data-chapters] li')];
+  const marks = items.map(li => +li.querySelector('button').dataset.t);
+  const now = box.querySelector('[data-chapter-now]');
+  const calm = matchMedia('(prefers-reduced-motion: reduce)');
+  let raf = 0, cur = -1, visible = false;
+  const tick = () => {
+    const t = v.currentTime, end = v.duration || 22;
+    let i = marks.length - 1; while (i > 0 && t < marks[i]) i--;
+    const next = marks[i + 1] ?? end;
+    if (i !== cur) {
+      items.forEach((li, k) => li.classList.toggle('is-on', k === i));
+      if (now && items[i]) now.innerHTML = items[i].querySelector('button').innerHTML;
+      cur = i;
+    }
+    items[i] && items[i].style.setProperty('--p', Math.min(1, Math.max(0, (t - marks[i]) / (next - marks[i]))).toFixed(3));
+    if (!v.paused) raf = requestAnimationFrame(tick);
+  };
+  v.addEventListener('play', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); });
+  v.addEventListener('seeked', tick);
+  const play = () => { const p = v.play(); p && p.catch(() => {}); };
+  items.forEach((li, k) => li.querySelector('button').addEventListener('click', () => { v.currentTime = marks[k] + 0.01; tick(); play(); }));
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(es => es.forEach(e => {
+      visible = e.isIntersecting;
+      if (!visible) v.pause(); else if (!calm.matches) play();
+    }), { threshold: 0.35 }).observe(box);
+  } else if (!calm.matches) play();
 })();
