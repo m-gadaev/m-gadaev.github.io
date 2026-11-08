@@ -1,0 +1,210 @@
+<!doctype html>
+<html class="fig" lang="ru" data-lang="ru" data-title-ru="Локали Доставка, кейс" data-title-en="Lokali Delivery, case study">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Локали Доставка, кейс</title>
+<meta name="description" content="Довёл редизайн доставки еды в суперапе до релиза и вынес статус заказа на экран блокировки, в Dynamic Island и уведомление Android.">
+<meta name="theme-color" content="#19191B">
+<link rel="preload" href="../assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="../assets/site.css?v=69ad8fc0">
+<link rel="stylesheet" href="../assets/figma.css?v=453ca4ae">
+<script>
+// Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
+(function () {
+  var d = document.documentElement, s = {};
+  try { s.theme = localStorage.getItem('theme'); s.lang = localStorage.getItem('lang'); } catch (e) {}
+  var theme = s.theme || 'dark'; // по умолчанию тёмная, светлая — по переключателю
+  var lang = s.lang || ((navigator.language || 'ru').slice(0, 2) === 'ru' ? 'ru' : 'en');
+  d.dataset.theme = theme; d.dataset.lang = lang; d.lang = lang;
+  if (lang === 'en' && d.dataset.titleEn) document.title = d.dataset.titleEn;
+  try { if (localStorage.getItem('fig-clean') === '1') d.classList.add('fig-clean'); } catch (e) {}
+  d.classList.add('js');
+})();
+</script>
+</head>
+
+<body class="cs cs--food">
+<header class="bar">
+  <div class="bar__in">
+    <a class="wordmark" href="../index.html">gadaev</a>
+    <div class="bar__mid" data-bar-tabs aria-hidden="true"></div>
+    <div class="bar__end">
+      <div class="bar__settings" role="group" aria-label="Язык и тема / Language and theme">
+      <button type="button" class="set-btn set-btn--text" data-toggle-lang aria-label="Switch to English / Переключить на русский"><span lang="ru">EN</span><span lang="en">RU</span></button>
+      <button type="button" class="set-btn" data-toggle-theme aria-label="Сменить тему / Toggle theme">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      </div>
+      <a class="icon-btn" href="https://t.me/creaperson" aria-label="Telegram" title="Telegram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.54 21.69a.5.5 0 0 0 .94-.03l6.5-19a.5.5 0 0 0-.64-.63l-19 6.5a.5.5 0 0 0-.02.93l7.93 3.18a2 2 0 0 1 1.11 1.11z"/><path d="m21.85 2.15-10.94 10.94"/></svg>
+      </a>
+      <a class="icon-btn icon-btn--dark" href="../assets/gadaev-cv.pdf?v=f227ba24" aria-label="Резюме, PDF / CV, PDF" title="CV, PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="cs-hero__grid">
+      <a class="cs-back" href="../index.html#work"><span lang="ru">← Все работы</span><span lang="en">← All work</span></a>
+      <div class="cs-hero__text" data-fig="Header" data-fig-quiet>
+        <h1 class="reveal"><span class="cs-name">Локали Доставка</span><span class="cs-tail"><span lang="ru">Пять тапов до ответа на вопрос «где мой заказ», и как я их убрал</span><span lang="en">Five taps to answer “where is my order”, and how I removed them</span></span></h1>
+        <dl class="facts reveal" style="--d:80ms">
+          <div><dt><span lang="ru">Роль</span><span lang="en">Role</span></dt><dd><span lang="ru">Продуктовый дизайнер: довёл редизайн до релиза и добавил две фичи</span><span lang="en">Product designer: took the redesign to release and added two features</span></dd></div>
+          <div><dt><span lang="ru">Объём</span><span lang="en">Scope</span></dt><dd><span lang="ru">Корзина, блюдо, ресторан, техсостояния, отзыв, Live Activity</span><span lang="en">Cart, dish, restaurant, system states, feedback, Live Activity</span></dd></div>
+          <div><dt><span lang="ru">Платформы</span><span lang="en">Platforms</span></dt><dd><span lang="ru">iOS и Android</span><span lang="en">iOS and Android</span></dd></div>
+          <div><dt><span lang="ru">Статус</span><span lang="en">Status</span></dt><dd><a href="https://apps.apple.com/ru/app/id1625790808" target="_blank" rel="noopener"><span lang="ru">В App Store</span><span lang="en">On the App Store</span></a></dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="wrap" data-fig="Cover · new screens">
+      <div class="cs-cover reveal" style="--d:160ms">
+        <div class="cs-cover__bg" aria-hidden="true"></div>
+        <div class="gal gal--cover"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Корзина"><img src="../assets/img/food/cart-new.webp?v=84a05f41" width="750" height="1624" alt="Корзина" loading="lazy" decoding="async"></button></figure><figure class="gal__item gal__item--raw only-light" style="--k:1.4"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: курьер везёт заказ"><img src="../assets/img/food/la-courier-light.webp?v=6ead6c12" width="540" height="450" alt="Live Activity: курьер везёт заказ" loading="lazy" decoding="async"></button></figure><figure class="gal__item gal__item--raw only-dark" style="--k:1.4"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: курьер везёт заказ"><img src="../assets/img/food/la-courier-dark.webp?v=7bf0adc4" width="540" height="450" alt="Live Activity: курьер везёт заказ" loading="lazy" decoding="async"></button></figure><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Шторка блюда"><img src="../assets/img/food/dish-new.webp?v=e2e16b9e" width="750" height="1624" alt="Шторка блюда" loading="lazy" decoding="async"></button></figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-context">
+    <div class="cs-col" data-fig="Text / Context" data-fig-quiet>
+      <h2 id="s-context" class="reveal"><span lang="ru">Я был пользователем приложения раньше, чем его дизайнером</span><span lang="en">I used the app long before I designed it</span></h2>
+      <p class="reveal" lang="ru">«Локали» это сеть общепита и суперап, лидер рынка Чеченской Республики. Доставка еды в нём самая старая и самая нагруженная часть. Я заказывал здесь задолго до прихода в компанию и знал слабые места интерфейса изнутри, как пользователь.</p>
+      <p class="reveal" lang="en">Lokali is a restaurant chain and a super app, the market leader in the Chechen Republic. Food delivery is its oldest and busiest part. I ordered there long before I joined, so I knew the weak spots of the interface first-hand.</p>
+      <p class="reveal" lang="ru">Вторую версию начал предыдущий дизайнер: к моему приходу были дизайн-система, архитектура и примерно половина экранов. Я подхватил редизайн, доделал вторую половину в том же визуальном языке и довёл до релиза. Дальше предложил и сделал две фичи от себя: обратную связь в приложении и статус заказа за пределами приложения.</p>
+      <p class="reveal" lang="en">The second version was started by another designer: when I joined there was a design system, an architecture and about half of the screens. I picked up the redesign, finished the second half in the same visual language and took it to release. Then I proposed and designed two features of my own: in-app feedback and order status outside the app.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-before">
+    <div class="cs-col" data-fig="Text / Before" data-fig-quiet>
+      <h2 id="s-before" class="reveal"><span lang="ru">Первая версия: продукт работал, но без визуальной системы</span><span lang="en">Version one: the product worked, but had no visual system</span></h2>
+      <p class="reveal" lang="ru">Скриншоты с моего телефона до редизайна: главная, список ресторанов, фильтр по кухне, шторка адресов. Всё на месте, но разные радиусы, разная высота кнопок и плотные списки без иерархии. Редизайн сохранил структуру и заменил язык.</p>
+      <p class="reveal" lang="en">Screenshots from my phone before the redesign: home, restaurant list, cuisine filter, address sheet. Everything was there, but with mixed corner radii, mixed button heights and dense lists without hierarchy. The redesign kept the structure and replaced the language.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Old app"><figure class="wide-fig"><button class="zoom" type="button" aria-label="Увеличить: Старое приложение: четыре экрана"><img src="../assets/img/food/old-app.webp?v=730203c9" width="1968" height="1000" alt="Старое приложение: четыре экрана" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Старое приложение: главная, рестораны, фильтр, адреса</span><span lang="en">The old app: home, restaurants, filter, addresses</span></figcaption></figure></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-cart">
+    <div class="cs-col" data-fig="Text / Cart" data-fig-quiet>
+      <h2 id="s-cart" class="reveal"><span lang="ru">Корзина сразу со всеми состояниями</span><span lang="en">A cart designed with every state</span></h2>
+      <p class="reveal" lang="ru">Мультикорзину с переключением ресторанов чипами заложили в ТЗ. Я спроектировал всё, что происходит с позицией после добавления: блюдо, которого нет в наличии, приглушается, счётчик блокируется, а убрать его можно только явным тапом по крестику, чтобы ничего не пропадало из корзины само. Модификаторы видны прямо в строке с кнопкой «Изменить».</p>
+      <p class="reveal" lang="en">The multi-restaurant cart with chips came from the spec. I designed everything that happens to an item after it is added: an unavailable dish is dimmed, its counter locks, and it leaves the cart only on an explicit tap on the cross, so nothing disappears by itself. Modifiers sit right in the row with an “Edit” button.</p>
+      <p class="reveal" lang="ru">Принцип: блок, который участвует в продаже, уходит в прод сразу со всеми состояниями, а не в одном идеальном виде.</p>
+      <p class="reveal" lang="en">The principle: a block that takes part in a sale ships with all its states, not in one ideal version.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Cart"><div class="gal gal--evo"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Старая корзина"><img src="../assets/img/food/cart-old.webp?v=74dd1b8b" width="591" height="1280" alt="Старая корзина" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Было</span><span lang="en">Before</span></figcaption></figure><span class="gal__arrow" aria-hidden="true"></span><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Новая корзина с состояниями позиций"><img src="../assets/img/food/cart-new.webp?v=84a05f41" width="750" height="1624" alt="Новая корзина с состояниями позиций" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Стало</span><span lang="en">After</span></figcaption></figure></div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-dish">
+    <div class="cs-col" data-fig="Text / Dish" data-fig-quiet>
+      <h2 id="s-dish" class="reveal"><span lang="ru">Одна шторка блюда для меню и корзины</span><span lang="en">One dish sheet for the menu and the cart</span></h2>
+      <p class="reveal" lang="ru">Шторка открывается из меню, когда выбираешь, и из корзины, когда проверяешь заказ. Это один компонент, и читается он одинаково в обоих местах. Я добавил КБЖУ на 100 г и сразу спроектировал пустое состояние: если ресторан не заполнил данные, блока просто нет, без нулей и прочерков.</p>
+      <p class="reveal" lang="en">The sheet opens from the menu when choosing and from the cart when checking the order. It is one component and reads the same in both places. I added nutrition facts per 100 g and designed the empty state with it: if a restaurant has no data, the block simply isn’t there, no zeros or dashes.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Dish sheet"><div class="gal gal--evo"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Старое окно блюда"><img src="../assets/img/food/dish-old.webp?v=bc37a113" width="591" height="1280" alt="Старое окно блюда" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Было</span><span lang="en">Before</span></figcaption></figure><span class="gal__arrow" aria-hidden="true"></span><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Новая шторка блюда с КБЖУ"><img src="../assets/img/food/dish-new.webp?v=e2e16b9e" width="750" height="1624" alt="Новая шторка блюда с КБЖУ" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Стало</span><span lang="en">After</span></figcaption></figure></div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-rest">
+    <div class="cs-col" data-fig="Text / Restaurant" data-fig-quiet>
+      <h2 id="s-rest" class="reveal"><span lang="ru">Шапка ресторана отвечает на вопросы до меню</span><span lang="en">The restaurant header answers questions before the menu</span></h2>
+      <p class="reveal" lang="ru">Я переделал шапку страницы ресторана: название и рейтинг, время и стоимость доставки, чип «бесплатная доставка» и баннеры над меню. Раньше там были название, минимальная сумма и строка про доставку, а сразу за ними категории. Новая шапка отвечает на то, что человек спрашивает до того, как начал листать: хорошее ли место, как скоро и сколько стоит довезти.</p>
+      <p class="reveal" lang="en">I redesigned the restaurant page header: name and rating, delivery time and cost, a “free delivery” chip and banners above the menu. Before, it held the name, the minimum order and a delivery line, then the categories. The new header answers what people ask before scrolling: is it good, how soon, and how much is delivery.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Restaurant"><div class="gal gal--evo"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Старая страница ресторана"><img src="../assets/img/food/rest-old.webp?v=2b1f393d" width="591" height="1280" alt="Старая страница ресторана" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Было</span><span lang="en">Before</span></figcaption></figure><span class="gal__arrow" aria-hidden="true"></span><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Новая шапка ресторана"><img src="../assets/img/food/rest-new.webp?v=36a8c72c" width="750" height="1624" alt="Новая шапка ресторана" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Стало</span><span lang="en">After</span></figcaption></figure></div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-states">
+    <div class="cs-col" data-fig="Text / System states" data-fig-quiet>
+      <h2 id="s-states" class="reveal"><span lang="ru">Обновление и праздник: экраны, которые рисуют последними</span><span lang="en">Update and holiday: the screens nobody draws first</span></h2>
+      <p class="reveal" lang="ru">Обновление раньше было полноэкранным тупиком. Менеджер решил, что старая версия должна продолжать работать, и предложил добавить на полный экран ссылку «Пропустить». Я предложил другую форму: если действие необязательное, необязательной должна быть и форма. Получилась шторка «Новая версия доступна» с кнопками «Обновить» и «Позже», за которой видно приложение.</p>
+      <p class="reveal" lang="en">The update used to be a full-screen dead end. The manager decided the old version should keep working and suggested adding a “Skip” link to the full screen. I proposed another form: if the action is optional, the form should be too. The result is a “New version available” sheet with “Update” and “Later”, with the app visible behind it.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Update"><div class="gal gal--evo"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Старый экран обновления"><img src="../assets/img/food/update-old.webp?v=0ff45c8b" width="466" height="1007" alt="Старый экран обновления" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Было</span><span lang="en">Before</span></figcaption></figure><span class="gal__arrow" aria-hidden="true"></span><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Шторка обновления"><img src="../assets/img/food/update-new.webp?v=43c47058" width="464" height="1003" alt="Шторка обновления" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Стало</span><span lang="en">After</span></figcaption></figure></div></div>
+    <div class="cs-col">
+      <p class="reveal" lang="ru">В Курбан-Байрам доставка не работает. Экран называет причину и срок, «возобновим завтра», чтобы никто не гадал, не сломалось ли приложение. Кнопка «Вернуться позже» ведёт в хаб суперапа: закрыта доставка, а остальные направления работают.</p>
+      <p class="reveal" lang="en">During Eid al-Adha delivery is closed. The screen names the reason and the date, “back tomorrow”, so nobody wonders whether the app broke. “Come back later” leads to the super app hub: delivery is closed, the rest keeps working.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Holiday"><div class="gal"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Праздничный экран"><img src="../assets/img/food/holiday.webp?v=adae99a4" width="750" height="1624" alt="Праздничный экран" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Причина, срок и выход в суперап</span><span lang="en">Reason, date and a way back to the super app</span></figcaption></figure></div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-feedback">
+    <div class="cs-col" data-fig="Text / Feedback" data-fig-quiet>
+      <h2 id="s-feedback" class="reveal"><span lang="ru">Обратная связь, которой у продукта не было</span><span lang="en">Feedback the product never had</span></h2>
+      <p class="reveal" lang="ru">Единственным каналом обратной связи был отзыв в сторе. Я предложил собирать её в приложении, менеджер завёл задачу, и фича вышла в прод.</p>
+      <p class="reveal" lang="en">The only feedback channel was a store review. I proposed collecting it in the app, the manager created the task, and it shipped.</p>
+      <p class="reveal" lang="ru">Воронка короткая: «Нравится ли вам Локали?» «Да» ведёт в стор оценить приложение. «Нет» раскрывает чипы причин по всем направлениям и необязательное поле, а «Отправить» неактивна, пока не выбран хотя бы один чип, поэтому пустое «нет» не уйдёт. Опрос живёт на уровне суперапа и показывается не чаще раза в неделю, частоту выбирал я.</p>
+      <p class="reveal" lang="en">The funnel is short: “Do you like Lokali?” “Yes” leads to a store rating. “No” opens reason chips across all services and an optional field, and “Send” stays disabled until at least one chip is picked, so an empty “no” can’t be sent. It lives at the super app level and shows at most once a week, a frequency I chose.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Flow / Feedback"><figure class="wide-fig"><button class="zoom" type="button" aria-label="Увеличить: Флоу обратной связи"><img src="../assets/img/food/feedback.webp?v=8e70292f" width="900" height="456" alt="Флоу обратной связи" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Вопрос, причины с неактивной кнопкой, благодарность</span><span lang="en">Question, reasons with a disabled button, thanks</span></figcaption></figure></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-la">
+    <div class="cs-col" data-fig="Text / Live Activity" data-fig-quiet>
+      <h2 id="s-la" class="reveal"><span lang="ru">Статус заказа за пределами приложения</span><span lang="en">Order status outside the app</span></h2>
+      <p class="reveal" lang="ru">Чтобы узнать, что с заказом, человек открывал суперап, заходил в «Ресторан», открывал профиль и искал там. Пять шагов до ответа на один вопрос, а его задают несколько раз за заказ. Я убрал путь целиком: статус виден без захода в приложение.</p>
+      <p class="reveal" lang="en">To check an order, people opened the super app, went to “Restaurant”, opened the profile and looked there. Five steps to answer one question that gets asked several times per order. I removed the path entirely: the status is visible without opening the app.</p>
+      <p class="reveal" lang="ru">Механику у Додо Пиццы я разобрал по стадиям и на этом примере показал менеджеру, что она решит у нас. Перед этим опросил 30–50 человек из команды и окружения, почти все пользуются приложением, большинство поддержали идею. Правило конструкции: состояния на iOS и Android одинаковые, отличается только способ показа.</p>
+      <p class="reveal" lang="en">I broke down Dodo Pizza’s Live Activity stage by stage and used it to show the manager what it would solve for us. Before that I asked 30–50 people from the team and around it, almost all of them app users, and most backed the idea. The rule: states are identical on iOS and Android, only the way they are shown differs.</p>
+      <p class="reveal" lang="ru">У доставки пять стадий и два финала. Каждая стадия заполняет ещё один сегмент прогресса. «Доставлен» красит все пять зелёным и ставит галочку, «Отменён» гасит их серым с красным знаком. У самовывоза четыре стадии, у независимого курьера три.</p>
+      <p class="reveal" lang="en">Delivery has five stages and two endings. Each stage fills one more progress segment. “Delivered” turns all five green with a tick, “Cancelled” greys them out with a red mark. Pickup has four stages, an independent courier three.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Live Activity iOS"><div class="gal"><figure class="gal__item gal__item--raw only-light" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Заказ оформлен"><img src="../assets/img/food/la-placed-light.webp?v=ee48fc8b" width="540" height="450" alt="Live Activity: Заказ оформлен" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Заказ оформлен</span><span lang="en">Order placed</span></figcaption></figure><figure class="gal__item gal__item--raw only-dark" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Заказ оформлен"><img src="../assets/img/food/la-placed-dark.webp?v=c31a28b7" width="540" height="450" alt="Live Activity: Заказ оформлен" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Заказ оформлен</span><span lang="en">Order placed</span></figcaption></figure><figure class="gal__item gal__item--raw only-light" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Ресторан принял"><img src="../assets/img/food/la-accepted-light.webp?v=ecd4c5fb" width="540" height="450" alt="Live Activity: Ресторан принял" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Ресторан принял</span><span lang="en">Restaurant accepted</span></figcaption></figure><figure class="gal__item gal__item--raw only-dark" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Ресторан принял"><img src="../assets/img/food/la-accepted-dark.webp?v=d3c4d5fc" width="540" height="450" alt="Live Activity: Ресторан принял" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Ресторан принял</span><span lang="en">Restaurant accepted</span></figcaption></figure><figure class="gal__item gal__item--raw only-light" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Готовится"><img src="../assets/img/food/la-cooking-light.webp?v=d91fcfd7" width="540" height="450" alt="Live Activity: Готовится" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Готовится</span><span lang="en">Cooking</span></figcaption></figure><figure class="gal__item gal__item--raw only-dark" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Готовится"><img src="../assets/img/food/la-cooking-dark.webp?v=04bf7453" width="540" height="450" alt="Live Activity: Готовится" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Готовится</span><span lang="en">Cooking</span></figcaption></figure><figure class="gal__item gal__item--raw only-light" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Заказ готов"><img src="../assets/img/food/la-ready-light.webp?v=797688e5" width="540" height="450" alt="Live Activity: Заказ готов" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Заказ готов</span><span lang="en">Ready</span></figcaption></figure><figure class="gal__item gal__item--raw only-dark" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Заказ готов"><img src="../assets/img/food/la-ready-dark.webp?v=40143e2d" width="540" height="450" alt="Live Activity: Заказ готов" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Заказ готов</span><span lang="en">Ready</span></figcaption></figure><figure class="gal__item gal__item--raw only-light" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Курьер везёт"><img src="../assets/img/food/la-courier-light.webp?v=6ead6c12" width="540" height="450" alt="Live Activity: Курьер везёт" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Курьер везёт</span><span lang="en">Courier on the way</span></figcaption></figure><figure class="gal__item gal__item--raw only-dark" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Курьер везёт"><img src="../assets/img/food/la-courier-dark.webp?v=7bf0adc4" width="540" height="450" alt="Live Activity: Курьер везёт" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Курьер везёт</span><span lang="en">Courier on the way</span></figcaption></figure><figure class="gal__item gal__item--raw only-light" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Доставлен"><img src="../assets/img/food/la-delivered-light.webp?v=c2e9485f" width="540" height="450" alt="Live Activity: Доставлен" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Доставлен</span><span lang="en">Delivered</span></figcaption></figure><figure class="gal__item gal__item--raw only-dark" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Доставлен"><img src="../assets/img/food/la-delivered-dark.webp?v=066df1b9" width="540" height="450" alt="Live Activity: Доставлен" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Доставлен</span><span lang="en">Delivered</span></figcaption></figure><figure class="gal__item gal__item--raw only-light" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Отменён"><img src="../assets/img/food/la-cancelled-light.webp?v=9f196cef" width="540" height="450" alt="Live Activity: Отменён" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Отменён</span><span lang="en">Cancelled</span></figcaption></figure><figure class="gal__item gal__item--raw only-dark" style="--k:1.3"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: Отменён"><img src="../assets/img/food/la-cancelled-dark.webp?v=8a2f928c" width="540" height="450" alt="Live Activity: Отменён" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Отменён</span><span lang="en">Cancelled</span></figcaption></figure></div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-di">
+    <div class="cs-col" data-fig="Text / Dynamic Island" data-fig-quiet>
+      <h2 id="s-di" class="reveal"><span lang="ru">Dynamic Island: три вида одной активности</span><span lang="en">Dynamic Island: three views of one activity</span></h2>
+      <p class="reveal" lang="ru">Compact: иконка стадии и кольцо прогресса, это видно чаще всего. Minimal: когда остров занят другой активностью, наша сжимается в кружок с кольцом. Expanded по долгому нажатию: номер заказа, пять сегментов и название стадии. Зоны острова отработали с iOS-разработчиком по схеме Apple: он отвечает за ограничения платформы, я за то, что помещается внутри них.</p>
+      <p class="reveal" lang="en">Compact: a stage icon and a progress ring, the view seen most. Minimal: when the island is busy with another activity, ours shrinks to a ring. Expanded on long press: order number, five segments and the stage name. We worked out the island zones with the iOS developer using Apple’s template: he owns the platform limits, I own what fits inside them.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Dynamic Island"><figure class="wide-fig only-light"><button class="zoom" type="button" aria-label="Увеличить: Dynamic Island"><img src="../assets/img/food/di-1.webp?v=19e5ff12" width="1356" height="280" alt="Dynamic Island: три вида" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Compact, minimal и expanded</span><span lang="en">Compact, minimal and expanded</span></figcaption></figure><figure class="wide-fig only-dark"><button class="zoom" type="button" aria-label="Увеличить: Dynamic Island"><img src="../assets/img/food/di-2.webp?v=0287ccba" width="1356" height="280" alt="Dynamic Island: три вида" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Compact, minimal и expanded</span><span lang="en">Compact, minimal and expanded</span></figcaption></figure></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-android">
+    <div class="cs-col" data-fig="Text / Android" data-fig-quiet>
+      <h2 id="s-android" class="reveal"><span lang="ru">Android: уведомление, которое раскрывается</span><span lang="en">Android: a notification that expands</span></h2>
+      <p class="reveal" lang="ru">На Android нет активности на экране блокировки, поэтому те же стадии живут в уведомлении. Свёрнутое показывает стадию и прогресс. Раскрытое добавляет подписи стадий, адрес доставки и кнопку «Открыть заказ». Названия и порядок стадий те же, что на iOS.</p>
+      <p class="reveal" lang="en">Android has no lock screen activity, so the same stages live in a notification. Collapsed shows the stage and progress. Expanded adds stage labels, the delivery address and “Open order”. Stage names and order match iOS.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Android notification"><div class="gal"><figure class="gal__item gal__item--raw only-light" style="--k:1"><button class="zoom" type="button" aria-label="Увеличить: Android: свёрнутое уведомление"><img src="../assets/img/food/and-c-light.webp?v=d0d0ca30" width="750" height="1595" alt="Android: свёрнутое уведомление" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Свёрнутое</span><span lang="en">Collapsed</span></figcaption></figure><figure class="gal__item gal__item--raw only-dark" style="--k:1"><button class="zoom" type="button" aria-label="Увеличить: Android: свёрнутое уведомление"><img src="../assets/img/food/and-c-dark.webp?v=fb5e569e" width="750" height="1595" alt="Android: свёрнутое уведомление" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Свёрнутое</span><span lang="en">Collapsed</span></figcaption></figure><figure class="gal__item gal__item--raw only-light" style="--k:1"><button class="zoom" type="button" aria-label="Увеличить: Android: раскрытое уведомление"><img src="../assets/img/food/and-e-light.webp?v=40206c5a" width="750" height="1595" alt="Android: раскрытое уведомление" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Раскрытое</span><span lang="en">Expanded</span></figcaption></figure><figure class="gal__item gal__item--raw only-dark" style="--k:1"><button class="zoom" type="button" aria-label="Увеличить: Android: раскрытое уведомление"><img src="../assets/img/food/and-e-dark.webp?v=95ed903b" width="750" height="1595" alt="Android: раскрытое уведомление" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Раскрытое</span><span lang="en">Expanded</span></figcaption></figure></div></div>
+    <div class="cs-wide reveal" data-fig="Screens / Android stages"><div class="gal"><figure class="gal__item gal__item--raw" style="--k:1.4"><button class="zoom" type="button" aria-label="Увеличить: Android: Заказ оформлен"><img src="../assets/img/food/and-placed.webp?v=011e9468" width="728" height="466" alt="Android: Заказ оформлен" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Заказ оформлен</span><span lang="en">Order placed</span></figcaption></figure><figure class="gal__item gal__item--raw" style="--k:1.4"><button class="zoom" type="button" aria-label="Увеличить: Android: Ресторан принял"><img src="../assets/img/food/and-accepted.webp?v=7a43de9a" width="728" height="466" alt="Android: Ресторан принял" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Ресторан принял</span><span lang="en">Restaurant accepted</span></figcaption></figure><figure class="gal__item gal__item--raw" style="--k:1.4"><button class="zoom" type="button" aria-label="Увеличить: Android: Готовится"><img src="../assets/img/food/and-cooking.webp?v=8fe42104" width="728" height="466" alt="Android: Готовится" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Готовится</span><span lang="en">Cooking</span></figcaption></figure><figure class="gal__item gal__item--raw" style="--k:1.4"><button class="zoom" type="button" aria-label="Увеличить: Android: Заказ готов"><img src="../assets/img/food/and-ready.webp?v=8508cf9a" width="728" height="466" alt="Android: Заказ готов" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Заказ готов</span><span lang="en">Ready</span></figcaption></figure><figure class="gal__item gal__item--raw" style="--k:1.4"><button class="zoom" type="button" aria-label="Увеличить: Android: Курьер везёт"><img src="../assets/img/food/and-courier.webp?v=a9b34e60" width="728" height="466" alt="Android: Курьер везёт" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Курьер везёт</span><span lang="en">Courier on the way</span></figcaption></figure><figure class="gal__item gal__item--raw" style="--k:1.4"><button class="zoom" type="button" aria-label="Увеличить: Android: Доставлен"><img src="../assets/img/food/and-delivered.webp?v=1a0dc3cc" width="728" height="466" alt="Android: Доставлен" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Доставлен</span><span lang="en">Delivered</span></figcaption></figure><figure class="gal__item gal__item--raw" style="--k:1.4"><button class="zoom" type="button" aria-label="Увеличить: Android: Отменён"><img src="../assets/img/food/and-cancelled.webp?v=8db64400" width="728" height="466" alt="Android: Отменён" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Отменён</span><span lang="en">Cancelled</span></figcaption></figure></div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-result">
+    <div class="cs-col" data-fig="Text / Outcome" data-fig-quiet>
+      <h2 id="s-result" class="reveal"><span lang="ru">Результат</span><span lang="en">Outcome</span></h2>
+      <p class="reveal" lang="ru">Редизайн и обратная связь вышли и стоят в сторах. Live Activity для iOS в разработке, макеты для Android переданы в команду.</p>
+      <p class="reveal" lang="en">The redesign and the feedback flow are live in the stores. Live Activity for iOS is in development, and the Android designs are handed over.</p>
+    </div>
+  </section>
+
+  <nav class="cs-next" aria-labelledby="s-next">
+    <div class="wrap">
+      <h2 id="s-next"><span lang="ru">Другие кейсы</span><span lang="en">Other cases</span></h2>
+      <div class="cs-next__row" data-fig="Other cases" data-fig-quiet>
+        <a href="../taxi/index.html" style="--c: 255 196 0"><span lang="ru">Локали Такси</span><span lang="en">Lokali Taxi</span></a>
+        <a href="https://apps.apple.com/ru/app/id1625790808" target="_blank" rel="noopener" style="--c: 59 111 182"><span lang="ru">Кошелёк и админка</span><span lang="en">Wallet and admin</span></a>
+        <a href="https://apps.apple.com/ru/app/id6766522570" target="_blank" rel="noopener" style="--c: 228 52 52"><span lang="ru">Локали Ресторан и Crispy</span><span lang="en">Lokali Restaurant and Crispy</span></a>
+      </div>
+    </div>
+  </nav>
+</main>
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__links">
+      <a class="foot__pill" href="mailto:muhammadgadaev376@gmail.com">muhammadgadaev376@gmail.com</a>
+      <a class="foot__pill" href="https://t.me/creaperson">Telegram</a>
+    </div>
+    <a class="foot__mark" href="../index.html">gadaev</a>
+    <p class="foot__copy">© <span lang="ru">Магомед Гадаев</span><span lang="en">Magomed Gadaev</span>, 2026</p>
+  </div>
+</footer>
+<script src="../assets/site.js?v=47cf020c" defer></script>
+<script src="../assets/figma.js?v=5e2762e0" defer></script>
+</body>
+</html>
+

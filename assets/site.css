@@ -698,3 +698,18 @@ a:hover { text-decoration-thickness: 2px; }
   .case__demo.case__demo--phone:has(.phone--video) { height: auto; overflow: visible; padding: 8px 0 64px; -webkit-mask-image: none; mask-image: none; }
   .case__demo--phone .phone--video { width: min(236px, 66vw); }
 }
+.cs--food { --title: #0F8F82; --glow: 20 184 166; }
+:root[data-theme="dark"] .cs--food { --title: #2DD4BF; }
+.gal--cover { align-items: center; margin: 0; padding-inline: 0; }
+.wide-fig.only-dark { display: none; }
+:root[data-theme="dark"] .wide-fig.only-dark { display: grid; }
+:root[data-theme="dark"] .wide-fig.only-light { display: none; }
+/* Карточка доставки на главной: веер из трёх реальных экранов и живая Live Activity поверх */
+.case__demo--fan { display: grid; justify-items: center; padding-bottom: 72px; }
+.fan { position: relative; width: min(600px, 100%); height: clamp(300px, 34vw, 420px); }
+.fan img { position: absolute; left: 50%; top: 0; width: clamp(130px, 14vw, 190px); height: auto; border-radius: clamp(16px, 1.8vw, 24px); box-shadow: 0 0 0 1px var(--line), 0 24px 50px -20px rgb(0 0 0 / 0.35); } /* taste-skill-ignore: мокапы экранов */
+.fan__c { translate: -50% 0; z-index: 2; }
+.fan__l { translate: -112% 7%; rotate: -7deg; }
+.fan__r { translate: 12% 7%; rotate: 7deg; }
+.case__demo--fan .ui-la { position: relative; z-index: 3; margin-top: clamp(-140px, -10vw, -90px); }
+.fan { -webkit-mask-image: linear-gradient(#000 72%, transparent 98%); mask-image: linear-gradient(#000 72%, transparent 98%); } /* taste-skill-ignore: растворение низа веера */
