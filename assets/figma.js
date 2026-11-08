@@ -180,7 +180,7 @@
 
   // Комментарий-подсказка на живом прототипе: показывает, что телефон можно трогать.
   // Это наша заметка, а не функция для посетителей — оставлять комментарии на сайте нельзя.
-  const live = d.querySelector('.fig-card:has(.case--taxi)') || d.querySelector('.fig-frame:has(.cs-try)');
+  const live = d.querySelector('.fig-frame:has(.cs-try)');
   if (live) {
     const pin = d.createElement('div'); pin.className = 'fig-pin'; pin.setAttribute('aria-hidden', 'true');
     pin.innerHTML = '<b>МГ</b><p><strong>Магомед</strong><span lang="ru">Это работает: меняйте цену кнопками − и +</span><span lang="en">It works: change the fare with − and +</span></p>';

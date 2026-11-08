@@ -694,3 +694,7 @@ a:hover { text-decoration-thickness: 2px; }
 }
 @media (prefers-reduced-motion: reduce) { .cs-cover__route path { animation: none; } }
 .case__soon { opacity: 0.55; cursor: default; pointer-events: none; }
+@media (max-width: 860px) {
+  .case__demo.case__demo--phone:has(.phone--video) { height: auto; overflow: visible; padding: 8px 0 64px; -webkit-mask-image: none; mask-image: none; }
+  .case__demo--phone .phone--video { width: min(236px, 66vw); }
+}
