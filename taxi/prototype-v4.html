@@ -11,14 +11,14 @@ body{display:grid;place-items:center;overflow-x:hidden}
 .phone{position:relative;width:min(100%,360px);height:min(780px,calc(100vh - 24px));aspect-ratio:375/812;border:8px solid #09090b;border-radius:46px;background:#09090b;overflow:hidden;box-shadow:0 22px 65px #0005}
 .screen{position:absolute;inset:0;border-radius:36px;overflow:hidden;background:#f2f2f2}
 .map-screen{position:absolute;left:-7.47%;top:-7.39%;width:114.93%;height:67.36%;object-fit:fill}
-.map-route{position:absolute;z-index:1;left:30.8%;top:14.6%;width:61.6%;height:21.9%;pointer-events:none}
-.map-pickup{position:absolute;z-index:2;left:25.6%;top:12.6%;width:6.4%;height:3%;pointer-events:none}
-.map-destination{position:absolute;z-index:2;left:89.6%;top:27.1%;width:6.4%;height:3%;pointer-events:none}
-.map-eta{position:absolute;z-index:2;left:19.5%;top:8.9%;width:19.2%;height:4.6%;pointer-events:none}
+.map-route{position:absolute;z-index:2;left:30.8%;top:15.7%;width:61.6%;height:21.9%;overflow:visible;pointer-events:none}
+.map-pickup{position:absolute;z-index:3;left:25.6%;top:13.7%;width:24px;height:24px;border:6px solid white;border-radius:50%;background:#ffbd00;box-shadow:0 1px 5px #0003}
+.map-destination{position:absolute;z-index:3;left:89.6%;top:29.5%;width:24px;height:24px;border:6px solid white;border-radius:50%;background:#171717;box-shadow:0 1px 5px #0003}
+.map-eta{position:absolute;z-index:3;left:19.5%;top:9%;padding:7px 12px;background:#fff;border-radius:16px;box-shadow:0 3px 10px #0002;font-size:14px;font-weight:600}
 .status{position:absolute;z-index:2;top:0;left:0;right:0;height:43px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;color:#111;font-size:12px;font-weight:650;pointer-events:none}
 .island{position:absolute;z-index:3;top:9px;left:50%;transform:translateX(-50%);width:82px;height:22px;border-radius:16px;background:#080808;pointer-events:none}
 .scrim{position:absolute;inset:0;background:rgba(0,0,0,.22);z-index:4;transition:opacity .38s ease}
-.sheet{position:absolute;z-index:5;left:0;right:0;top:32px;height:630px;max-height:calc(100% - 32px);border-radius:24px 24px 0 0;background:#fff;color:#171717;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 28px #00000012;transform:translateY(0);transition:transform .42s cubic-bezier(.22,.8,.25,1)}
+.sheet{position:absolute;z-index:5;left:0;right:0;top:32px;height:306px;max-height:calc(100% - 32px);border-radius:24px 24px 0 0;background:#fff;color:#171717;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 28px #00000012;transform:translateY(0);transition:transform .32s cubic-bezier(.22,.8,.25,1)}
 .grabber{width:56px;height:4px;border-radius:8px;background:#171717;margin:8px auto 0;flex:0 0 auto}
 .sheet-head{height:48px;display:flex;align-items:center;justify-content:center;position:relative;flex:0 0 auto}
 .sheet-title{font-size:18px;font-weight:550;letter-spacing:-.02em}
@@ -44,24 +44,26 @@ body{display:grid;place-items:center;overflow-x:hidden}
 .key-zero-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .key-zero-row .key{grid-column:2}
 .key.delete{font-size:18px}
-.keyboard-shell{margin-top:auto;flex:0 0 289px;height:289px;display:flex;flex-direction:column;background:#d1d3d9;overflow:hidden}.keyboard-home{height:28px;flex:0 0 28px;display:flex;align-items:center;justify-content:center;background:#d1d3d9}
+.keyboard-shell{position:absolute;z-index:5;left:0;right:0;top:338px;bottom:0;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;padding:84px 6px 28px;background:#d1d3d9;overflow:hidden;transition:transform .32s ease,opacity .32s ease}
+.keyboard{height:auto;min-height:0;flex:0 0 auto;background:transparent;padding:0;display:flex;flex-direction:column;overflow:visible}
+.keyboard-home{position:absolute;left:0;right:0;bottom:0;height:28px;display:flex;align-items:center;justify-content:center;background:#d1d3d9}
 .keyboard-home span{width:108px;height:4px;border-radius:6px;background:#858585}
-.phone.closed .sheet{transform:translateY(100%)}
+.keyboard-home span{width:108px;height:4px;border-radius:6px;background:#858585}
+.phone.closed .sheet{transform:translateY(calc(100% + 12px))}.phone.closed .keyboard-shell{transform:translateY(100%);opacity:0;pointer-events:none}
 .phone.closed .scrim{opacity:0;pointer-events:none}
- .amount.is-changing{animation:price-change .22s ease-out}@keyframes price-change{0%{transform:scale(1);opacity:1}45%{transform:scale(1.09);opacity:.72}100%{transform:scale(1);opacity:1}}\n.main-hotspot{position:absolute;z-index:6;inset:0;display:none;cursor:pointer;pointer-events:none;background:transparent}
+ .amount.is-changing{animation:price-change .22s ease-out}@keyframes price-change{0%{transform:scale(1);opacity:1}45%{transform:scale(1.09);opacity:.72}100%{transform:scale(1);opacity:1}}
+.main-hotspot{position:absolute;z-index:6;inset:0;display:none;cursor:pointer;pointer-events:none;background:transparent}
 .phone.closed .main-hotspot{display:block;pointer-events:auto}
-@media(max-width:520px){.stage{min-height:100svh;padding:0}.phone{width:min(100vw,430px);height:100svh;max-height:900px;border-width:0;border-radius:0;aspect-ratio:auto}.screen{border-radius:0}.sheet{top:32px;height:630px;max-height:calc(100% - 32px);border-radius:24px 24px 0 0}}
+@media(max-width:520px){.stage{min-height:100svh;padding:0}.phone{width:min(100vw,430px);height:100svh;max-height:900px;border-width:0;border-radius:0;aspect-ratio:auto}.screen{border-radius:0}.sheet{top:32px;height:306px;max-height:calc(100% - 32px);border-radius:24px 24px 0 0}.keyboard-shell{top:338px;padding-top:84px}}
 @media(min-width:521px){.phone{width:min(360px,calc((100vh - 24px)*.462));height:min(780px,calc(100vh - 24px));}.stage{min-height:790px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important}}
 </style>
 </head>
 <body>
 <main class="stage"><div class="phone" id="phone"><div class="screen">
-<img class="map-screen" src="../assets/img/taxi/figma-c05-map.png" alt="Актуальная карта из макета Lokali Taxi">
-<img class="map-route" src="../assets/img/taxi/figma-c05-route.png" alt="">
-<img class="map-pickup" src="../assets/img/taxi/figma-c05-pickup.png" alt="">
-<img class="map-destination" src="../assets/img/taxi/figma-c05-destination.png" alt="">
-<img class="map-eta" src="../assets/img/taxi/figma-c05-eta.png" alt="">
+<img class="map-screen" src="../assets/img/taxi/figma-c05-map.png" alt="Карта из актуального макета Lokali Taxi">
+<svg class="map-route" viewBox="0 0 231 178" aria-hidden="true"><path d="M0 0 L69 52 L154 178 L231 126" fill="none" stroke="#141414" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="map-pickup" aria-hidden="true"></span><span class="map-destination" aria-hidden="true"></span><div class="map-eta">15 мин</div>
 <div class="status"><span>9:41</span><span>▮▮ ◧</span></div><span class="island" aria-hidden="true"></span>
 <div class="scrim" id="scrim"></div><div class="main-hotspot" id="reopen" role="button" tabindex="0" aria-label="Открыть редактирование цены"></div>
 <section class="sheet" aria-label="Укажите вашу цену">
@@ -74,7 +76,7 @@ body{display:grid;place-items:center;overflow-x:hidden}
 <div class="hint" id="hint" aria-live="polite">Хорошая цена — водители откликнутся быстрее</div>
 <div class="payment"><span class="ruble">₽</span><span class="payment-label">Оплата наличными</span><span class="chevron">›</span></div>
 <button class="done" id="done" type="button">Готово</button>
-<div class="keyboard-shell"><div class="keyboard" aria-label="Цифровая клавиатура">
+</section><div class="keyboard-shell"><div class="keyboard" aria-label="Цифровая клавиатура">
 <div class="autocorrection"><span></span><span></span><span></span></div>
 <div class="key-rows">
 <div class="key-row"><button class="key" data-digit="1">1</button><button class="key" data-digit="2">2<small>АБВГ</small></button><button class="key" data-digit="3">3<small>ДЕЖЗ</small></button></div>
@@ -82,7 +84,7 @@ body{display:grid;place-items:center;overflow-x:hidden}
 <div class="key-row"><button class="key" data-digit="7">7<small>ФХЦЧ</small></button><button class="key" data-digit="8">8<small>ШЩЪЫ</small></button><button class="key" data-digit="9">9<small>ЬЭЮЯ</small></button></div>
 <div class="key-zero-row"><button class="key" data-digit="0">0</button></div>
 </div></div><div class="keyboard-home"><span></span></div></div>
-</section></div></div></main>
+</div></div></div></main>
 <script>
 (()=>{const phone=document.getElementById('phone'),amount=document.getElementById('amount'),hint=document.getElementById('hint'),done=document.getElementById('done');let value=230,lastValue=230,editing=false;
 function render(){amount.textContent=value.toLocaleString('ru-RU');hint.classList.remove('error');if(value>9999){hint.textContent='Максимальная цена — 9 999 ₽';hint.classList.add('error');done.disabled=true}else if(value<230){hint.textContent='Не ниже рекомендованной цены — 230 ₽';hint.classList.add('error');done.disabled=true}else{hint.textContent='Рекомендованная цена — 230 ₽';done.disabled=false}}
