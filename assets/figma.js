@@ -178,8 +178,16 @@
 
 
 
-  // Подсказку-комментарий убрали: она перекрывала интерактивный экран.
 
+
+  // Подсказка к интерактивному прототипу такси: вынесена в свободное поле слева от телефона.
+  const taxiFrame = d.querySelector('.fig-card:has(iframe[src*="prototype-v4"])');
+  if (taxiFrame) {
+    const pin = d.createElement('div'); pin.className = 'fig-pin fig-pin--taxi-note'; pin.setAttribute('aria-hidden', 'true');
+    pin.innerHTML = '<b>МГ</b><p><strong>Магомед</strong><span lang="ru">Это работает: меняйте цену кнопками − и +</span><span lang="en">It works: change the fare with − and +</span></p>';
+    pin.style.left = 'calc(50% - 218px)'; pin.style.top = '50%';
+    taxiFrame.append(pin);
+  }
 
   // Вся карточка открывает кейс. Кнопки, ссылки и живые элементы внутри работают как раньше;
   // выделенный текст не считается кликом; Cmd/Ctrl и средняя кнопка открывают в новой вкладке

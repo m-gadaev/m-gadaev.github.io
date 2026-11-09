@@ -183,3 +183,12 @@
 .case.is-link { cursor: pointer; }
 @media (hover: hover) and (pointer: fine) { .case.is-link:hover .case__open { background: var(--ink); color: var(--bg); } }
 html.fig { overflow-x: clip; }
+
+
+/* Comment for the interactive Taxi prototype, placed in the left canvas margin. */
+.fig-pin--taxi-note { z-index: 12; }
+.fig-pin--taxi-note p { left: auto; right: 40px; top: 0; width: 220px; border-radius: 12px 4px 12px 12px; }
+@media (max-width: 860px) {
+  .fig-pin--taxi-note { left: 8px !important; top: 46% !important; }
+  .fig-pin--taxi-note p { width: min(220px, calc(100vw - 90px)); }
+}
