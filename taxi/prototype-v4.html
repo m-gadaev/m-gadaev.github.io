@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lokali Taxi · интерактивный прототип</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;background:transparent;font-family:Onest,Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+body{display:grid;place-items:center;overflow-x:hidden}
+.stage{width:100%;min-height:790px;display:grid;place-items:center;padding:16px 10px}
+.phone{position:relative;width:min(100%,360px);aspect-ratio:375/812;border:8px solid #09090b;border-radius:46px;background:#09090b;overflow:hidden;box-shadow:0 22px 65px #0005}
+.screen{position:absolute;inset:0;border-radius:36px;overflow:hidden;background:#f2f2f2}
+.map-screen{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.status{position:absolute;z-index:2;top:0;left:0;right:0;height:43px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;color:#111;font-size:12px;font-weight:650;pointer-events:none}
+.status-right{font-size:11px;letter-spacing:1px}
+.island{position:absolute;z-index:3;top:9px;left:50%;transform:translateX(-50%);width:82px;height:22px;border-radius:16px;background:#080808;pointer-events:none}
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.30);z-index:4;transition:opacity .22s}
+.sheet{position:absolute;z-index:5;left:0;right:0;top:32px;bottom:0;border-radius:24px 24px 0 0;background:#fff;color:#171717;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 28px #00000012;transition:transform .28s cubic-bezier(.2,.75,.25,1)}
+.grabber{width:56px;height:4px;border-radius:8px;background:#111;margin:8px auto 0;flex:0 0 auto}
+.sheet-head{height:50px;display:flex;align-items:center;justify-content:center;position:relative;flex:0 0 auto}
+.sheet-title{font-size:18px;font-weight:550;letter-spacing:-.02em}
+.close{position:absolute;right:14px;top:9px;width:30px;height:30px;border:0;border-radius:50%;background:#f1f1f1;color:#777;font-size:22px;line-height:1;cursor:pointer}
+.amount-area{height:92px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #ededed;position:relative;flex:0 0 auto}
+.amount{font-size:48px;line-height:1;font-weight:400;letter-spacing:-.04em;min-width:90px;text-align:center;outline:none;border:0;background:transparent;color:#171717;font-variant-numeric:tabular-nums}
+.currency{font-size:46px;color:#777;margin-left:3px;font-weight:350}
+.caret{width:2px;height:43px;background:#222;margin-left:2px;animation:blink 1s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
+.hint{height:34px;display:flex;align-items:center;justify-content:center;padding:0 12px;font-size:12px;color:#15934f;text-align:center;flex:0 0 auto}
+.hint.error{color:#e24a4a}
+.payment{height:52px;margin:0 16px 8px;border:1px solid #e9e9e9;border-radius:13px;background:#f5f5f5;display:flex;align-items:center;padding:0 16px;gap:12px;font-size:14px;flex:0 0 auto}
+.ruble{color:#777;font-size:17px}.payment-label{flex:1}.chevron{font-size:22px;color:#888}
+.done{height:48px;margin:0 16px 16px;border:0;border-radius:12px;background:#ffbd00;color:#171717;font:600 14px inherit;cursor:pointer;flex:0 0 auto}
+.done:disabled{background:#ececee;color:#a6a6a8;cursor:default}
+.keyboard{margin-top:auto;background:#d3d4d9;padding:14px 6px 10px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(4,minmax(43px,1fr));gap:6px;min-height:230px;flex:1 1 auto}
+.key{border:0;border-radius:5px;background:#fff;color:#171717;box-shadow:0 1px 1px #0002;font:400 25px/1 system-ui,sans-serif;cursor:pointer;touch-action:manipulation}
+.key:active{background:#f4f4f4;transform:scale(.985)}
+.key.zero{grid-column:2}
+.key.delete{font-size:17px;color:#555}
+.home-indicator{position:absolute;z-index:8;bottom:7px;left:50%;transform:translateX(-50%);width:108px;height:4px;border-radius:6px;background:#111;pointer-events:none}
+.live-fare{position:absolute;z-index:3;left:15%;right:20%;bottom:25.5%;height:42px;background:#fff;color:#171717;display:flex;align-items:center;font-size:16px;gap:5px;pointer-events:none;font-variant-numeric:tabular-nums}
+.main-hotspot{position:absolute;z-index:3;left:0;right:0;bottom:0;height:58%;display:none;cursor:pointer}
+.phone.closed .sheet{transform:translateY(105%)}
+.phone.closed .scrim{opacity:0;pointer-events:none}
+.phone.closed .main-hotspot{display:block}
+.phone.closed .home-indicator{background:#111}
+@media(max-width:520px){.stage{min-height:100svh;padding:0}.phone{width:min(100vw,430px);border-width:0;border-radius:0;min-height:100svh;aspect-ratio:auto;height:100svh}.screen{border-radius:0}.sheet{top:32px;border-radius:24px 24px 0 0}.home-indicator{bottom:max(7px,env(safe-area-inset-bottom))}.keyboard{min-height:220px;padding-bottom:max(14px,env(safe-area-inset-bottom))}}
+@media(min-width:521px){.phone{height:min(760px,calc(100vh - 30px));width:auto;aspect-ratio:375/812}.stage{min-height:790px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="stage">
+ <div class="phone" id="phone">
+  <div class="screen">
+   <img class="map-screen" src="../assets/img/taxi/prototype-main-map.png" alt="Главный экран Lokali Taxi с построенным маршрутом">
+   <div class="live-fare" id="liveFare" aria-live="polite"><span id="liveAmount">230</span> ₽, наличными</div>
+   <div class="scrim" id="scrim"></div>
+   <div class="main-hotspot" id="reopen" aria-label="Открыть редактирование цены" role="button" tabindex="0"></div>
+   <section class="sheet" aria-label="Укажите вашу цену">
+    <div class="grabber"></div>
+    <header class="sheet-head"><div class="sheet-title" id="sheetTitle">Укажите вашу цену</div><button class="close" id="close" type="button" aria-label="Закрыть">×</button></header>
+    <div class="amount-area"><span class="amount" id="amount">230</span><span class="caret" id="caret"></span><span class="currency">₽</span></div>
+    <div class="hint" id="hint" aria-live="polite">Рекомендованная цена — 230 ₽</div>
+    <div class="payment"><span class="ruble">₽</span><span class="payment-label" id="paymentLabel">Оплата наличными</span><span class="chevron">›</span></div>
+    <button class="done" id="done" type="button">Готово</button>
+    <div class="keyboard" aria-label="Цифровая клавиатура">
+     <button class="key" data-digit="1">1</button><button class="key" data-digit="2">2<small>АБВГ</small></button><button class="key" data-digit="3">3<small>ДЕЖЗ</small></button>
+     <button class="key" data-digit="4">4<small>ИЙКЛ</small></button><button class="key" data-digit="5">5<small>МНОП</small></button><button class="key" data-digit="6">6<small>РСТУ</small></button>
+     <button class="key" data-digit="7">7<small>ФХЦЧ</small></button><button class="key" data-digit="8">8<small>ШЩЪЫ</small></button><button class="key" data-digit="9">9<small>ЬЭЮЯ</small></button>
+     <button class="key zero" data-digit="0">0</button>
+    </div>
+   </section>
+   <div class="home-indicator"></div>
+  </div>
+ </div>
+</main>
+<style>.key small{display:block;font-size:7px;letter-spacing:1px;font-weight:700;margin-top:2px}</style>
+<script>
+(()=>{
+ const phone=document.getElementById('phone'),amountEl=document.getElementById('amount'),hint=document.getElementById('hint'),done=document.getElementById('done'),reopen=document.getElementById('reopen'),close=document.getElementById('close'),liveAmount=document.getElementById('liveAmount');
+ let value='230',lastValue='230',lang='ru',payment='cash';
+ try{lang=localStorage.getItem('lang')==='en'?'en':'ru'}catch(e){}
+ const t={ru:{title:'Укажите вашу цену',cash:'Оплата наличными',done:'Готово',recommended:'Рекомендованная цена — 230 ₽',low:'Не ниже рекомендованной цены — 230 ₽',good:'Хорошая цена — водители откликнутся быстрее',max:'Максимальная цена — 9 999 ₽'},en:{title:'Set your fare',cash:'Cash payment',done:'Done',recommended:'Recommended fare — 230 ₽',low:'At least the recommended fare — 230 ₽',good:'Good fare — drivers are likely to respond faster',max:'Maximum fare — 9,999 ₽'}};
+ function render(){
+  amountEl.textContent=value||'';liveAmount.textContent=value||'—';
+  document.getElementById('sheetTitle').textContent=t[lang].title;
+  document.getElementById('paymentLabel').textContent=t[lang].cash;
+  done.textContent=t[lang].done;
+  const n=Number(value||0);
+  hint.classList.remove('error');
+  if(!value){hint.textContent=t[lang].recommended;done.disabled=true}
+  else if(n>9999){hint.textContent=t[lang].max;hint.classList.add('error');done.disabled=true}
+  else if(n<230){hint.textContent=t[lang].low;hint.classList.add('error');done.disabled=true}
+  else if(n>=450){hint.textContent=t[lang].good;done.disabled=false}
+  else{hint.textContent=t[lang].recommended;done.disabled=false}
+ }
+ function addDigit(d){if(value.length>=5)return;value=(value==='0'?'':value)+d;render()}
+ amountEl.parentElement.addEventListener('click',()=>{value='';render()});
+ document.querySelectorAll('[data-digit]').forEach(b=>b.addEventListener('click',()=>addDigit(b.dataset.digit)));
+ function backspace(){value=value.slice(0,-1);render()}
+ document.addEventListener('keydown',e=>{if(phone.classList.contains('closed'))return;if(/^[0-9]$/.test(e.key))addDigit(e.key);if(e.key==='Backspace')backspace();if(e.key==='Enter'&&!done.disabled)finish()});
+ function finish(){if(done.disabled)return;lastValue=value;phone.classList.add('closed');}
+ function open(){value=lastValue||'230';phone.classList.remove('closed');render()}
+ done.addEventListener('click',finish);
+ close.addEventListener('click',()=>{if(value)lastValue=value;phone.classList.add('closed')});
+ document.getElementById('scrim').addEventListener('click',()=>{});
+ reopen.addEventListener('click',open);reopen.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+ render();
+})();
+</script>
+</body></html>
