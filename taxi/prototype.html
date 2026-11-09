@@ -37,6 +37,7 @@ body{display:grid;place-items:center;overflow-x:hidden}
 .key.zero{grid-column:2}
 .key.delete{font-size:17px;color:#555}
 .home-indicator{position:absolute;z-index:8;bottom:7px;left:50%;transform:translateX(-50%);width:108px;height:4px;border-radius:6px;background:#111;pointer-events:none}
+.live-fare{position:absolute;z-index:3;left:15%;right:20%;bottom:25.5%;height:42px;background:#fff;color:#171717;display:flex;align-items:center;font-size:16px;gap:5px;pointer-events:none;font-variant-numeric:tabular-nums}
 .main-hotspot{position:absolute;z-index:3;left:0;right:0;bottom:0;height:58%;display:none;cursor:pointer}
 .phone.closed .sheet{transform:translateY(105%)}
 .phone.closed .scrim{opacity:0;pointer-events:none}
@@ -52,8 +53,7 @@ body{display:grid;place-items:center;overflow-x:hidden}
  <div class="phone" id="phone">
   <div class="screen">
    <img class="map-screen" src="../assets/img/taxi/prototype-main-map.png" alt="Главный экран Lokali Taxi с построенным маршрутом">
-   <div class="status"><span>9:41</span><span class="status-right">▮▮ ◧</span></div>
-   <span class="island" aria-hidden="true"></span>
+   <div class="live-fare" id="liveFare" aria-live="polite"><span id="liveAmount">230</span> ₽, наличными</div>
    <div class="scrim" id="scrim"></div>
    <div class="main-hotspot" id="reopen" aria-label="Открыть редактирование цены" role="button" tabindex="0"></div>
    <section class="sheet" aria-label="Укажите вашу цену">
@@ -77,12 +77,12 @@ body{display:grid;place-items:center;overflow-x:hidden}
 <style>.key small{display:block;font-size:7px;letter-spacing:1px;font-weight:700;margin-top:2px}</style>
 <script>
 (()=>{
- const phone=document.getElementById('phone'),amountEl=document.getElementById('amount'),hint=document.getElementById('hint'),done=document.getElementById('done'),reopen=document.getElementById('reopen'),close=document.getElementById('close');
+ const phone=document.getElementById('phone'),amountEl=document.getElementById('amount'),hint=document.getElementById('hint'),done=document.getElementById('done'),reopen=document.getElementById('reopen'),close=document.getElementById('close'),liveAmount=document.getElementById('liveAmount');
  let value='230',lastValue='230',lang='ru',payment='cash';
  try{lang=localStorage.getItem('lang')==='en'?'en':'ru'}catch(e){}
  const t={ru:{title:'Укажите вашу цену',cash:'Оплата наличными',done:'Готово',recommended:'Рекомендованная цена — 230 ₽',low:'Не ниже рекомендованной цены — 230 ₽',good:'Хорошая цена — водители откликнутся быстрее',max:'Максимальная цена — 9 999 ₽'},en:{title:'Set your fare',cash:'Cash payment',done:'Done',recommended:'Recommended fare — 230 ₽',low:'At least the recommended fare — 230 ₽',good:'Good fare — drivers are likely to respond faster',max:'Maximum fare — 9,999 ₽'}};
  function render(){
-  amountEl.textContent=value||'';
+  amountEl.textContent=value||'';liveAmount.textContent=value||'—';
   document.getElementById('sheetTitle').textContent=t[lang].title;
   document.getElementById('paymentLabel').textContent=t[lang].cash;
   done.textContent=t[lang].done;
@@ -95,6 +95,7 @@ body{display:grid;place-items:center;overflow-x:hidden}
   else{hint.textContent=t[lang].recommended;done.disabled=false}
  }
  function addDigit(d){if(value.length>=5)return;value=(value==='0'?'':value)+d;render()}
+ amountEl.parentElement.addEventListener('click',()=>{value='';render()});
  document.querySelectorAll('[data-digit]').forEach(b=>b.addEventListener('click',()=>addDigit(b.dataset.digit)));
  function backspace(){value=value.slice(0,-1);render()}
  document.addEventListener('keydown',e=>{if(phone.classList.contains('closed'))return;if(/^[0-9]$/.test(e.key))addDigit(e.key);if(e.key==='Backspace')backspace();if(e.key==='Enter'&&!done.disabled)finish()});
