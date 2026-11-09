@@ -7,7 +7,7 @@
   const f=document.createElement('iframe');
   f.dataset.taxiPrototype='';
   f.title='Lokali Taxi — интерактивный макет';
-  f.src=(location.pathname.includes('/taxi/')?'./prototype.html':'/taxi/prototype.html')+'?v=2';
+  f.src=(location.pathname.includes('/taxi/')?'./prototype.html':'/taxi/prototype.html')+'?v=3';
   f.loading='lazy';
   f.style.cssText='display:block;width:100%;height:'+(compact?'790px':'810px')+';border:0;overflow:hidden;background:transparent;';
   target.append(f);
