@@ -178,16 +178,8 @@
 
 
 
-  // Комментарий-подсказка на живом прототипе: показывает, что телефон можно трогать.
-  // Это наша заметка, а не функция для посетителей — оставлять комментарии на сайте нельзя.
-  const live = d.querySelector('.fig-frame:has(.cs-try)');
-  if (live) {
-    const pin = d.createElement('div'); pin.className = 'fig-pin'; pin.setAttribute('aria-hidden', 'true');
-    pin.innerHTML = '<b>МГ</b><p><strong>Магомед</strong><span lang="ru">Это работает: меняйте цену кнопками − и +</span><span lang="en">It works: change the fare with − and +</span></p>';
-    pin.style.left = live.querySelector('.case--taxi') ? '47%' : 'calc(50% - 90px)';
-    pin.style.top = live.querySelector('.case--taxi') ? '46%' : '18%';
-    live.append(pin);
-  }
+  // Подсказку-комментарий убрали: она перекрывала интерактивный экран.
+
 
   // Вся карточка открывает кейс. Кнопки, ссылки и живые элементы внутри работают как раньше;
   // выделенный текст не считается кликом; Cmd/Ctrl и средняя кнопка открывают в новой вкладке
