@@ -151,7 +151,272 @@
     </div>
     <div class="cs-wide reveal" data-fig="Screen / Fare sheet states"><div class="gal"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Шторка цены с подсказкой «Хорошая цена»"><img src="../assets/img/taxi/price-good.webp?v=3a3d74e2" width="750" height="1624" alt="Шторка цены с подсказкой «Хорошая цена»" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Подсказка: цена хорошая</span><span lang="en">Hint: a good fare</span></figcaption></figure><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Шторка цены: превышен максимум 9 999 ₽"><img src="../assets/img/taxi/price-max.webp?v=f4afd694" width="750" height="1624" alt="Шторка цены: превышен максимум 9 999 ₽" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Потолок 9 999 ₽</span><span lang="en">The 9,999 ₽ cap</span></figcaption></figure><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Шторка цены: маршрут изменился, предложено обновить цену"><img src="../assets/img/taxi/price-stale.webp?v=749e44f4" width="750" height="1624" alt="Шторка цены: маршрут изменился, предложено обновить цену" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Маршрут изменился, цена устарела</span><span lang="en">Route changed, the fare is stale</span></figcaption></figure></div></div>
     <div class="cs-wide reveal" data-fig="Live prototype · fare">
-      <div class="cs-try" id="try"><iframe title="Lokali Taxi — интерактивный макет" src="./prototype-v4.html?v=build5" loading="eager" style="display:block;width:100%;height:810px;border:0;background:transparent"></iframe></div>
+      <div class="cs-try" id="try">
+        <div class="cs-try__phone">            <div class="phone" data-ui>
+              <div class="phone__screen">
+                <div class="phone__map"><svg class="map" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="1200" height="800" fill="var(--map-ground)"/>
+<rect x="120" y="90" width="210" height="140" rx="18" fill="var(--map-park)"/>
+<rect x="640" y="520" width="260" height="170" rx="18" fill="var(--map-park)"/>
+<rect x="930" y="120" width="180" height="120" rx="18" fill="var(--map-park)"/>
+<rect x="60" y="560" width="150" height="160" rx="18" fill="var(--map-park)"/>
+<path d="M-20 430 C 180 380, 300 470, 470 430 S 760 330, 900 380 S 1100 470, 1230 420" fill="none" stroke="var(--map-water)" stroke-width="46" stroke-linecap="round"/>
+<g transform="rotate(-12 600 400)">
+<rect x="-184" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-184" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="-88" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="8" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="104" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="200" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="296" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="392" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="488" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="584" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="680" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="776" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="872" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="968" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1064" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1160" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="712" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1256" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="-168" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="-80" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="448" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1352" y="888" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="8" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="96" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="184" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="272" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="360" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="536" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="624" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<rect x="1448" y="800" width="80" height="72" rx="6" fill="var(--map-block)"/>
+<line x1="-192" y1="-200" x2="-192" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-96" y1="-200" x2="-96" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="0" y1="-200" x2="0" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="96" y1="-200" x2="96" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="192" y1="-200" x2="192" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="288" y1="-200" x2="288" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="384" y1="-200" x2="384" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="480" y1="-200" x2="480" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="576" y1="-200" x2="576" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="672" y1="-200" x2="672" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="768" y1="-200" x2="768" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="864" y1="-200" x2="864" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="960" y1="-200" x2="960" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1056" y1="-200" x2="1056" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1152" y1="-200" x2="1152" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1248" y1="-200" x2="1248" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1344" y1="-200" x2="1344" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1440" y1="-200" x2="1440" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="1536" y1="-200" x2="1536" y2="1100" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="-176" x2="1600" y2="-176" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="-88" x2="1600" y2="-88" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="0" x2="1600" y2="0" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="88" x2="1600" y2="88" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="176" x2="1600" y2="176" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="264" x2="1600" y2="264" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="352" x2="1600" y2="352" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="440" x2="1600" y2="440" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="528" x2="1600" y2="528" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="616" x2="1600" y2="616" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="704" x2="1600" y2="704" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="792" x2="1600" y2="792" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="880" x2="1600" y2="880" stroke="var(--map-road)" stroke-width="8"/>
+<line x1="-300" y1="968" x2="1600" y2="968" stroke="var(--map-road)" stroke-width="8"/>
+</g>
+<path d="M-40 250 L 1240 120" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M-40 250 L 1240 120" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M200 -40 L 380 840" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M200 -40 L 380 840" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M-40 690 L 1240 560" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M-40 690 L 1240 560" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+<path d="M860 -40 L 980 840" stroke="var(--map-avenue-edge)" stroke-width="22" fill="none"/><path d="M860 -40 L 980 840" stroke="var(--map-avenue)" stroke-width="16" fill="none"/>
+</svg>
+
+                  <svg class="phone__route" viewBox="0 0 300 640" aria-hidden="true"><path d="M86 150 C 120 210, 210 200, 190 280 S 120 360, 214 392" fill="none" stroke="#1C1C1F" stroke-width="5" stroke-linecap="round"/><circle cx="86" cy="150" r="9" fill="#FFC400" stroke="#1C1C1F" stroke-width="3"/><circle cx="214" cy="392" r="9" fill="#1C1C1F"/></svg>
+                </div>
+                <div class="phone__status" aria-hidden="true"><span>9:41</span><span class="phone__island"></span><span class="phone__sys"><i></i><i></i><b></b></span></div>
+                <div class="ui-taxi ui-taxi--sheet" data-taxi>
+                  <p class="ui-taxi__title"><span lang="ru">Укажите вашу цену</span><span lang="en">Offer your fare</span></p>
+                  <div class="ui-taxi__row">
+                    <button type="button" class="ui-round" data-step="-30" aria-label="−30 ₽">−</button>
+                    <output class="ui-taxi__price" data-price>450 ₽</output>
+                    <button type="button" class="ui-round" data-step="30" aria-label="+30 ₽">+</button>
+                  </div>
+                  <p class="ui-taxi__hint" data-hint></p>
+                  <span class="ui-taxi__cta"><span lang="ru">Заказать</span><span lang="en">Order</span></span>
+                  <span class="phone__home" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+</div>
+        <div class="cs-try__text">
+          <p class="cs-try__kicker"><span lang="ru">Живой прототип</span><span lang="en">Live prototype</span></p>
+          <h3><span lang="ru">Назначьте цену сами</span><span lang="en">Set the fare yourself</span></h3>
+          <p lang="ru">Меняйте цену кнопками − и +. Шаг 30 ₽, потолок 9 999 ₽, а подсказка под суммой сразу говорит, рыночная ли это цена и быстро ли найдётся машина.</p>
+          <p lang="en">Change the fare with − and +. The step is 30 ₽, the cap is 9,999 ₽, and the hint under the amount tells you right away whether the fare is at market level and how fast a car will come.</p>
+        </div>
+      </div>
     </div>
     <div class="cs-col">
       <details class="cs-more reveal">
