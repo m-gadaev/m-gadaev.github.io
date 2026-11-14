@@ -230,7 +230,7 @@
   const up = { icon: ICON2.up, ru: 'Наверх', en: 'Back to top', run: () => scrollTo({ top: 0, behavior: calmMotion.matches ? 'auto' : 'smooth' }) };
   const items = isCase && d.getElementById('try') ? [
     up,
-    { icon: ICON2.hand, ru: 'Попробовать цену', en: 'Try the fare', wide: true, run: () => { const el = d.getElementById('try'); el && el.scrollIntoView({ behavior: calmMotion.matches ? 'auto' : 'smooth', block: 'center' }); } },
+    { icon: ICON2.hand, ru: 'Подвинуть цену', en: 'Move the fare', wide: true, run: () => { const el = d.getElementById('try'); el && el.scrollIntoView({ behavior: calmMotion.matches ? 'auto' : 'smooth', block: 'center' }); } },
   ] : [up];
   items.push(
     { icon: ICON2.mail, ru: 'Скопировать почту', en: 'Copy email', run: async () => toast(await copy(mail) ? t('Почта скопирована: ', 'Email copied: ') + mail : mail) },
