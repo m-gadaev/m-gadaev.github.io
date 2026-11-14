@@ -424,9 +424,8 @@ revealAll(document);
 })();
 
 // Обложка кейса: трейлер играет, пока виден; главы подсвечиваются по времени и перематывают ролик
-(() => {
-  const box = document.querySelector('[data-trailer]');
-  const v = box && box.querySelector('video');
+document.querySelectorAll('[data-trailer]').forEach(box => {
+  const v = box.querySelector('video');
   if (!v) return;
   const items = [...box.querySelectorAll('[data-chapters] li')];
   const marks = items.map(li => +li.querySelector('button').dataset.t);
@@ -455,4 +454,4 @@ revealAll(document);
       if (!visible) v.pause(); else if (!calm.matches) play();
     }), { threshold: 0.35 }).observe(box);
   } else if (!calm.matches) play();
-})();
+});

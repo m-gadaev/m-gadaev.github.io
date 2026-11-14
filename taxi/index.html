@@ -6,12 +6,11 @@
 <title>Lokali Taxi | Кейс</title>
 <meta name="description" content="Два приложения такси с нуля внутри суперапа, для пассажира и для водителя: около 200 экранов и состояний, своя дизайн-система.">
 <meta name="theme-color" content="#19191B">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=circle2">
-<link rel="alternate icon" type="image/webp" href="../assets/img/portrait-studio.webp?v=portrait1">
-
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="alternate icon" type="image/webp" href="../assets/img/portrait-studio.webp?v=57e02b39">
 <link rel="preload" href="../assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="../assets/site.css?v=ec894c8d">
-<link rel="stylesheet" href="../assets/figma.css?v=84086345">
+<link rel="stylesheet" href="../assets/site.css?v=a086939d">
+<link rel="stylesheet" href="../assets/figma.css?v=569c671a">
 <script>
 // Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
 (function () {
@@ -423,6 +422,34 @@
         <summary><span lang="ru">Что взял у конкурентов, а что поменял</span><span lang="en">What I took from competitors and what I changed</span></summary>
         <p lang="ru">Перед проектированием разобрал inDrive и drivee по шагам: как пассажир называет цену, что видит водитель, что происходит, когда никто не берёт заказ.</p>
         <p lang="en">Before designing I broke down inDrive and drivee step by step: how the passenger names a price, what the driver sees, what happens when nobody takes the order.</p>
+        <h3 class="cs-acc__h"><span lang="ru">Взял</span><span lang="en">Took</span></h3>
+        <ul class="cs-acc__list" lang="ru">
+          <li><b>Аукцион цены у inDrive.</b> Цену называет пассажир, водитель соглашается, предлагает свою или пропускает заказ.</li>
+          <li><b>Отклики карточками с таймером.</b> Пассажир сравнивает цену, рейтинг, машину и время подачи и выбирает сам, а не получает первого попавшегося.</li>
+          <li><b>Поднятие цены на экране поиска.</b> Цену меняют прямо во время поиска, без отмены и нового заказа.</li>
+          <li><b>Счётчик «предложение смотрят N водителей».</b> Человек видит, что поиск идёт. inDrive выпустил такой же в сентябре 2026, у нас он был в макетах раньше.</li>
+        </ul>
+        <ul class="cs-acc__list" lang="en">
+          <li><b>The fare auction from inDrive.</b> The passenger names the fare; a driver accepts, counters or skips.</li>
+          <li><b>Offer cards with a timer.</b> The passenger compares fare, rating, car and pickup time and chooses, instead of getting whoever comes first.</li>
+          <li><b>Raising the fare on the search screen.</b> The fare changes during the search, with no cancel and no new order.</li>
+          <li><b>The “N drivers are viewing your offer” counter.</b> It shows the search is alive. inDrive shipped the same in September 2026; ours was in the designs earlier.</li>
+        </ul>
+        <h3 class="cs-acc__h"><span lang="ru">Поменял и добавил</span><span lang="en">Changed and added</span></h3>
+        <ul class="cs-acc__list" lang="ru">
+          <li><b>+30 ₽ одним тапом.</b> На поиске цену поднимают кнопкой, без клавиатуры, пока человек стоит на улице с телефоном в руке.</li>
+          <li><b>Подсказка под суммой.</b> Сразу видно, рыночная ли цена и быстро ли откликнутся водители, ещё до отправки заказа.</li>
+          <li><b>Потолок 9 999 ₽.</b> Лишние нули не превратят поездку за 450 ₽ в поездку за 45 000 ₽.</li>
+          <li><b>Устаревшая цена.</b> Если маршрут изменился, приложение не пересчитывает молча, а предлагает обновить до новой рекомендованной.</li>
+          <li><b>Заказы видны водителю до выхода на линию.</b> Водитель сначала видит спрос рядом, потом решает, выходить ли.</li>
+        </ul>
+        <ul class="cs-acc__list" lang="en">
+          <li><b>+30 ₽ in one tap.</b> On search the fare goes up with a button, no keyboard, while the person stands outside holding the phone.</li>
+          <li><b>A hint under the amount.</b> It shows whether the fare is at market level and how fast drivers will respond, before the order is sent.</li>
+          <li><b>A 9,999 ₽ cap.</b> Extra zeros won’t turn a 450 ₽ ride into a 45,000 ₽ one.</li>
+          <li><b>A stale fare.</b> If the route changes, the app doesn’t recalculate silently; it offers to update to the new recommended fare.</li>
+          <li><b>Drivers see orders before going online.</b> They see demand nearby first, then decide whether to go online.</li>
+        </ul>
       </details>
     </div>
   </section>
@@ -583,7 +610,7 @@
       <h2 id="s-next"><span lang="ru">Другие кейсы</span><span lang="en">Other cases</span></h2>
       <div class="cs-next__row" data-fig="Other cases" data-fig-quiet>
         <a href="../delivery/index.html" style="--c: 20 184 166"><span lang="ru">Локали Доставка</span><span lang="en">Lokali Delivery</span></a>
-        <a href="https://apps.apple.com/ru/app/id1625790808" target="_blank" rel="noopener" style="--c: 59 111 182"><span lang="ru">Кошелёк и админка</span><span lang="en">Wallet and admin</span></a>
+        <a href="https://apps.apple.com/ru/app/id6766522570" target="_blank" rel="noopener" style="--c: 59 111 182"><span lang="ru">Кошелёк и админка</span><span lang="en">Wallet and admin</span></a>
         <a href="https://apps.apple.com/ru/app/id6766522570" target="_blank" rel="noopener" style="--c: 228 52 52"><span lang="ru">Локали Ресторан и Crispy</span><span lang="en">Lokali Restaurant and Crispy</span></a>
       </div>
     </div>
@@ -600,8 +627,8 @@
     <p class="foot__copy">© <span lang="ru">Магомед Гадаев</span><span lang="en">Magomed Gadaev</span>, 2026</p>
   </div>
 </footer>
-<script src="../assets/site.js?v=47cf020c" defer></script>
-<script src="../assets/figma.js?v=ec894c8d" defer></script>
+<script src="../assets/site.js?v=f78e517d" defer></script>
+<script src="../assets/figma.js?v=0260b3de" defer></script>
 </body>
 </html>
 

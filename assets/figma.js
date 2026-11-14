@@ -179,7 +179,6 @@
 
 
 
-
   // Вся карточка открывает кейс. Кнопки, ссылки и живые элементы внутри работают как раньше;
   // выделенный текст не считается кликом; Cmd/Ctrl и средняя кнопка открывают в новой вкладке
   d.querySelectorAll('.case').forEach(card => {
@@ -229,7 +228,7 @@
   const isCase = !!d.querySelector('.cs-hero');
   // «Наверх» на всех страницах: в кейсе скролл длинный, а назад ведут стрелка у шапки и логотип
   const up = { icon: ICON2.up, ru: 'Наверх', en: 'Back to top', run: () => scrollTo({ top: 0, behavior: calmMotion.matches ? 'auto' : 'smooth' }) };
-  const items = isCase ? [
+  const items = isCase && d.getElementById('try') ? [
     up,
     { icon: ICON2.hand, ru: 'Попробовать цену', en: 'Try the fare', wide: true, run: () => { const el = d.getElementById('try'); el && el.scrollIntoView({ behavior: calmMotion.matches ? 'auto' : 'smooth', block: 'center' }); } },
   ] : [up];

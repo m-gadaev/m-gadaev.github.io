@@ -6,12 +6,11 @@
 <title>Lokali Delivery | Кейс</title>
 <meta name="description" content="Довёл редизайн доставки еды в суперапе до релиза и вынес статус заказа на экран блокировки, в Dynamic Island и уведомление Android.">
 <meta name="theme-color" content="#19191B">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=circle2">
-<link rel="alternate icon" type="image/webp" href="../assets/img/portrait-studio.webp?v=portrait1">
-
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="alternate icon" type="image/webp" href="../assets/img/portrait-studio.webp?v=57e02b39">
 <link rel="preload" href="../assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="../assets/site.css?v=69ad8fc0">
-<link rel="stylesheet" href="../assets/figma.css?v=453ca4ae">
+<link rel="stylesheet" href="../assets/site.css?v=a086939d">
+<link rel="stylesheet" href="../assets/figma.css?v=569c671a">
 <script>
 // Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
 (function () {
@@ -55,7 +54,7 @@
     <div class="cs-hero__grid">
       <a class="cs-back" href="../index.html#work"><span lang="ru">← Все работы</span><span lang="en">← All work</span></a>
       <div class="cs-hero__text" data-fig="Header" data-fig-quiet>
-        <h1 class="reveal"><span class="cs-name">Локали Доставка</span><span class="cs-tail"><span lang="ru">Пять тапов до ответа на вопрос «где мой заказ», и как я их убрал</span><span lang="en">Five taps to answer “where is my order”, and how I removed them</span></span></h1>
+        <h1 class="reveal"><span class="cs-name">Локали Доставка</span><span class="cs-tail"><span lang="ru">Статус заказа на экране блокировки вместо пяти тапов по приложению</span><span lang="en">Order status on the lock screen instead of five taps through the app</span></span></h1>
         <dl class="facts reveal" style="--d:80ms">
           <div><dt><span lang="ru">Роль</span><span lang="en">Role</span></dt><dd><span lang="ru">Продуктовый дизайнер: довёл редизайн до релиза и добавил две фичи</span><span lang="en">Product designer: took the redesign to release and added two features</span></dd></div>
           <div><dt><span lang="ru">Объём</span><span lang="en">Scope</span></dt><dd><span lang="ru">Корзина, блюдо, ресторан, техсостояния, отзыв, Live Activity</span><span lang="en">Cart, dish, restaurant, system states, feedback, Live Activity</span></dd></div>
@@ -64,10 +63,27 @@
         </dl>
       </div>
     </div>
-    <div class="wrap" data-fig="Cover · new screens">
-      <div class="cs-cover reveal" style="--d:160ms">
-        <div class="cs-cover__bg" aria-hidden="true"></div>
-        <div class="gal gal--cover"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Корзина"><img src="../assets/img/food/cart-new.webp?v=84a05f41" width="750" height="1624" alt="Корзина" loading="lazy" decoding="async"></button></figure><figure class="gal__item gal__item--raw only-light" style="--k:1.4"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: курьер везёт заказ"><img src="../assets/img/food/la-courier-light.webp?v=6ead6c12" width="540" height="450" alt="Live Activity: курьер везёт заказ" loading="lazy" decoding="async"></button></figure><figure class="gal__item gal__item--raw only-dark" style="--k:1.4"><button class="zoom" type="button" aria-label="Увеличить: Live Activity: курьер везёт заказ"><img src="../assets/img/food/la-courier-dark.webp?v=7bf0adc4" width="540" height="450" alt="Live Activity: курьер везёт заказ" loading="lazy" decoding="async"></button></figure><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Шторка блюда"><img src="../assets/img/food/dish-new.webp?v=e2e16b9e" width="750" height="1624" alt="Шторка блюда" loading="lazy" decoding="async"></button></figure></div>
+    <div class="wrap" data-fig="Cover · trailer">
+      <div class="cs-cover cs-cover--trailer reveal" style="--d:160ms" data-trailer>
+        <div class="cs-cover__bg" aria-hidden="true"><svg class="cs-cover__route" viewBox="0 0 1200 720" preserveAspectRatio="xMidYMid slice"><path d="M-40 560 C 180 520, 260 300, 470 330 S 700 620, 860 470 S 1080 140, 1260 180"/></svg></div>
+        <ol class="cs-chapters" aria-label="Главы ролика" data-chapters>
+          <li><button type="button" data-t="0"><span lang="ru">Главная</span><span lang="en">Home</span></button></li>
+          <li><button type="button" data-t="2"><span lang="ru">Ресторан</span><span lang="en">Restaurant</span></button></li>
+          <li><button type="button" data-t="3.8"><span lang="ru">Блюдо с КБЖУ</span><span lang="en">Dish with nutrition</span></button></li>
+          <li><button type="button" data-t="5.6"><span lang="ru">Мультикорзина</span><span lang="en">Multi-cart</span></button></li>
+          <li><button type="button" data-t="8.3"><span lang="ru">Оформление</span><span lang="en">Checkout</span></button></li>
+          <li><button type="button" data-t="11"><span lang="ru">Статус заказа</span><span lang="en">Order status</span></button></li>
+          <li><button type="button" data-t="13.9"><span lang="ru">Live Activity и Dynamic Island</span><span lang="en">Live Activity and Dynamic Island</span></button></li>
+          <li><button type="button" data-t="19"><span lang="ru">Обратная связь</span><span lang="en">Feedback</span></button></li>
+        </ol>
+        <div class="cs-cover__phone">
+          <div class="phone phone--video"><div class="phone__screen">
+            <video muted playsinline loop preload="metadata" poster="../assets/img/food/trailer-poster.webp?v=73183f59" aria-label="Ролик: путь заказа еды от главной до статуса на экране блокировки">
+              <source src="../assets/video/food-trailer.mp4?v=3af202a8" type="video/mp4">
+            </video>
+          </div></div>
+        </div>
+        <p class="cs-cover__note" data-chapter-now><span lang="ru">Путь заказа: от главной до экрана блокировки</span><span lang="en">The order journey: from home to the lock screen</span></p>
       </div>
     </div>
   </section>
@@ -142,7 +158,7 @@
       <p class="reveal" lang="ru">Воронка короткая: «Нравится ли вам Локали?» «Да» ведёт в стор оценить приложение. «Нет» раскрывает чипы причин по всем направлениям и необязательное поле, а «Отправить» неактивна, пока не выбран хотя бы один чип, поэтому пустое «нет» не уйдёт. Опрос живёт на уровне суперапа и показывается не чаще раза в неделю, частоту выбирал я.</p>
       <p class="reveal" lang="en">The funnel is short: “Do you like Lokali?” “Yes” leads to a store rating. “No” opens reason chips across all services and an optional field, and “Send” stays disabled until at least one chip is picked, so an empty “no” can’t be sent. It lives at the super app level and shows at most once a week, a frequency I chose.</p>
     </div>
-    <div class="cs-wide reveal" data-fig="Flow / Feedback"><figure class="wide-fig"><button class="zoom" type="button" aria-label="Увеличить: Флоу обратной связи"><img src="../assets/img/food/feedback.webp?v=8e70292f" width="900" height="456" alt="Флоу обратной связи" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Вопрос, причины с неактивной кнопкой, благодарность</span><span lang="en">Question, reasons with a disabled button, thanks</span></figcaption></figure></div>
+    <div class="cs-wide reveal" data-fig="Flow / Feedback"><figure class="wide-fig wide-fig--native" style="--w: 760px"><button class="zoom" type="button" aria-label="Увеличить: Флоу обратной связи"><img src="../assets/img/food/feedback.webp?v=5e238809" width="900" height="456" alt="Флоу обратной связи" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Вопрос, причины с неактивной кнопкой, благодарность</span><span lang="en">Question, reasons with a disabled button, thanks</span></figcaption></figure></div>
   </section>
 
   <section class="cs-sec" aria-labelledby="s-la">
@@ -190,7 +206,7 @@
       <h2 id="s-next"><span lang="ru">Другие кейсы</span><span lang="en">Other cases</span></h2>
       <div class="cs-next__row" data-fig="Other cases" data-fig-quiet>
         <a href="../taxi/index.html" style="--c: 255 196 0"><span lang="ru">Локали Такси</span><span lang="en">Lokali Taxi</span></a>
-        <a href="https://apps.apple.com/ru/app/id1625790808" target="_blank" rel="noopener" style="--c: 59 111 182"><span lang="ru">Кошелёк и админка</span><span lang="en">Wallet and admin</span></a>
+        <a href="https://apps.apple.com/ru/app/id6766522570" target="_blank" rel="noopener" style="--c: 59 111 182"><span lang="ru">Кошелёк и админка</span><span lang="en">Wallet and admin</span></a>
         <a href="https://apps.apple.com/ru/app/id6766522570" target="_blank" rel="noopener" style="--c: 228 52 52"><span lang="ru">Локали Ресторан и Crispy</span><span lang="en">Lokali Restaurant and Crispy</span></a>
       </div>
     </div>
@@ -206,8 +222,8 @@
     <p class="foot__copy">© <span lang="ru">Магомед Гадаев</span><span lang="en">Magomed Gadaev</span>, 2026</p>
   </div>
 </footer>
-<script src="../assets/site.js?v=47cf020c" defer></script>
-<script src="../assets/figma.js?v=5e2762e0" defer></script>
+<script src="../assets/site.js?v=f78e517d" defer></script>
+<script src="../assets/figma.js?v=0260b3de" defer></script>
 </body>
 </html>
 

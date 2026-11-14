@@ -3,16 +3,16 @@
    Всё декоративное: aria-hidden и без нажатий. */
 
 :root.fig {
-  --bg: #E9E9E7;          /* холст */
-  --bg-rgb: 233 233 231;
-  --surface: #F8F8F7;     /* фрейм светлее холста, как в Figma */
-  --surface-2: #EFEFED;
+  --bg: #FFFFFF;          /* холст белый */
+  --bg-rgb: 255 255 255;
+  --surface: #F5F5F5;     /* фрейм: нейтральный светло-серый на белом */
+  --surface-2: #EDEDED;
   --fig-blue: #0D99FF;
   --fig-red: #F24822;
   --fig-ink: #F7F7F6;
-  --fig-dot: rgb(28 28 31 / 0.13);
-  --fig-panel: #F8F8F7;
-  --fig-line: rgb(28 28 31 / 0.1);
+  --fig-dot: rgb(25 25 25 / 0.08);
+  --fig-panel: #FFFFFF;
+  --fig-line: rgb(25 25 25 / 0.08);
   --ruler: 20px;
 }
 :root.fig[data-theme="dark"] {
@@ -184,11 +184,9 @@
 @media (hover: hover) and (pointer: fine) { .case.is-link:hover .case__open { background: var(--ink); color: var(--bg); } }
 html.fig { overflow-x: clip; }
 
-
-/* Comment for the interactive Taxi prototype, placed in the left canvas margin. */
-.fig-pin--taxi-note { z-index: 12; }
-.fig-pin--taxi-note p { left: auto; right: 40px; top: 0; width: 220px; border-radius: 12px 4px 12px 12px; }
-@media (max-width: 860px) {
-  .fig-pin--taxi-note { left: 8px !important; top: 46% !important; }
-  .fig-pin--taxi-note p { width: min(220px, calc(100vw - 90px)); }
+/* Телефоны и планшеты: без синей рамки выделения на тапе и при скролле, подписи фреймов остаются */
+@media (hover: none), (pointer: coarse) {
+  .fig-frame.is-sel > .fig-sel, .fig-frame.is-sel > .fig-size, .fig-frame.is-sel > .fig-gap,
+  .fig-avatar > .fig-sel, .fig-avatar > .fig-size { opacity: 0; }
+  .fig-frame.is-sel > .fig-label, .fig-avatar > .fig-label { color: inherit; }
 }
