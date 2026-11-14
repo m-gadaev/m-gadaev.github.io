@@ -443,7 +443,12 @@ document.querySelectorAll('[data-trailer]').forEach(box => {
       if (now && items[i]) now.innerHTML = items[i].querySelector('button').innerHTML;
       cur = i;
     }
-    items[i] && items[i].style.setProperty('--p', Math.min(1, Math.max(0, (t - marks[i]) / (next - marks[i]))).toFixed(3));
+    if (items[i]) {
+      const p = Math.min(1, Math.max(0, (t - marks[i]) / (next - marks[i])));
+      // у полоски скруглённые концы: на нулевой ширине они рисуют точку, поэтому прячем
+      items[i].style.setProperty('--p', p.toFixed(3));
+      items[i].style.setProperty('--o', p > 0.012 ? '1' : '0');
+    }
     if (!v.paused) raf = requestAnimationFrame(tick);
   };
   v.addEventListener('play', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); });
@@ -522,4 +527,59 @@ document.querySelectorAll('.deliv-deco__car').forEach(car => {
     });
     paintSheet(0); paintMap(0); paintSearch(0); go('search');
   });
+})();
+
+// Панель слоёв у длинного кейса: рейка из засечек, по наведению — список фреймов
+(() => {
+  const secs = [...document.querySelectorAll('[data-nav]')];
+  if (secs.length < 5) return;
+  const calm = matchMedia('(prefers-reduced-motion: reduce)');
+  const ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.6 1v3.6H1v1.4h4.6v4.4H1v1.4h4.6V15H7v-3.2h3.4V15h1.4v-3.2H15v-1.4h-3.2V6H15V4.6h-3.2V1h-1.4v3.6H7V1H5.6Zm1.4 5h3.4v4.4H7V6Z"/></svg>';
+  const en = document.documentElement.dataset.lang === 'en';
+
+  const nav = document.createElement('nav');
+  nav.className = 'layers';
+  nav.setAttribute('aria-label', en ? 'Case sections' : 'Разделы кейса');
+  const list = document.createElement('ol');
+  list.className = 'layers__list';
+  nav.append(list);
+
+  const links = secs.map(sec => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#' + (sec.id || sec.getAttribute('aria-labelledby'));
+    a.className = 'layers__item';
+    a.innerHTML = '<i class="layers__tick" aria-hidden="true"></i><span class="layers__name">' + ICON +
+      '<span lang="ru">' + sec.dataset.nav + '</span><span lang="en">' + (sec.dataset.navEn || sec.dataset.nav) + '</span></span>';
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      sec.scrollIntoView({ behavior: calm.matches ? 'auto' : 'smooth', block: 'start' });
+      history.replaceState(null, '', a.getAttribute('href'));
+    });
+    li.append(a); list.append(li);
+    return a;
+  });
+  document.body.append(nav);
+
+  const pick = () => {
+    const line = innerHeight * 0.3;
+    let i = -1;
+    secs.forEach((s, k) => { if (s.getBoundingClientRect().top <= line) i = k; });
+    links.forEach((a, k) => { a.classList.toggle('is-on', k === i); if (k === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+    nav.classList.toggle('is-lit', scrollY > innerHeight * 0.6);
+  };
+  let tick = 0;
+  const onScroll = () => { if (tick) return; tick = requestAnimationFrame(() => { tick = 0; pick(); grow(); }); };
+
+  // на узких экранах рейки нет — там прогресс чтения тонкой линией сверху
+  const bar = document.createElement('i');
+  bar.className = 'readbar'; bar.setAttribute('aria-hidden', 'true');
+  document.body.append(bar);
+  const grow = () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.setProperty('--p', h > 0 ? Math.min(1, scrollY / h).toFixed(4) : 0);
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', () => { pick(); grow(); }, { passive: true });
+  pick(); grow();
 })();

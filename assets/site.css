@@ -16,6 +16,7 @@
   --soft: #86868D;       /* светлый серый для роли в герое, 3:1 — норма для крупного текста */
   --portrait-bg: #EDEDED;
   --tile: #FFFFFF;
+  --line: rgb(25 25 25 / 0.1);
   --accent: #1C1C1F;
   --accent-ink: #F7F7F6;
   --field: #1C1C1F;
@@ -50,6 +51,7 @@
   --soft: #7C7C85;
   --portrait-bg: #2A2A2E;
   --tile: #2A2A2E;
+  --line: rgb(236 236 234 / 0.13);
   --accent: #ECECEA;
   --accent-ink: #141416;
   --field: #0E0E10;
@@ -668,10 +670,10 @@ a:hover { text-decoration-thickness: 2px; }
 .phone--video video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .cs-chapters { grid-column: 1; justify-self: end; list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; counter-reset: ch; }
 .cs-chapters button { position: relative; display: flex; gap: 10px; align-items: baseline; width: 100%; padding: 7px 12px 7px 0; border: 0; background: none; color: var(--muted); font: inherit; font-size: var(--step-small); text-align: left; cursor: pointer; transition: color 200ms var(--ease-out); }
-.cs-chapters button::before { counter-increment: ch; content: counter(ch, decimal-leading-zero); font-variant-numeric: tabular-nums; font-size: 12px; opacity: 0.6; }
+.cs-chapters button::before { counter-increment: ch; content: counter(ch); font-variant-numeric: tabular-nums; font-size: 12px; opacity: 0.55; min-width: 1em; }
 .cs-chapters button::after { content: ""; position: absolute; left: 0; right: 12px; bottom: 2px; height: 2px; border-radius: 2px; background: var(--ink); transform: scaleX(var(--p, 0)); transform-origin: left; opacity: 0; }
 .cs-chapters li.is-on button { color: var(--ink); }
-.cs-chapters li.is-on button::after { opacity: 1; }
+.cs-chapters li.is-on button::after { opacity: var(--o, 0); }
 @media (hover: hover) { .cs-chapters button:hover { color: var(--ink); } }
 .cs-chapters button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 6px; }
 
@@ -832,3 +834,27 @@ a:hover { text-decoration-thickness: 2px; }
 .proto__hint.is-swap { animation: hint-swap 420ms var(--ease-out); }
 @keyframes hint-swap { 0% { opacity: 0; transform: translateY(0.8cqw) } 100% { opacity: 1; transform: none } }
 @media (prefers-reduced-motion: reduce) { .proto__pill, .proto__pill::after, .proto__hint { animation: none !important; transition: none; } }
+
+/* Рейка разделов кейса: засечки слева, при наведении — список фреймов, как панель слоёв */
+.layers { position: fixed; left: clamp(8px, 1.4vw, 20px); top: 50%; transform: translateY(-50%); z-index: 40; display: none; padding: 8px; border: 1px solid transparent; border-radius: 14px; opacity: 0; pointer-events: none; transition: opacity 320ms var(--ease-out), background-color 260ms var(--ease-out), border-color 260ms var(--ease-out), box-shadow 260ms var(--ease-out); }
+.layers.is-lit { opacity: 1; pointer-events: auto; }
+.layers:hover, .layers:focus-within { background: color-mix(in srgb, var(--fig-panel) 90%, transparent); border-color: var(--fig-line); box-shadow: 0 18px 40px rgb(0 0 0 / 0.14); backdrop-filter: blur(14px); }
+.layers__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
+.layers__item { display: flex; align-items: center; height: 26px; padding: 0 4px; border-radius: 8px; color: var(--muted); font-size: 13px; line-height: 1.2; text-decoration: none; white-space: nowrap; transition: padding 300ms var(--ease-out), background-color 180ms var(--ease-out), color 180ms var(--ease-out); }
+.layers__tick { flex: 0 0 auto; width: 14px; height: 2px; border-radius: 2px; background: currentColor; opacity: 0.45; transition: width 260ms var(--ease-out), opacity 200ms var(--ease-out), margin 260ms var(--ease-out); }
+.layers__name { display: flex; align-items: center; gap: 8px; max-width: 0; overflow: hidden; opacity: 0; transition: max-width 320ms var(--ease-out), opacity 200ms var(--ease-out); }
+.layers__item svg { flex: 0 0 auto; width: 12px; height: 12px; fill: currentColor; opacity: 0.5; }
+.layers__item.is-on { color: var(--ink); }
+.layers__item.is-on .layers__tick { width: 16px; opacity: 1; }
+.layers__item.is-on svg { opacity: 0.9; }
+.layers:hover .layers__item, .layers:focus-within .layers__item { padding: 0 8px; }
+.layers:hover .layers__tick, .layers:focus-within .layers__tick { width: 0; opacity: 0; margin-right: 0; }
+.layers:hover .layers__name, .layers:focus-within .layers__name { max-width: 164px; opacity: 1; }
+.layers:hover .layers__item.is-on, .layers:focus-within .layers__item.is-on { background: color-mix(in srgb, var(--ink) 9%, transparent); }
+@media (hover: hover) { .layers__item:hover { color: var(--ink); } }
+.layers__item:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+@media (min-width: 1280px) { .layers { display: block; } }
+/* Прогресс чтения вместо рейки на узких экранах */
+.readbar { position: fixed; left: 0; top: 0; z-index: 60; height: 2px; width: 100%; transform: scaleX(var(--p, 0)); transform-origin: left; background: #FFC400; pointer-events: none; }
+@media (min-width: 1280px) { .readbar { display: none; } }
+@media (prefers-reduced-motion: reduce) { .layers, .layers__item, .layers__tick { transition: none; } }

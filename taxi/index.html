@@ -9,7 +9,7 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate icon" type="image/webp" href="../assets/img/portrait-studio.webp?v=57e02b39">
 <link rel="preload" href="../assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="../assets/site.css?v=c6e14470">
+<link rel="stylesheet" href="../assets/site.css?v=6cbe26a5">
 <link rel="stylesheet" href="../assets/figma.css?v=569c671a">
 <script>
 // Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
@@ -90,7 +90,7 @@
     </div>
   </section>
 
-  <section class="cs-sec" aria-labelledby="s-task">
+  <section class="cs-sec" aria-labelledby="s-task" data-nav="Задача" data-nav-en="The task">
     <div class="cs-col" data-fig="Text / Task" data-fig-quiet>
       <h2 id="s-task" class="reveal"><span lang="ru">Задача</span><span lang="en">The task</span></h2>
       <p class="reveal" lang="ru">У холдинга уже был свой автопарк для доставки еды, и следующим шагом стали перевозки людей. Такси нужно было собрать с нуля внутри суперапа: два приложения, пассажира и водителя.</p>
@@ -103,7 +103,7 @@
     <div class="cs-wide reveal flows" data-fig="Flow / Passenger and driver"><figure class="flow"><button class="zoom" type="button" aria-label="Открыть целиком: Юзерфлоу пассажира от запуска до оценки поездки"><img src="../assets/img/taxi/flow-passenger.webp?v=b9a109c8" width="1600" height="4052" alt="Юзерфлоу пассажира от запуска до оценки поездки" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Пассажир: от запуска до оценки</span><span lang="en">Passenger: from launch to rating</span></figcaption></figure><figure class="flow"><button class="zoom" type="button" aria-label="Открыть целиком: Юзерфлоу регистрации водителя"><img src="../assets/img/taxi/flow-driver.webp?v=acc8c7de" width="1600" height="2800" alt="Юзерфлоу регистрации водителя" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Водитель: от установки до решения по заявке</span><span lang="en">Driver: from install to the application decision</span></figcaption></figure></div>
   </section>
 
-  <section class="cs-sec" aria-labelledby="s-research">
+  <section class="cs-sec" aria-labelledby="s-research" data-nav="Разбор рынка" data-nav-en="Market review">
     <div class="cs-col" data-fig="Text / Research" data-fig-quiet>
       <h2 id="s-research" class="reveal"><span lang="ru">Сначала разобрал рынок по шагам</span><span lang="en">First, I took the market apart step by step</span></h2>
       <p class="reveal" lang="ru">Доступа к чужим продуктам изнутри нет, поэтому флоу конкурентов я восстановил сам: собрал экраны inDrive и drivee и разложил их по сценариям, от выбора адреса до оценки поездки. Отдельно основные пути, отдельно крайние случаи.</p>
@@ -123,7 +123,7 @@
     </div>
   </section>
 
-  <section class="cs-sec" aria-labelledby="s-evo">
+  <section class="cs-sec" aria-labelledby="s-evo" data-nav="От схемы к экрану" data-nav-en="Schema to screen">
     <div class="cs-col" data-fig="Text / From schema to final" data-fig-quiet>
       <h2 id="s-evo" class="reveal"><span lang="ru">От схемы аналитика к финальному экрану</span><span lang="en">From the analyst’s schema to the final screen</span></h2>
       <p class="reveal" lang="ru">На входе у меня были схемы бизнес-аналитика: карта-заглушка, поля «Откуда» и «Куда», кнопка. Они отвечали на вопрос, что должно быть на экране. Моя задача была ответить, как это работает в руке у человека.</p>
@@ -142,7 +142,7 @@
     </div>
   </section>
 
-  <section class="cs-sec" id="price" aria-labelledby="s-price">
+  <section class="cs-sec" id="price" aria-labelledby="s-price" data-nav="Цена" data-nav-en="The fare">
     <div class="cs-col" data-fig="Text / Fare" data-fig-quiet>
       <h2 id="s-price" class="reveal"><span lang="ru">Цену предлагает алгоритм, последнее слово за пассажиром</span><span lang="en">The algorithm offers a fare, the passenger has the last word</span></h2>
       <p class="reveal" lang="ru">Модель взяли у inDrive, но с ориентиром: агрегатор считает рекомендованную цену по маршруту сам и подставляет её в заказ. Дальше цену двигает пассажир — выше, чтобы уехать быстрее, ниже, если готов подождать, — а водитель соглашается или нет. Шаг ±30 ₽ предложил бизнес-аналитик, его согласовали с владельцем. Моя часть: как это выглядит и ведёт себя: шторка с ценой, кнопки шага, потолок 9999 ₽, подсказка, насколько сумма разошлась с рекомендованной, и поведение, когда цена устарела.</p>
@@ -251,7 +251,7 @@
     </div>
   </section>
 
-  <section class="cs-sec" aria-labelledby="s-drivers">
+  <section class="cs-sec" aria-labelledby="s-drivers" data-nav="Почему отказывались" data-nav-en="Why they skipped">
     <div class="cs-col" data-fig="Text / Drivers" data-fig-quiet>
       <h2 id="s-drivers" class="reveal"><span lang="ru">Почему водители не берут заказ</span><span lang="en">Why drivers skip orders</span></h2>
       <p class="reveal" lang="ru">Продакт предложил добавить поднятие цены во время поиска машины. Прежде чем проектировать, я проверил, есть ли за этим настоящая боль.</p>
@@ -264,7 +264,7 @@
     <div class="cs-wide reveal" data-fig="Screen / Search, raise fare"><div class="gal"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Шторка поиска с кнопками шага цены"><img src="../assets/img/taxi/search-sheet.webp?v=6139749e" width="750" height="1624" alt="Шторка поиска с кнопками шага цены" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Поиск: шаг ±30 ₽</span><span lang="en">Search: the ±30 ₽ step</span></figcaption></figure><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Шторка поиска: цена поднята с 450 до 480 ₽"><img src="../assets/img/taxi/search-raise.webp?v=00e557dd" width="750" height="1624" alt="Шторка поиска: цена поднята с 450 до 480 ₽" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Никто не откликнулся: цену подняли</span><span lang="en">No responses: the fare was raised</span></figcaption></figure><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Отклики водителей с таймерами"><img src="../assets/img/taxi/offers.webp?v=7a8336fa" width="750" height="1624" alt="Отклики водителей с таймерами" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Отклики водителей</span><span lang="en">Driver offers</span></figcaption></figure></div></div>
   </section>
 
-  <section class="cs-sec" aria-labelledby="s-online">
+  <section class="cs-sec" aria-labelledby="s-online" data-nav="Заказы до линии" data-nav-en="Orders before the line">
     <div class="cs-col" data-fig="Text / Online" data-fig-quiet>
       <h2 id="s-online" class="reveal"><span lang="ru">Заказы видны ещё до выхода на линию</span><span lang="en">Orders are visible before going online</span></h2>
       <p class="reveal" lang="ru">Продакт предлагал показывать водителю заказы только после выхода на линию, а до этого держать пустой экран. Я предложил обратное: водитель, который видит живые заказы рядом, охотнее выходит на линию, чем водитель перед пустой картой. Предложение одобрили, и в макетах заказы видны сразу.</p>
@@ -273,7 +273,7 @@
     <div class="cs-wide reveal" data-fig="Screen / Driver offline"><div class="gal gal--evo"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Экран водителя по ТЗ: не на линии, список пуст"><img src="../assets/img/taxi/driver-empty.webp?v=1b0e6b38" width="750" height="1624" alt="Экран водителя по ТЗ: не на линии, список пуст" loading="lazy" decoding="async"></button><figcaption><span lang="ru">По ТЗ: пустой экран, смотреть не на что</span><span lang="en">As specified: an empty screen with nothing to look at</span></figcaption></figure><span class="gal__arrow" aria-hidden="true"></span><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Главный экран водителя до выхода на линию с лентой заказов"><img src="../assets/img/taxi/driver-offline.webp?v=528caf2a" width="750" height="1624" alt="Главный экран водителя до выхода на линию с лентой заказов" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Что предложил: заказы рядом видны ещё до линии</span><span lang="en">What I proposed: nearby orders visible before going online</span></figcaption></figure></div></div>
   </section>
 
-  <section class="cs-sec" aria-labelledby="s-pair">
+  <section class="cs-sec" aria-labelledby="s-pair" data-nav="Две стороны" data-nav-en="Two sides">
     <div class="cs-col" data-fig="Text / Flow" data-fig-quiet>
       <h2 id="s-pair" class="reveal"><span lang="ru">Один сценарий с двух сторон</span><span lang="en">One flow, two sides</span></h2>
       <p class="reveal" lang="ru">Пассажир соглашается с рекомендованной ценой или двигает её под себя, водитель за 30 секунд решает, брать ли заказ. Каждый шаг я проектировал парой экранов, чтобы обе стороны видели одно и то же событие по-своему.</p>
@@ -292,7 +292,7 @@
     <div class="cs-wide reveal" data-fig="Screens / Passenger × Driver"><div class="gal"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Главный экран пассажира с маршрутом и рекомендованной ценой"><img src="../assets/img/taxi/main-route.webp?v=df932f3e" width="750" height="1624" alt="Главный экран пассажира с маршрутом и рекомендованной ценой" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Пассажир: маршрут и цена</span><span lang="en">Passenger: route and fare</span></figcaption></figure><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Экран пассажира: водитель едет, код для посадки"><img src="../assets/img/taxi/ride-coming.webp?v=bca83bcf" width="750" height="1624" alt="Экран пассажира: водитель едет, код для посадки" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Пассажир: водитель едет</span><span lang="en">Passenger: the driver is on the way</span></figcaption></figure><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Главный экран водителя на линии"><img src="../assets/img/taxi/driver-online.webp?v=81fb591a" width="750" height="1624" alt="Главный экран водителя на линии" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Водитель: заказы рядом на линии</span><span lang="en">Driver: nearby orders while online</span></figcaption></figure></div></div>
   </section>
 
-  <section class="cs-sec" aria-labelledby="s-states">
+  <section class="cs-sec" aria-labelledby="s-states" data-nav="Плохая связь" data-nav-en="Bad connection">
     <div class="cs-col" data-fig="Text / States" data-fig-quiet>
       <h2 id="s-states" class="reveal"><span lang="ru">Продукт живёт в плохой связи</span><span lang="en">The product lives on a bad connection</span></h2>
       <p class="reveal" lang="ru">Такси работает там, где пропадает сеть и врёт GPS. Я спроектировал системные состояния: нет сети, потеря связи с сервером, превышен лимит запросов, устаревшие данные, обязательное обновление, истёкшая сессия. Ключевые сценарии при этом продолжают работать.</p>
@@ -303,7 +303,7 @@
     <div class="cs-wide reveal" data-fig="Screens / System states"><div class="gal"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Чат без сети, сообщение помечено недоставленным"><img src="../assets/img/taxi/state-chat-offline.webp?v=62876ade" width="750" height="1624" alt="Чат без сети, сообщение помечено недоставленным" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Чат без сети: сообщение в очереди</span><span lang="en">Chat offline: the message is queued</span></figcaption></figure><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Офлайн-баннер поверх главного экрана"><img src="../assets/img/taxi/state-offline.webp?v=5b8e07d0" width="750" height="1624" alt="Офлайн-баннер поверх главного экрана" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Нет интернета: баннер поверх контента</span><span lang="en">No internet: a banner over the content</span></figcaption></figure><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Нет связи с сервером, предложение позвонить водителю"><img src="../assets/img/taxi/state-server.webp?v=f3e2c95f" width="750" height="1624" alt="Нет связи с сервером, предложение позвонить водителю" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Нет связи с сервером: можно позвонить водителю</span><span lang="en">Server unreachable: you can call the driver</span></figcaption></figure></div></div>
   </section>
 
-  <section class="cs-sec" aria-labelledby="s-ds">
+  <section class="cs-sec" aria-labelledby="s-ds" data-nav="Дизайн-система" data-nav-en="Design system">
     <div class="cs-col" data-fig="Text / Design system" data-fig-quiet>
       <h2 id="s-ds" class="reveal"><span lang="ru">Своя дизайн-система поверх материнской</span><span lang="en">Its own design system on top of the parent one</span></h2>
       <p class="reveal" lang="ru">В материнской системе суперапа не было тем и компонентов для карты, заказов и водителя. Я достроил их сам: 90 семантических токенов, две темы с проверкой контраста по WCAG. Библиотеку я свёл с 400 фреймов до 150 состояний компонентов.</p>
@@ -331,7 +331,7 @@
     </div>
   </section>
 
-  <section class="cs-sec" aria-labelledby="s-hyp">
+  <section class="cs-sec" aria-labelledby="s-hyp" data-nav="Гипотезы" data-nav-en="Hypotheses">
     <div class="cs-col" data-fig="Text / Hypotheses" data-fig-quiet>
       <h2 id="s-hyp" class="reveal"><span lang="ru">Гипотезы и что с ними стало</span><span lang="en">Hypotheses and what became of them</span></h2>
       <p class="reveal" lang="ru">Первую гипотезу подтвердил разговорами с водителями. Две другие уже в продукте, их покажут метрики после запуска.</p>
@@ -342,7 +342,7 @@
     </div>
   </section>
 
-  <section class="cs-sec" aria-labelledby="s-result">
+  <section class="cs-sec" aria-labelledby="s-result" data-nav="Результат" data-nav-en="Outcome">
     <div class="cs-col" data-fig="Text / Outcome" data-fig-quiet>
       <h2 id="s-result" class="reveal"><span lang="ru">Результат</span><span lang="en">Outcome</span></h2>
       <p class="reveal" lang="ru">Около 200 экранов и состояний двух приложений переданы в разработку, сейчас идёт тестирование перед релизом.</p>
@@ -350,7 +350,7 @@
     </div>
   </section>
 
-  <section class="cs-sec" aria-labelledby="s-next-step">
+  <section class="cs-sec" aria-labelledby="s-next-step" data-nav="Что добавил" data-nav-en="What I added">
     <div class="cs-col" data-fig="Text / Market review" data-fig-quiet>
       <h2 id="s-next-step" class="reveal"><span lang="ru">Что я добавил после разбора рынка</span><span lang="en">What I added after a market review</span></h2>
       <p class="reveal" lang="ru">После основной работы я сравнил наши макеты с тем, что Uber, inDrive и Яндекс Go выпустили за 2024–2026 годы. Задача была не скопировать, а найти, чего не хватает нашему аукциону цены и водителю. Восемь функций я спроектировал и добавил в продукт, остальные разложил по очереди.</p>
@@ -388,7 +388,7 @@
     </div>
   </section>
 
-  <section class="cs-sec" aria-labelledby="s-check">
+  <section class="cs-sec" aria-labelledby="s-check" data-nav="Как измеряем" data-nav-en="How we measure">
     <div class="cs-col" data-fig="Text / Metrics" data-fig-quiet>
       <h2 id="s-check" class="reveal"><span lang="ru">Как измеряем успех</span><span lang="en">How success is measured</span></h2>
       <p class="reveal" lang="ru">Метрики, по которым оцениваем решения:</p>
@@ -424,7 +424,7 @@
     <p class="foot__copy">© <span lang="ru">Магомед Гадаев</span><span lang="en">Magomed Gadaev</span>, 2026</p>
   </div>
 </footer>
-<script src="../assets/site.js?v=10336ef7" defer></script>
+<script src="../assets/site.js?v=ab1b6d7b" defer></script>
 <script src="../assets/figma.js?v=db956d85" defer></script>
 </body>
 </html>
