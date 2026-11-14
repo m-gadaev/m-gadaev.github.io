@@ -748,3 +748,61 @@ a:hover { text-decoration-thickness: 2px; }
     -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); -webkit-mask-image: linear-gradient(transparent, #000); mask-image: linear-gradient(transparent, #000); }
   .case__demo--video .phone--video { width: min(220px, 62vw); }
 }
+/* Карточка доставки: путь курьера от ресторана до дома, скутер едет по пунктиру */
+.deliv-deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+.deliv-deco__path { fill: none; stroke: rgb(var(--glow) / 0.55); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 14; }
+.deliv-deco__pin circle { fill: rgb(var(--glow) / 0.14); stroke: rgb(var(--glow) / 0.6); stroke-width: 2; }
+.deliv-deco__pin path { fill: none; stroke: rgb(var(--glow)); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.deliv-deco__car .b { fill: rgb(var(--glow)); }
+.deliv-deco__car .w { fill: rgb(255 255 255 / 0.75); }
+.deliv-deco__car .m { fill: rgb(var(--glow)); }
+/* Мокап с роликом: тонкая рамка, как у современных телефонов; экран крупнее, скругление повторяет корпус */
+.phone { padding: 5px; border-radius: 44px; background: #1B1B1E;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.10) inset, 0 0 0 1px rgb(0 0 0 / 0.5), 0 24px 60px -24px rgb(0 0 0 / 0.45); } /* taste-skill-ignore: корпус телефона */
+.phone .phone__screen { border-radius: 39px; }
+
+/* Живой прототип цены: собран из реальных экранов приложения, поверх них только то, что меняется */
+.phone--proto { aspect-ratio: auto; }
+.phone--proto .phone__screen { height: auto; aspect-ratio: 750 / 1624; }
+.proto { position: absolute; inset: 0; overflow: hidden; background: #fff; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #141414; }
+.proto__scr { position: absolute; inset: 0; }
+.proto__base, .proto__crop img, .proto__sheet > img { position: absolute; display: block; width: 100%; height: auto; }
+.proto__crop { position: absolute; display: block; overflow: hidden; }
+.proto img { max-width: none; }
+.proto__patch { position: absolute; background: #fff; }
+.proto__patch--pill { background: #F3F5F7; border-radius: 2.6cqw; }
+.proto__t { position: absolute; display: flex; align-items: center; white-space: nowrap; line-height: 1; letter-spacing: -0.01em; font-size-adjust: cap-height 0.70; }
+.proto__t--mid { justify-content: center; }
+.proto__t--row { letter-spacing: 0; }
+.proto__amount { gap: 0.5cqw; font-weight: 400; }
+.proto__amount u { text-decoration: none; margin-left: 2.2cqw; }
+.proto__caret { width: 0.5cqw; height: 11cqw; background: #141414; animation: proto-caret 1.06s steps(1) infinite; }
+@keyframes proto-caret { 0%, 50% { opacity: 1 } 50.01%, 100% { opacity: 0 } }
+.proto__hint { color: #1F7A47; font-weight: 500; }
+.proto__hint.is-low { color: #B4610E; }
+.proto__state { position: absolute; inset: 0; opacity: 0; transition: opacity 260ms var(--ease-out); }
+.proto__state.is-on { opacity: 1; }
+.proto__hit { position: absolute; padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.proto__hit:active { background: rgb(28 28 31 / 0.06); border-radius: 2.4cqw; }
+.proto__hit:focus-visible { outline: 2px solid #0D99FF; outline-offset: -2px; border-radius: 2.4cqw; }
+.proto__bs { display: grid; place-items: center; }
+.proto__bs svg { width: 11cqw; height: auto; fill: #8A8A8E; overflow: visible; }
+.proto__dim { position: absolute; inset: 0; background: #000; opacity: 0; transition: opacity 380ms var(--ease-out); pointer-events: none; }
+.proto__sheet { position: absolute; overflow: hidden; border-radius: 5.33cqw 5.33cqw 0 0; background: #fff; transition: transform 460ms var(--ease-out); }
+.proto[data-screen="fare"] .proto__dim { opacity: 0.4; }
+.proto[data-screen="fare"] .proto__sheet--search, .proto[data-screen="map"] .proto__sheet--search { transform: translateY(101%); }
+.proto[data-screen="map"] .proto__sheet--fare, .proto[data-screen="search"] .proto__sheet--fare { transform: translateY(101%); }
+.proto__t--row.is-new { animation: proto-new 520ms var(--ease-out); }
+@keyframes proto-new { 0% { opacity: 0; transform: translateY(1.6cqw) } 100% { opacity: 1; transform: none } }
+@media (prefers-reduced-motion: reduce) { .proto__sheet, .proto__card { transition-duration: 1ms; } .proto__caret, .proto__t--row.is-new { animation: none; } }
+.proto__sub { color: #848688; }
+.proto__scrbg { position: absolute; left: 0; top: 0; width: 100%; height: 45%; overflow: hidden; opacity: 0; transition: opacity 260ms var(--ease-out); }
+.proto[data-screen="search"] .proto__scrbg { opacity: 1; }
+@media (min-width: 861px) { .cs-try__phone .phone--proto { width: 344px; } }
+
+
+/* Точка подачи на карте под шторкой поиска: машину ещё ищут */
+.proto__pulse { position: absolute; width: 28cqw; height: 28cqw; margin: -14cqw 0 0 -14cqw; border: 0.9cqw solid #F0A000; border-radius: 50%; opacity: 0; animation: proto-pulse 2.2s linear infinite; pointer-events: none; }
+.proto__pulse--b { animation-delay: 1.1s; }
+@keyframes proto-pulse { 0% { transform: scale(0.22); opacity: 0; animation-timing-function: cubic-bezier(.16,.84,.44,1) } 12% { opacity: 0.9 } 100% { transform: scale(1); opacity: 0 } }
+@media (prefers-reduced-motion: reduce) { .proto__pulse { animation: none; } }

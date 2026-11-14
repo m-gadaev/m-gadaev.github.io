@@ -9,7 +9,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" type="image/webp" href="assets/img/portrait-studio.webp?v=57e02b39">
 <link rel="preload" href="assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=a086939d">
+<link rel="stylesheet" href="assets/site.css?v=2574e1d2">
 <link rel="stylesheet" href="assets/figma.css?v=569c671a">
 <script>
 // Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
@@ -111,6 +111,13 @@
         <div class="fig-card" data-fig="Case / Delivery">
 
           <article class="case case--delivery" style="--glow: 20 184 166" data-trailer>
+          <div class="case__bg" aria-hidden="true"><svg class="deliv-deco" viewBox="0 0 1200 720" preserveAspectRatio="xMidYMid slice">
+            <defs><mask id="delivGap" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="720"><rect width="1200" height="720" fill="#fff"/><circle cx="210" cy="560" r="40" fill="#000"/><circle cx="1010" cy="330" r="40" fill="#000"/></mask></defs>
+            <path class="deliv-deco__path" d="M 210 560 C 300 520, 300 390, 430 400 S 600 620, 780 560 S 960 300, 1010 330" mask="url(#delivGap)"/>
+            <g class="deliv-deco__pin" transform="translate(210 560)"><circle r="26"/><path d="M-7 -11 v9 a4 4 0 0 0 8 0 v-9 M-3 -11 v22 M9 -11 c-5 3 -5 11 0 13 v9" /></g>
+            <g class="deliv-deco__pin" transform="translate(1010 330)"><circle r="26"/><path d="M-11 2 L0 -9 L11 2 M-7 -1 v11 h14 v-11" /></g>
+            <g class="deliv-deco__car" data-at="0.2"><g transform="translate(-13 -24)"><rect class="b" x="0" y="0" width="26" height="48" rx="9"/><path class="w" d="M4 13 q9 -5 18 0 v6 q-9 -3 -18 0 z"/><path class="w" d="M5 36 q8 3 16 0 v-4 q-8 2 -16 0 z"/><rect class="m" x="-3" y="15" width="4" height="3" rx="1.5"/><rect class="m" x="25" y="15" width="4" height="3" rx="1.5"/></g></g>
+          </svg></div>
           <header class="case__head">
             <ul class="chips">
               <li><span lang="ru">Мобильное приложение</span><span lang="en">Mobile app</span></li>
@@ -122,7 +129,7 @@
           <div class="case__demo case__demo--video">
             <div class="phone phone--video"><div class="phone__screen">
             <video muted playsinline loop preload="metadata" poster="assets/img/food/trailer-poster.webp?v=73183f59" aria-label="Ролик: путь заказа еды от главной до статуса на экране блокировки">
-              <source src="assets/video/food-trailer.mp4?v=3af202a8" type="video/mp4">
+              <source src="assets/video/food-trailer.mp4?v=ffb8b357" type="video/mp4">
             </video>
           </div></div>
           </div>
@@ -285,7 +292,7 @@
     <p class="foot__copy">© <span lang="ru">Магомед Гадаев</span><span lang="en">Magomed Gadaev</span>, 2026</p>
   </div>
 </footer>
-<script src="assets/site.js?v=f78e517d" defer></script>
+<script src="assets/site.js?v=4888d67e" defer></script>
 <script src="assets/figma.js?v=0260b3de" defer></script>
 </body>
 </html>

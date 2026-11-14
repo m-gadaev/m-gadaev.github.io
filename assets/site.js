@@ -455,3 +455,61 @@ document.querySelectorAll('[data-trailer]').forEach(box => {
     }), { threshold: 0.35 }).observe(box);
   } else if (!calm.matches) play();
 });
+
+// Декор доставки: машинка стоит на пунктире и смотрит по направлению пути
+document.querySelectorAll('.deliv-deco__car').forEach(car => {
+  const path = car.closest('svg').querySelector('.deliv-deco__path');
+  if (!path || !path.getTotalLength) return;
+  const L = path.getTotalLength(), at = L * (+car.dataset.at || 0.5);
+  const a = path.getPointAtLength(at - 2), b = path.getPointAtLength(at + 2);
+  const deg = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI + 90;
+  car.setAttribute('transform', `translate(${(a.x + b.x) / 2} ${(a.y + b.y) / 2}) rotate(${deg})`);
+});
+
+// Живой прототип цены в кейсе такси: реальные экраны, живыми остаются сумма, подсказка и состояние
+(() => {
+  const REC = 230, MIN = 30, MAX = 9999;
+  const fmt = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u202F');
+  document.querySelectorAll('[data-proto]').forEach(root => {
+    const host = root.closest('.cs-try__phone') || root;
+    const q = s => root.querySelector(s);
+    const amount = q('[data-amount]'), hint = q('[data-hint]'), rows = root.querySelectorAll('[data-price-row]'), sp = q('[data-search-price]');
+    const scr = { fare: q('[data-scr="fare"]'), map: q('[data-scr="map"]'), search: q('[data-scr="search"]') };
+    let digits = '450', fare = 450, offer = 450;
+    const clamp = n => Math.min(MAX, Math.max(MIN, n));
+    const val = () => Math.min(MAX, +digits || 0);
+    const paintSheet = () => {
+      amount.textContent = fmt(val());
+      const low = val() < REC;
+      hint.classList.toggle('is-low', low);
+      hint.textContent = low ? 'Низкая цена — ждать дольше. Рекомендуем ' + REC + ' ₽' : 'Хорошая цена — водители откликнутся быстрее';
+    };
+    const paintMap = (fresh) => {
+      rows.forEach(r => { r.textContent = fmt(fare) + ', наличными'; if (fresh) { r.classList.remove('is-new'); void r.offsetWidth; r.classList.add('is-new'); } });
+      root.querySelectorAll('[data-map]').forEach(c => c.classList.toggle('is-on', c.dataset.map === (fare < REC ? 'low' : 'good')));
+    };
+    const paintSearch = () => { sp.textContent = fmt(offer) + ' ₽'; };
+    const go = (name) => {
+      root.dataset.screen = name;
+      Object.entries(scr).forEach(([k, el]) => { if (el) el.inert = k !== name; });
+    };
+    const bump = (d) => {
+      const s = root.dataset.screen;
+      if (s === 'search') { offer = clamp(offer + d); paintSearch(); }
+      else if (s === 'map') { fare = clamp(fare + d); offer = fare; paintMap(true); paintSearch(); }
+      else { digits = String(clamp(val() + d)); paintSheet(); }
+    };
+    host.addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b || !host.contains(b)) return;
+      const k = b.dataset.key, a = b.dataset.act;
+      if (k) { digits = digits.length >= 4 || digits === '0' ? k : digits + k; paintSheet(); return; }
+      if (a === 'bs') { digits = digits.slice(0, -1) || '0'; paintSheet(); return; }
+      if (a === '30' || a === '-30') { bump(+a); return; }
+      if (a === 'done' || a === 'close') { if (a === 'done') fare = Math.max(MIN, val()); offer = fare; paintMap(a === 'done'); paintSearch(); go('map'); return; }
+      if (a === 'open') { digits = String(fare); paintSheet(); go('fare'); return; }
+      if (a === 'search') { offer = fare; paintSearch(); go('search'); return; }
+      if (a === 'cancel') { fare = offer; paintMap(true); go('map'); return; }
+    });
+    paintSheet(); paintMap(); paintSearch(); go('search');
+  });
+})();
