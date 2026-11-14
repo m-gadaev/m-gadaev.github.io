@@ -853,8 +853,8 @@ a:hover { text-decoration-thickness: 2px; }
 .layers:hover .layers__item.is-on, .layers:focus-within .layers__item.is-on { background: color-mix(in srgb, var(--ink) 9%, transparent); }
 @media (hover: hover) { .layers__item:hover { color: var(--ink); } }
 .layers__item:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
-@media (min-width: 1280px) { .layers { display: block; } }
+@media (min-width: 1100px) and (hover: hover) { .layers { display: block; } }
 /* Прогресс чтения вместо рейки на узких экранах */
 .readbar { position: fixed; left: 0; top: 0; z-index: 60; height: 2px; width: 100%; transform: scaleX(var(--p, 0)); transform-origin: left; background: #FFC400; pointer-events: none; }
-@media (min-width: 1280px) { .readbar { display: none; } }
+@media (min-width: 1100px) and (hover: hover) { .readbar { display: none; } }
 @media (prefers-reduced-motion: reduce) { .layers, .layers__item, .layers__tick { transition: none; } }

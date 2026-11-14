@@ -199,6 +199,7 @@
     up: '<path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>',
     mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
     ruler: '<path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/>',
+    list: '<path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3.5 6h.01"/><path d="M3.5 12h.01"/><path d="M3.5 18h.01"/>',
     hand: '<path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>'
   };
   const lang = () => d.documentElement.dataset.lang === 'en' ? 'en' : 'ru';
@@ -226,12 +227,46 @@
   root.classList.toggle('fig-clean', clean);
 
   const isCase = !!d.querySelector('.cs-hero');
+
+  // Разделы кейса на телефоне: на широком экране их держит рейка слева, здесь — шторка из панели
+  const secs = [...d.querySelectorAll('[data-nav]')];
+  let openSheet = null;
+  if (secs.length > 4) {
+    const sheet = d.createElement('div');
+    sheet.className = 'fig-sheet'; sheet.hidden = true;
+    const list = d.createElement('ol');
+    list.className = 'fig-sheet__list';
+    secs.forEach(sec => {
+      const li = d.createElement('li'), b = d.createElement('button');
+      b.type = 'button';
+      b.innerHTML = `<span lang="ru">${sec.dataset.nav}</span><span lang="en">${sec.dataset.navEn || sec.dataset.nav}</span>`;
+      b.addEventListener('click', () => { close(); go(sec); });
+      li.append(b); list.append(li); sec._tab = b;
+    });
+    const back = d.createElement('button');
+    back.type = 'button'; back.className = 'fig-sheet__back';
+    back.setAttribute('aria-label', t('Закрыть', 'Close'));
+    sheet.append(back, list); d.body.append(sheet);
+    const close = () => { sheet.hidden = true; sheet.classList.remove('on'); };
+    back.addEventListener('click', close);
+    addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    openSheet = () => {
+      if (!sheet.hidden) return close();
+      const line = innerHeight * 0.3;
+      let cur = null;
+      secs.forEach(s => { if (s.getBoundingClientRect().top <= line) cur = s; });
+      secs.forEach(s => s._tab.classList.toggle('is-on', s === cur));
+      sheet.hidden = false; requestAnimationFrame(() => sheet.classList.add('on'));
+    };
+  }
+
   // «Наверх» на всех страницах: в кейсе скролл длинный, а назад ведут стрелка у шапки и логотип
   const up = { icon: ICON2.up, ru: 'Наверх', en: 'Back to top', run: () => scrollTo({ top: 0, behavior: calmMotion.matches ? 'auto' : 'smooth' }) };
   const items = isCase && d.getElementById('try') ? [
     up,
     { icon: ICON2.hand, ru: 'Подвинуть цену', en: 'Move the fare', wide: true, run: () => { const el = d.getElementById('try'); el && el.scrollIntoView({ behavior: calmMotion.matches ? 'auto' : 'smooth', block: 'center' }); } },
   ] : [up];
+  if (openSheet) items.splice(1, 0, { icon: ICON2.list, ru: 'Разделы кейса', en: 'Case sections', only: 'narrow', run: () => openSheet() });
   items.push(
     { icon: ICON2.mail, ru: 'Скопировать почту', en: 'Copy email', run: async () => toast(await copy(mail) ? t('Почта скопирована: ', 'Email copied: ') + mail : mail) },
     { icon: ICON2.link, ru: 'Скопировать ссылку на страницу', en: 'Copy page link', run: async () => toast(await copy(location.href.split('#')[0]) ? t('Ссылка скопирована', 'Link copied') : location.href) },
@@ -246,7 +281,7 @@
   bar.setAttribute('aria-label', t('Быстрые действия', 'Quick actions'));
   items.forEach(it => {
     if (it === 'sep') { bar.append(d.createElement('hr')); return; }
-    const b = d.createElement('button'); b.type = 'button'; b.className = 'fig-tool' + (it.wide ? ' fig-tool--wide' : '');
+    const b = d.createElement('button'); b.type = 'button'; b.className = 'fig-tool' + (it.wide ? ' fig-tool--wide' : '') + (it.only === 'narrow' ? ' fig-tool--narrow' : '');
     const name = () => t(it.ru, it.en);
     b.innerHTML = svg(it.icon) + (it.wide ? `<span class="fig-tool__text"><span lang="ru">${it.ru}</span><span lang="en">${it.en}</span></span>` : '') + `<span class="fig-tip" aria-hidden="true"><span lang="ru">${it.ru}</span><span lang="en">${it.en}</span></span>`;
     b.setAttribute('aria-label', name());
