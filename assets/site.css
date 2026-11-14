@@ -770,7 +770,7 @@ a:hover { text-decoration-thickness: 2px; }
 .proto__crop { position: absolute; display: block; overflow: hidden; }
 .proto img { max-width: none; }
 .proto__patch { position: absolute; background: #fff; }
-.proto__patch--pill { background: #F3F5F7; border-radius: 2.6cqw; }
+
 .proto__t { position: absolute; display: flex; align-items: center; white-space: nowrap; line-height: 1; letter-spacing: -0.01em; font-size-adjust: cap-height 0.70; }
 .proto__t--mid { justify-content: center; }
 .proto__t--row { letter-spacing: 0; }
@@ -806,3 +806,29 @@ a:hover { text-decoration-thickness: 2px; }
 .proto__pulse--b { animation-delay: 1.1s; }
 @keyframes proto-pulse { 0% { transform: scale(0.22); opacity: 0; animation-timing-function: cubic-bezier(.16,.84,.44,1) } 12% { opacity: 0.9 } 100% { transform: scale(1); opacity: 0 } }
 @media (prefers-reduced-motion: reduce) { .proto__pulse { animation: none; } }
+
+/* Пилюли шага цены: живые кнопки поверх экрана, с отдачей на нажатие */
+.proto__pill { position: absolute; display: grid; place-items: center; padding: 0; border: 0; border-radius: 3.2cqw; font: inherit; font-weight: 500; line-height: 1; letter-spacing: -0.01em; font-size-adjust: cap-height 0.70; white-space: nowrap; -webkit-tap-highlight-color: transparent; transform-origin: 50% 50%; transition: transform 260ms cubic-bezier(.2,.9,.25,1), filter 180ms linear; }
+.proto__pill--ghost { background: #F3F5F9; color: #8C8E92; cursor: pointer; }
+.proto__pill--go { background: #FFC400; color: #1C1C1E; cursor: pointer; }
+.proto__pill--price { background: #F3F5F9; color: #141414; }
+.proto__pill:active { transform: scale(0.93); transition-duration: 90ms; }
+.proto__pill:focus-visible { outline: 2px solid #0D99FF; outline-offset: 2px; }
+.proto__pill::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; }
+.proto__pill.is-press { animation: pill-press 460ms cubic-bezier(.22,1,.3,1); }
+.proto__pill.is-press::after { animation: pill-ring 520ms cubic-bezier(.22,1,.3,1); }
+.proto__pill--go.is-press { filter: brightness(1.07); }
+.proto__pill.is-bump { animation: pill-bump 520ms cubic-bezier(.22,1,.3,1); }
+.proto__pill.is-stuck { animation: pill-stuck 420ms cubic-bezier(.36,.07,.19,.97); }
+@keyframes pill-press { 0% { transform: scale(0.9) } 45% { transform: scale(1.05) } 100% { transform: scale(1) } }
+@keyframes pill-ring { 0% { opacity: .55; box-shadow: 0 0 0 0 rgb(28 28 31 / .2) } 100% { opacity: 0; box-shadow: 0 0 0 3cqw rgb(28 28 31 / 0) } }
+@keyframes pill-bump { 0% { transform: scale(1) } 28% { transform: scale(1.055) } 100% { transform: scale(1) } }
+@keyframes pill-stuck { 0%, 100% { transform: translateX(0) } 22% { transform: translateX(-1.1cqw) } 62% { transform: translateX(0.8cqw) } }
+/* Счётчик внутри экрана: слоты по высоте строки, без надстрочных отступов */
+.proto .roll { line-height: 1; align-items: center; }
+.proto .roll__slot { height: 1.02em; line-height: 1.02; }
+.proto .roll__col > span { height: 1.02em; }
+.proto__hint { transition: color 220ms var(--ease-out); }
+.proto__hint.is-swap { animation: hint-swap 420ms var(--ease-out); }
+@keyframes hint-swap { 0% { opacity: 0; transform: translateY(0.8cqw) } 100% { opacity: 1; transform: none } }
+@media (prefers-reduced-motion: reduce) { .proto__pill, .proto__pill::after, .proto__hint { animation: none !important; transition: none; } }

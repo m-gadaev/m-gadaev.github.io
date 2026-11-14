@@ -208,6 +208,32 @@ revealAll(document);
   }));
 })();
 
+// Цена как счётчик: меняются только те цифры, что изменились.
+// Цена растёт — цифра уезжает вверх, новая приходит снизу; падает — наоборот.
+const still = matchMedia('(prefers-reduced-motion: reduce)');
+const roll = (out, prev, next, dir) => {
+  const text = document.createElement('span'); text.className = 'visually-hidden'; text.textContent = next;
+  const vis = document.createElement('span'); vis.className = 'roll'; vis.setAttribute('aria-hidden', 'true');
+  const animate = dir && !still.matches && prev;
+  const off = next.length - prev.length;
+  let k = 0;
+  [...next].reverse().forEach((ch, ri) => {
+    const i = next.length - 1 - ri, was = prev[i - off];
+    const span = document.createElement('span');
+    if (!animate || !/\d/.test(ch) || ch === was) { span.textContent = ch; vis.prepend(span); return; }
+    span.className = 'roll__slot';
+    const col = document.createElement('span'); col.className = 'roll__col';
+    const a = document.createElement('span'), b = document.createElement('span');
+    a.textContent = was && /\d/.test(was) ? was : '\u00a0'; b.textContent = ch;
+    if (dir > 0) col.append(a, b); else col.append(b, a);
+    span.append(col); vis.prepend(span);
+    const from = dir > 0 ? '0%' : '-50%', to = dir > 0 ? '-50%' : '0%';
+    col.animate([{ transform: `translateY(${from})` }, { transform: `translateY(${to})` }],
+      { duration: 300, delay: k++ * 30, easing: 'cubic-bezier(0.23, 1, 0.32, 1)', fill: 'both' });
+  });
+  out.replaceChildren(text, vis);
+};
+
 // Живые куски интерфейса в карточках
 (() => {
   const lang = () => document.documentElement.dataset.lang === 'en' ? 'en' : 'ru';
@@ -218,30 +244,6 @@ revealAll(document);
   // Цена как счётчик: меняются только те цифры, что изменились.
   // Цена растёт — цифра уезжает вверх, новая приходит снизу; падает — наоборот.
   // Новое нажатие во время анимации просто пересобирает число из текущего значения.
-  const still = matchMedia('(prefers-reduced-motion: reduce)');
-  const roll = (out, prev, next, dir) => {
-    const text = document.createElement('span'); text.className = 'visually-hidden'; text.textContent = next;
-    const vis = document.createElement('span'); vis.className = 'roll'; vis.setAttribute('aria-hidden', 'true');
-    const animate = dir && !still.matches && prev;
-    const off = next.length - prev.length;
-    let k = 0;
-    [...next].reverse().forEach((ch, ri) => {
-      const i = next.length - 1 - ri, was = prev[i - off];
-      const span = document.createElement('span');
-      if (!animate || !/\d/.test(ch) || ch === was) { span.textContent = ch; vis.prepend(span); return; }
-      span.className = 'roll__slot';
-      const col = document.createElement('span'); col.className = 'roll__col';
-      const a = document.createElement('span'), b = document.createElement('span');
-      a.textContent = was && /\d/.test(was) ? was : '\u00a0'; b.textContent = ch;
-      if (dir > 0) col.append(a, b); else col.append(b, a);
-      span.append(col); vis.prepend(span);
-      const from = dir > 0 ? '0%' : '-50%', to = dir > 0 ? '-50%' : '0%';
-      col.animate([{ transform: `translateY(${from})` }, { transform: `translateY(${to})` }],
-        { duration: 300, delay: k++ * 30, easing: 'cubic-bezier(0.23, 1, 0.32, 1)', fill: 'both' });
-    });
-    out.replaceChildren(text, vis);
-  };
-
   // Такси: шаг 30 ₽, потолок 9999 ₽, подсказка о рыночной цене
   document.querySelectorAll('[data-taxi]').forEach(el => {
     let price = 450;
@@ -470,46 +472,54 @@ document.querySelectorAll('.deliv-deco__car').forEach(car => {
 (() => {
   const REC = 230, MIN = 30, MAX = 9999;
   const fmt = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u202F');
+  const flash = (el, cls, ms) => { if (!el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); setTimeout(() => el.classList.remove(cls), ms); };
   document.querySelectorAll('[data-proto]').forEach(root => {
     const host = root.closest('.cs-try__phone') || root;
     const q = s => root.querySelector(s);
     const amount = q('[data-amount]'), hint = q('[data-hint]'), rows = root.querySelectorAll('[data-price-row]'), sp = q('[data-search-price]');
+    const pills = { '-30': q('[data-act="-30"]'), '30': q('[data-act="30"]') };
     const scr = { fare: q('[data-scr="fare"]'), map: q('[data-scr="map"]'), search: q('[data-scr="search"]') };
+    const seen = new WeakMap();
+    const put = (el, next, dir) => { if (!el) return; roll(el, seen.get(el) || '', next, dir); seen.set(el, next); };
     let digits = '450', fare = 450, offer = 450;
     const clamp = n => Math.min(MAX, Math.max(MIN, n));
     const val = () => Math.min(MAX, +digits || 0);
-    const paintSheet = () => {
-      amount.textContent = fmt(val());
+    const paintSheet = (dir) => {
+      put(amount, fmt(val()), dir);
       const low = val() < REC;
+      const next = low ? 'Низкая цена — ждать дольше. Рекомендуем ' + REC + ' ₽' : 'Хорошая цена — водители откликнутся быстрее';
+      if (hint.textContent !== next) { hint.textContent = next; flash(hint, 'is-swap', 420); }
       hint.classList.toggle('is-low', low);
-      hint.textContent = low ? 'Низкая цена — ждать дольше. Рекомендуем ' + REC + ' ₽' : 'Хорошая цена — водители откликнутся быстрее';
     };
-    const paintMap = (fresh) => {
-      rows.forEach(r => { r.textContent = fmt(fare) + ', наличными'; if (fresh) { r.classList.remove('is-new'); void r.offsetWidth; r.classList.add('is-new'); } });
+    const paintMap = (dir) => {
+      rows.forEach(r => put(r, fmt(fare) + ', наличными', dir));
       root.querySelectorAll('[data-map]').forEach(c => c.classList.toggle('is-on', c.dataset.map === (fare < REC ? 'low' : 'good')));
     };
-    const paintSearch = () => { sp.textContent = fmt(offer) + ' ₽'; };
+    const paintSearch = (dir) => { put(sp, fmt(offer) + ' ₽', dir); if (dir) flash(sp, 'is-bump', 520); };
     const go = (name) => {
       root.dataset.screen = name;
       Object.entries(scr).forEach(([k, el]) => { if (el) el.inert = k !== name; });
     };
     const bump = (d) => {
-      const s = root.dataset.screen;
-      if (s === 'search') { offer = clamp(offer + d); paintSearch(); }
-      else if (s === 'map') { fare = clamp(fare + d); offer = fare; paintMap(true); paintSearch(); }
-      else { digits = String(clamp(val() + d)); paintSheet(); }
+      const s = root.dataset.screen, now = s === 'search' ? offer : s === 'map' ? fare : val(), next = clamp(now + d);
+      const pill = pills[d > 0 ? '30' : '-30'];
+      if (next === now) { flash(pill, 'is-stuck', 420); return; }
+      flash(pill, 'is-press', 480);
+      if (s === 'search') { offer = next; paintSearch(d); }
+      else if (s === 'map') { fare = next; offer = next; paintMap(d); paintSearch(0); }
+      else { digits = String(next); paintSheet(d); }
     };
     host.addEventListener('click', (e) => {
       const b = e.target.closest('button'); if (!b || !host.contains(b)) return;
       const k = b.dataset.key, a = b.dataset.act;
-      if (k) { digits = digits.length >= 4 || digits === '0' ? k : digits + k; paintSheet(); return; }
-      if (a === 'bs') { digits = digits.slice(0, -1) || '0'; paintSheet(); return; }
+      if (k) { const was = val(); digits = digits.length >= 4 || digits === '0' ? k : digits + k; paintSheet(val() > was ? 1 : -1); return; }
+      if (a === 'bs') { const was = val(); digits = digits.slice(0, -1) || '0'; paintSheet(val() > was ? 1 : -1); return; }
       if (a === '30' || a === '-30') { bump(+a); return; }
-      if (a === 'done' || a === 'close') { if (a === 'done') fare = Math.max(MIN, val()); offer = fare; paintMap(a === 'done'); paintSearch(); go('map'); return; }
-      if (a === 'open') { digits = String(fare); paintSheet(); go('fare'); return; }
-      if (a === 'search') { offer = fare; paintSearch(); go('search'); return; }
-      if (a === 'cancel') { fare = offer; paintMap(true); go('map'); return; }
+      if (a === 'done' || a === 'close') { const was = fare; if (a === 'done') fare = Math.max(MIN, val()); offer = fare; paintMap(fare === was ? 0 : fare > was ? 1 : -1); paintSearch(0); go('map'); return; }
+      if (a === 'open') { digits = String(fare); paintSheet(0); go('fare'); return; }
+      if (a === 'search') { offer = fare; paintSearch(0); go('search'); return; }
+      if (a === 'cancel') { const was = fare; fare = offer; paintMap(fare === was ? 0 : fare > was ? 1 : -1); go('map'); return; }
     });
-    paintSheet(); paintMap(); paintSearch(); go('search');
+    paintSheet(0); paintMap(0); paintSearch(0); go('search');
   });
 })();
