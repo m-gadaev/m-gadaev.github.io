@@ -211,14 +211,14 @@ a:hover { text-decoration-thickness: 2px; }
    и тонкая светлая кромка по контуру карточки, пока курсор внутри */
 .case::before { /* taste-skill-ignore: эффект по брифу */
   content: ""; position: absolute; inset: 0; z-index: 3; border-radius: inherit; pointer-events: none; opacity: 0;
-  background: radial-gradient(460px circle at var(--mx, 50%) var(--my, 50%), rgb(28 28 31 / 0.035), transparent 62%); /* taste-skill-ignore */
-  box-shadow: inset 0 0 0 1px rgb(28 28 31 / 0.08); /* taste-skill-ignore: кромка при наведении */
-  transition: opacity 450ms ease-out;
+  background: radial-gradient(580px circle at var(--mx, 50%) var(--my, 50%), rgb(28 28 31 / 0.022), transparent 72%); /* taste-skill-ignore */
+  box-shadow: inset 0 0 0 1px rgb(28 28 31 / 0.055); /* taste-skill-ignore: кромка при наведении */
+  transition: opacity 560ms ease-out;
 }
 @media (hover: hover) and (pointer: fine) { .case:hover::before { opacity: 1; } }
 :root[data-theme="dark"] .case::before {
-  background: radial-gradient(460px circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.085), transparent 62%); /* taste-skill-ignore */
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.11); /* taste-skill-ignore */
+  background: radial-gradient(580px circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.05), transparent 72%); /* taste-skill-ignore */
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.075); /* taste-skill-ignore */
 }
 .case__head { display: grid; gap: 16px; align-content: start; }
 .case h3 { font-size: var(--step-head); max-width: 18em; line-height: 1.1; }
