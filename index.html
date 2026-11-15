@@ -12,7 +12,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" type="image/webp" href="assets/img/portrait-studio.webp?v=57e02b39">
 <link rel="preload" href="assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=6545bf54">
+<link rel="stylesheet" href="assets/site.css?v=83f66ec6">
 <link rel="stylesheet" href="assets/figma.css?v=4b697b03">
 <script>
 // Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
@@ -142,7 +142,7 @@
 
         <div class="fig-card" data-fig="Case / Wallet &amp; admin">
 
-          <article class="case case--wallet" style="--glow: 59 111 182">
+          <article class="case case--wallet" style="--glow: 59 111 182" data-trailer>
           <header class="case__head">
             <ul class="chips">
               <li><span lang="ru">Мобильное и десктоп</span><span lang="en">Mobile and desktop</span></li>
@@ -151,19 +151,17 @@
             </ul>
             <h3><span lang="ru">Кошелёк и админка <span class="soft">общая модель для водителя, курьера и ресторана</span></span><span lang="en">Wallet and admin <span class="soft">one model for drivers, couriers and restaurants</span></span></h3>
           </header>
-          <div class="case__demo">
-            <div class="ui-wallet" data-ui data-wallet>
-              <div class="ui-seg" role="group">
-                <button type="button" aria-pressed="true" data-w="driver"><span lang="ru">Водитель</span><span lang="en">Driver</span></button>
-                <button type="button" aria-pressed="false" data-w="courier"><span lang="ru">Курьер</span><span lang="en">Courier</span></button>
-                <button type="button" aria-pressed="false" data-w="rest"><span lang="ru">Ресторан</span><span lang="en">Restaurant</span></button>
-              </div>
-              <div class="ui-wallet__card" data-w-card>
-                <span class="ui-wallet__label"><span lang="ru">Баланс</span><span lang="en">Balance</span></span>
-                <span class="ui-wallet__sum" data-w-sum></span>
-                <span class="ui-wallet__state" data-w-state></span>
-              </div>
+          <div class="case__demo case__demo--desk">
+            <div class="mac" aria-hidden="true">
+              <div class="mac__screen"><img src="assets/img/money/admin-mac.webp?v=30d09be9" width="1670" height="1044" alt="" loading="lazy" decoding="async"></div>
+              <div class="mac__base"></div>
             </div>
+            <div class="phone phone--video"><div class="phone__screen">
+              <video muted playsinline loop preload="metadata" poster="assets/img/money/roll-poster.webp?v=8a16f5a0" aria-label="Ролик: кошелёк ресторана от плюса до закрытой смены и журнал операций">
+                <source src="assets/video/money-trailer.mp4?v=eebb0f7a" type="video/mp4">
+              </video>
+              <span class="phone__island" aria-hidden="true"></span>
+            </div></div>
           </div>
           <a class="btn btn--quiet case__open" href="money/index.html"><span lang="ru">Открыть кейс</span><span lang="en">Open case</span></a>
         </article>
