@@ -226,7 +226,6 @@
   let clean = false; try { clean = localStorage.getItem('fig-clean') === '1'; } catch (e) {}
   root.classList.toggle('fig-clean', clean);
 
-  const isCase = !!d.querySelector('.cs-hero');
 
   // Разделы кейса на телефоне: на широком экране их держит рейка слева, здесь — шторка из панели
   const secs = [...d.querySelectorAll('[data-nav]')];
@@ -262,10 +261,7 @@
 
   // «Наверх» на всех страницах: в кейсе скролл длинный, а назад ведут стрелка у шапки и логотип
   const up = { icon: ICON2.up, ru: 'Наверх', en: 'Back to top', run: () => scrollTo({ top: 0, behavior: calmMotion.matches ? 'auto' : 'smooth' }) };
-  const items = isCase && d.getElementById('try') ? [
-    up,
-    { icon: ICON2.hand, ru: 'Подвинуть цену', en: 'Move the fare', wide: true, run: () => { const el = d.getElementById('try'); el && el.scrollIntoView({ behavior: calmMotion.matches ? 'auto' : 'smooth', block: 'center' }); } },
-  ] : [up];
+  const items = [up];
   if (openSheet) items.splice(1, 0, { icon: ICON2.list, ru: 'Разделы кейса', en: 'Case sections', only: 'narrow', run: () => openSheet() });
   items.push(
     { icon: ICON2.mail, ru: 'Скопировать почту', en: 'Copy email', run: async () => toast(await copy(mail) ? t('Почта скопирована: ', 'Email copied: ') + mail : mail) },

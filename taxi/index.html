@@ -9,8 +9,8 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate icon" type="image/webp" href="../assets/img/portrait-studio.webp?v=57e02b39">
 <link rel="preload" href="../assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="../assets/site.css?v=8a48da54">
-<link rel="stylesheet" href="../assets/figma.css?v=919a19c5">
+<link rel="stylesheet" href="../assets/site.css?v=dc2cdaf3">
+<link rel="stylesheet" href="../assets/figma.css?v=4b697b03">
 <script>
 // Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
 (function () {
@@ -208,7 +208,7 @@
 </div>
         <div class="cs-try__text">
           <p class="cs-try__kicker"><span lang="ru">Живой прототип</span><span lang="en">Live prototype</span></p>
-          <h3><span lang="ru">Подвиньте цену под себя</span><span lang="en">Move the fare to suit you</span></h3>
+          <h3><span lang="ru">Попробуйте изменить цену</span><span lang="en">Try changing the fare</span></h3>
           <p lang="ru">Рекомендованную цену агрегатор уже посчитал — дальше она ваша. Экран подбора водителя: кнопки −30 и +30 двигают сумму шагом 30 ₽. «Отменить поиск» возвращает на карту — маршрут построен, адреса видны, в строке стоит ваша сумма и подсказка, рыночная она или низкая. Оттуда тап по цене открывает шторку с клавиатурой, если сумму хочется вбить руками.</p>
           <p lang="en">The aggregator has already calculated the recommended fare — from there it is yours. On the driver-search screen the −30 and +30 buttons move the amount in 30 ₽ steps. “Отменить поиск” brings back the map — the route is drawn, the addresses are visible, and the row shows your amount with the hint telling you whether it is at market level. A tap on that row opens the keypad sheet, if you would rather type the amount.</p>
         </div>
@@ -405,15 +405,23 @@
   <nav class="cs-next" aria-labelledby="s-next">
     <div class="wrap">
       <h2 id="s-next"><span lang="ru">Другие кейсы</span><span lang="en">Other cases</span></h2>
-      <div class="cs-next__row" data-fig="Other cases" data-fig-quiet>
-        <a href="../delivery/index.html" style="--c: 20 184 166"><span lang="ru">Локали Доставка</span><span lang="en">Lokali Delivery</span></a>
-        <a href="https://apps.apple.com/ru/app/id6766522570" target="_blank" rel="noopener" style="--c: 59 111 182"><span lang="ru">Кошелёк и админка</span><span lang="en">Wallet and admin</span></a>
-        <a href="https://apps.apple.com/ru/app/id6766522570" target="_blank" rel="noopener" style="--c: 228 52 52"><span lang="ru">Локали Ресторан и Crispy</span><span lang="en">Lokali Restaurant and Crispy</span></a>
+      <div class="cs-next__row">
+        <a href="../delivery/index.html" data-fig="Case / Delivery" style="--c: 20 184 166">
+          <span class="nx__meta"><b><span lang="ru">Локали Доставка</span><span lang="en">Lokali Delivery</span></b><i><span lang="ru">Редизайн до релиза и статус заказа на экране блокировки</span><span lang="en">Redesign through to release and order status on the lock screen</span></i><span class="nx__tags"><em><span lang="ru">В App Store</span><span lang="en">On the App Store</span></em><em>2025–2026</em></span></span>
+          <span class="nx__half"><img src="../assets/img/next/delivery.webp?v=5f27ae8e" alt="" width="750" height="880" loading="lazy" decoding="async"></span>
+        </a>
+        <a href="https://apps.apple.com/ru/app/id6766522570" target="_blank" rel="noopener" data-fig="Case / Wallet &amp; admin" style="--c: 59 111 182">
+          <span class="nx__meta"><b><span lang="ru">Кошелёк и админка</span><span lang="en">Wallet and admin</span></b><i><span lang="ru">Общая модель денег для водителя, курьера и ресторана</span><span lang="en">One money model for drivers, couriers and restaurants</span></i><span class="nx__tags"><em><span lang="ru">В проде</span><span lang="en">Live</span></em><em>2025–2026</em></span></span>
+          <span class="nx__half"><img src="../assets/img/next/wallet.webp?v=70c7867e" alt="" width="750" height="880" loading="lazy" decoding="async"></span>
+        </a>
+        <a href="https://apps.apple.com/ru/app/id6766522570" target="_blank" rel="noopener" data-fig="Case / Restaurant &amp; Crispy" style="--c: 228 52 52">
+          <span class="nx__meta"><b><span lang="ru">Локали Ресторан и Crispy</span><span lang="en">Lokali Restaurant and Crispy</span></b><i><span lang="ru">Приложение для сотрудников и моноапп ресторана-партнёра</span><span lang="en">An app for restaurant staff and a standalone app for a partner restaurant</span></i><span class="nx__tags"><em><span lang="ru">В App Store</span><span lang="en">On the App Store</span></em><em>2025–2026</em></span></span>
+          <span class="nx__half"><img src="../assets/img/next/crispy.webp?v=c3423a87" alt="" width="750" height="880" loading="lazy" decoding="async"></span>
+        </a>
       </div>
     </div>
   </nav>
 </main>
-<a class="btn cs-float" href="#try" data-float><span lang="ru">Подвинуть цену</span><span lang="en">Move the fare</span></a>
 <footer class="foot">
   <div class="wrap foot__in">
     <div class="foot__links">
@@ -424,8 +432,8 @@
     <p class="foot__copy">© <span lang="ru">Магомед Гадаев</span><span lang="en">Magomed Gadaev</span>, 2026</p>
   </div>
 </footer>
-<script src="../assets/site.js?v=ab1b6d7b" defer></script>
-<script src="../assets/figma.js?v=8ff0bc3a" defer></script>
+<script src="../assets/site.js?v=2742a618" defer></script>
+<script src="../assets/figma.js?v=7d42030b" defer></script>
 </body>
 </html>
 

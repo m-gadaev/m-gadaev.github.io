@@ -163,7 +163,6 @@
   .fig-tools { bottom: max(12px, env(safe-area-inset-bottom)); padding: 4px; }
   .fig-tool { min-width: 40px; height: 40px; }
 }
-.fig .cs-float { display: none; }
 .fig .foot { padding-bottom: 104px; }
 
 /* Разметка выключена: обычный сайт без линеек, подписей, мерок, курсоров и сетки */

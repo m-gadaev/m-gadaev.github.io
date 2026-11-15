@@ -355,22 +355,6 @@ const roll = (out, prev, next, dir) => {
   });
 })();
 
-// Кейс: плавающая кнопка к живому интерфейсу. Прячется, пока телефон на экране и у подвала
-(() => {
-  const btn = document.querySelector('[data-float]');
-  const target = btn && document.querySelector(btn.getAttribute('href'));
-  if (!btn || !target || !('IntersectionObserver' in window)) return;
-  const seen = new Set();
-  const update = () => btn.classList.toggle('is-hidden', seen.size > 0);
-  const io = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)); update(); });
-  [target, document.querySelector('.foot')].forEach(el => el && io.observe(el));
-  btn.classList.add('is-hidden');
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
-  });
-})();
-
 // Раскрывающиеся блоки: высота меняется плавно, контент ниже съезжает вместе с ней.
 // Повторный клик во время анимации разворачивает её из текущей высоты, без рывка.
 (() => {
@@ -461,16 +445,6 @@ document.querySelectorAll('[data-trailer]').forEach(box => {
       if (!visible) v.pause(); else if (!calm.matches) play();
     }), { threshold: 0.35 }).observe(box);
   } else if (!calm.matches) play();
-});
-
-// Декор доставки: машинка стоит на пунктире и смотрит по направлению пути
-document.querySelectorAll('.deliv-deco__car').forEach(car => {
-  const path = car.closest('svg').querySelector('.deliv-deco__path');
-  if (!path || !path.getTotalLength) return;
-  const L = path.getTotalLength(), at = L * (+car.dataset.at || 0.5);
-  const a = path.getPointAtLength(at - 2), b = path.getPointAtLength(at + 2);
-  const deg = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI + 90;
-  car.setAttribute('transform', `translate(${(a.x + b.x) / 2} ${(a.y + b.y) / 2}) rotate(${deg})`);
 });
 
 // Живой прототип цены в кейсе такси: реальные экраны, живыми остаются сумма, подсказка и состояние
