@@ -464,7 +464,7 @@ a:hover { text-decoration-thickness: 2px; }
 .cs-next h2 { font-size: var(--step-head); margin-bottom: 24px; }
 .cs-next__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto auto auto; gap: 8px; }
 .nx__frame { grid-row: span 3; display: grid; grid-template-rows: subgrid; }
-.cs-next__row a { grid-row: 1 / -1; position: relative; overflow: hidden; border-radius: clamp(18px, 1.5vw, 24px); background: var(--surface); color: var(--ink); text-decoration: none; display: grid; grid-template-columns: 1fr 35%; grid-template-rows: subgrid; transition: translate 300ms var(--ease-out); }
+.cs-next__row a { grid-row: 1 / -1; position: relative; overflow: hidden; border-radius: 0; background: var(--surface); color: var(--ink); text-decoration: none; display: grid; grid-template-columns: 1fr 35%; grid-template-rows: subgrid; transition: translate 300ms var(--ease-out); }
 .nx__meta { grid-column: 1; grid-row: 1 / -1; position: relative; z-index: 2; display: grid; grid-template-rows: subgrid; align-content: start; gap: 7px; padding: 24px 10px 26px 24px; }
 .nx__meta b { font-weight: 600; font-size: 1.125rem; line-height: 1.2; align-self: start; }
 .nx__meta i { font-style: normal; color: var(--muted); font-size: 0.875rem; line-height: 1.35; align-self: start; }
