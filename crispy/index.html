@@ -1,0 +1,232 @@
+<!doctype html>
+<html class="fig" lang="ru" data-lang="ru" data-title-ru="Crispy | Кейс" data-title-en="Crispy | Case Study">
+<head>
+<meta charset="utf-8">
+<!-- Страницы всегда перепроверяются у сервера: адреса стилей, скриптов и картинок несут хэш,
+     поэтому кэшировать надо их, а не страницу, иначе правка доезжает только через десять минут. -->
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crispy | Кейс</title>
+<meta name="description" content="Моноапп партнёрского ресторана на движке «Локали»: тип выдачи и время выдачи на оформлении, точки самовывоза с состояниями и два разных конфликта корзины.">
+<meta name="theme-color" content="#19191B">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="alternate icon" type="image/webp" href="../assets/img/portrait-studio.webp?v=57e02b39">
+<link rel="preload" href="../assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="../assets/site.css?v=2601b8b2">
+<link rel="stylesheet" href="../assets/figma.css?v=4b697b03">
+<script>
+// Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
+(function () {
+  var d = document.documentElement, s = {};
+  try { s.theme = localStorage.getItem('theme'); s.lang = localStorage.getItem('lang'); } catch (e) {}
+  var theme = s.theme || 'dark'; // по умолчанию тёмная, светлая — по переключателю
+  var lang = s.lang || ((navigator.language || 'ru').slice(0, 2) === 'ru' ? 'ru' : 'en');
+  d.dataset.theme = theme; d.dataset.lang = lang; d.lang = lang;
+  if (lang === 'en' && d.dataset.titleEn) document.title = d.dataset.titleEn;
+  try { if (localStorage.getItem('fig-clean') === '1') d.classList.add('fig-clean'); } catch (e) {}
+  d.classList.add('js');
+})();
+</script>
+</head>
+
+<body class="cs cs--crispy">
+<header class="bar">
+  <div class="bar__in">
+    <a class="wordmark" href="../index.html">gadaev</a>
+    <div class="bar__mid" data-bar-tabs aria-hidden="true"></div>
+    <div class="bar__end">
+      <div class="bar__settings" role="group" aria-label="Язык и тема / Language and theme">
+      <button type="button" class="set-btn set-btn--text" data-toggle-lang aria-label="Switch to English / Переключить на русский"><span lang="ru">EN</span><span lang="en">RU</span></button>
+      <button type="button" class="set-btn" data-toggle-theme aria-label="Сменить тему / Toggle theme">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      </div>
+      <a class="icon-btn" href="https://t.me/creaperson" aria-label="Telegram" title="Telegram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.54 21.69a.5.5 0 0 0 .94-.03l6.5-19a.5.5 0 0 0-.64-.63l-19 6.5a.5.5 0 0 0-.02.93l7.93 3.18a2 2 0 0 1 1.11 1.11z"/><path d="m21.85 2.15-10.94 10.94"/></svg>
+      </a>
+      <a class="icon-btn icon-btn--dark" href="../assets/gadaev-cv.pdf?v=f227ba24" aria-label="Резюме, PDF / CV, PDF" title="CV, PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="cs-hero__grid">
+      <a class="cs-back" href="../index.html#work"><span lang="ru">← Все работы</span><span lang="en">← All work</span></a>
+      <div class="cs-hero__text" data-fig="Header" data-fig-quiet>
+        <h1 class="reveal"><span class="cs-name">Crispy</span><span class="cs-tail"><span lang="ru">Моноапп партнёрского ресторана на движке «Локали»</span><span lang="en">A single-restaurant app built on the Lokali engine</span></span></h1>
+        <dl class="facts reveal" style="--d:80ms">
+          <div><dt><span lang="ru">Роль</span><span lang="en">Role</span></dt><dd><span lang="ru">Продуктовый дизайнер: перенёс движок, собрал тип выдачи и самовывоз</span><span lang="en">Product designer: ported the engine, built the pickup type and the pickup points</span></dd></div>
+          <div><dt><span lang="ru">Объём</span><span lang="en">Scope</span></dt><dd><span lang="ru">Главная, меню ресторана, корзина, оформление, точки на карте, модалки</span><span lang="en">Home, restaurant menu, cart, checkout, points on the map, dialogs</span></dd></div>
+          <div><dt><span lang="ru">Платформы</span><span lang="en">Platforms</span></dt><dd><span lang="ru">iOS и Android</span><span lang="en">iOS and Android</span></dd></div>
+          <div><dt><span lang="ru">Статус</span><span lang="en">Status</span></dt><dd><a href="https://apps.apple.com/ru/app/id6779682555" target="_blank" rel="noopener"><span lang="ru">В App Store</span><span lang="en">On the App Store</span></a></dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="wrap" data-fig="Cover · Crispy">
+      <div class="cs-cover cs-cover--trio reveal" style="--d:160ms">
+        <div class="cs-trio">
+          <div class="phone"><div class="phone__screen">
+            <img src="../assets/img/crispy/point-open.webp?v=87b53498" width="750" height="1624" alt="Карточка точки самовывоза на карте" loading="eager" decoding="async"><span class="phone__island" aria-hidden="true"></span>
+          </div></div>
+          <div class="phone"><div class="phone__screen">
+            <img src="../assets/img/crispy/home.webp?v=c6e566d7" width="750" height="1624" alt="Главный экран Crispy с баннером и лентой блюд" loading="eager" decoding="async"><span class="phone__island" aria-hidden="true"></span>
+          </div></div>
+          <div class="phone"><div class="phone__screen">
+            <img src="../assets/img/crispy/cover-pickup.webp?v=09ec2429" width="750" height="1624" alt="Оформление самовывоза: тип выдачи и время" loading="eager" decoding="async"><span class="phone__island" aria-hidden="true"></span>
+          </div></div>
+        </div>
+        <p class="cs-cover__note"><span lang="ru">Один ресторан вместо каталога: точка, лента, оформление</span><span lang="en">One restaurant instead of a catalogue: the point, the feed, the checkout</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-context" data-nav="Контекст" data-nav-en="Context">
+    <div class="cs-col" data-fig="Text / Context" data-fig-quiet>
+      <h2 id="s-context" class="reveal"><span lang="ru">Отдельное приложение на общем движке</span><span lang="en">A separate app on a shared engine</span></h2>
+      <p class="reveal" lang="ru">Crispy это сеть фастфуда и партнёр «Локали». В маркетплейсе суперапа она уже продавалась наравне с другими ресторанами, а рядом понадобилось своё приложение, где один ресторан вместо каталога. Я взял архитектуру и флоу «Локали Еды», поменял цветовые токены на фирменные и достроил то, чего у маркетплейса не было по определению: выбор точки самовывоза, тип выдачи заказа и свои состояния корзины.</p>
+      <p class="reveal" lang="en">Crispy is a fast-food chain and a partner of Lokali. It already sold through the super app’s marketplace alongside other restaurants, and next to that it needed an app of its own, with one restaurant instead of a catalogue. I took the architecture and the flows of Lokali Food, swapped the colour tokens for the brand ones and built what a marketplace does not have by definition: choosing a pickup point, choosing how the order is handed over, and the cart states that come with it.</p>
+      <p class="reveal" lang="ru">Палитру собирал я. Заказчик хотел красный и не мог назвать, какой именно, поэтому я показал несколько вариантов, и он выбрал. Остальное приложение говорит на языке движка: те же сетки, те же компоненты, те же названия экранов.</p>
+      <p class="reveal" lang="en">The palette was mine to build. The client wanted red and could not say which red, so I showed several options and he picked one. The rest of the app speaks the engine’s language: the same grids, the same components, the same screen names.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-pickup" data-nav="Тип выдачи" data-nav-en="Pickup type">
+    <div class="cs-col" data-fig="Text / Pickup" data-fig-quiet>
+      <h2 id="s-pickup" class="reveal"><span lang="ru">Как гость заберёт заказ</span><span lang="en">How the guest picks the order up</span></h2>
+      <p class="reveal" lang="ru">Главная задача кейса. На оформлении самовывоза гость говорит, что будет дальше: заберёт заказ с собой или сядет в зале. С собой заказ пакуют в сумку, в ресторане выдают на подносе. Нужен этот выбор не гостю, а кухне и официанту: по нему готовят и выдают.</p>
+      <p class="reveal" lang="en">The core task of this case. At pickup checkout the guest says what happens next: they take the order away or sit down in the room. To go, the order is packed in a bag; in the restaurant it is served on a tray. The choice is not for the guest, it is for the kitchen and the waiter: it decides how the order is prepared and handed over.</p>
+      <p class="reveal" lang="ru">Рядом встало время выдачи. «Побыстрее» стоит по умолчанию, а «Выбрать время» раскрывает интервалы по 30 минут в рабочих часах точки. Два блока оказались на одном экране, поэтому их порядок пришлось решать: сначала гость отвечает, как заберёт заказ, и только потом когда.</p>
+      <p class="reveal" lang="en">The handover time sits next to it. “As soon as possible” is the default, and “Pick a time” opens 30-minute slots inside the point’s working hours. Two blocks ended up on one screen, so their order had to be decided: first the guest answers how they take the order, then when.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Pickup"><div class="gal">
+      <figure class="gal__item gal__item--tall" style="--pin-bot: 0"><button class="zoom" type="button" aria-label="Увеличить: ранний вариант блока с тумблером"><span class="shot__scroll"><img src="../assets/img/crispy/pickup-v1.webp?v=1c029f1d" width="750" height="2234" alt="Ранний вариант: тумблер типа выдачи под временем" loading="lazy" decoding="async"></span><span class="shot__pin shot__pin--top"><img src="../assets/img/crispy/pickup-v1.webp?v=1c029f1d" width="750" height="2234" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></button><figcaption><span lang="ru">Ранний вариант: тумблер и блок ниже времени.</span><span lang="en">The early version: a switch, and the block below the time.</span></figcaption></figure>
+      <figure class="gal__item gal__item--tall" style="--pin-bot: 0"><button class="zoom" type="button" aria-label="Увеличить: оформление с выбором «С собой»"><span class="shot__scroll"><img src="../assets/img/crispy/pickup-togo.webp?v=67cfb4d0" width="750" height="2234" alt="Оформление самовывоза: выбран вариант «С собой»" loading="lazy" decoding="async"></span><span class="shot__pin shot__pin--top"><img src="../assets/img/crispy/pickup-togo.webp?v=67cfb4d0" width="750" height="2234" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></button><figcaption><span lang="ru">Финал: селектор из двух равных вариантов, выбран «С собой».</span><span lang="en">The final version: two equal options, “To go” selected.</span></figcaption></figure>
+      <figure class="gal__item gal__item--tall" style="--pin-bot: 0"><button class="zoom" type="button" aria-label="Увеличить: выбор времени выдачи интервалами"><span class="shot__scroll"><img src="../assets/img/crispy/pickup-time.webp?v=095b784e" width="750" height="2306" alt="Выбор времени выдачи: интервалы по 30 минут" loading="lazy" decoding="async"></span><span class="shot__pin shot__pin--top"><img src="../assets/img/crispy/pickup-time.webp?v=095b784e" width="750" height="2306" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></button><figcaption><span lang="ru">«В ресторане» и раскрытые интервалы по 30 минут.</span><span lang="en">“In the restaurant”, with the 30-minute slots open.</span></figcaption></figure>
+    </div></div>
+    <div class="cs-col" data-fig="Text / Pickup / control" data-fig-quiet>
+      <p class="reveal" lang="ru">Первым решением был тумблер: одно положение «С собой», другое «В ресторане». Я от него отказался. Выключенный свитч читается как невыполненное условие, будто его обязательно надо включить, и гость получает ощущение ошибки там, где у него просто два равных варианта. Вместо тумблера встал сегментный селектор: оба варианта названы словом и иконкой, выбранный обведён, ничего не выглядит выключенным. В прод ушёл он.</p>
+      <p class="reveal" lang="en">The first solution was a switch: one position “To go”, the other “In the restaurant”. I dropped it. An off switch reads as an unmet condition, as if it has to be turned on, and the guest gets a sense of error where there are simply two equal options. A segmented control took its place: both options are named with a word and an icon, the chosen one is outlined, and nothing looks switched off. That is what shipped.</p>
+      <p class="reveal" lang="ru">Выбор гостя не остаётся в его телефоне. На карточке заказа в приложении для сотрудников ресторана появляется метка «С собой» или «В ресторане», и кухня видит её до того, как возьмёт заказ в работу. Эта половина задачи живёт в другом приложении и идёт отдельным кейсом.</p>
+      <p class="reveal" lang="en">The guest’s choice does not stay on their phone. A label, “To go” or “In the restaurant”, appears on the order card in the restaurant staff app, and the kitchen sees it before the order goes into production. That half of the task lives in another app and gets a case of its own.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-points" data-nav="Точки" data-nav-en="Points">
+    <div class="cs-col" data-fig="Text / Points" data-fig-quiet>
+      <h2 id="s-points" class="reveal"><span lang="ru">Выбрать, где забрать</span><span lang="en">Choosing where to pick it up</span></h2>
+      <p class="reveal" lang="ru">В маркетплейсе гость выбирает ресторан, а адрес подставляется сам. В моноаппе ресторан один, а точек несколько, поэтому самовывоз начинается с выбора точки. Я собрал карту с пинами, список адресов с поиском и карточку точки с рабочими часами и телефоном.</p>
+      <p class="reveal" lang="en">In the marketplace the guest picks a restaurant and the address follows. In a single-restaurant app there is one brand and several points, so pickup starts with choosing the point. I built the map with pins, the list of addresses with search, and the point card with working hours and a phone number.</p>
+      <p class="reveal" lang="ru">У карточки три состояния. Открыто: часы, телефон и активная кнопка «Заказать здесь». Закрыто и технический перерыв: кнопка выключена, а причина стоит строкой под адресом, на том же месте, где в открытом состоянии написано «Открыто до 23:00». Гость читает статус там же, где читал бы часы работы.</p>
+      <p class="reveal" lang="en">The card has three states. Open: hours, phone and an active “Order here” button. Closed and technical break: the button is disabled and the reason sits in a line under the address, in the same place where the open state says “Open until 23:00”. The guest reads the status exactly where they would read the hours.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Points"><div class="gal">
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: список точек с поиском"><img src="../assets/img/crispy/points.webp?v=07a097f0" width="750" height="1624" alt="Список точек самовывоза с поиском" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Список адресов с рабочими часами и поиском.</span><span lang="en">The list of addresses with hours and search.</span></figcaption></figure>
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: точка открыта"><img src="../assets/img/crispy/point-open.webp?v=87b53498" width="750" height="1624" alt="Карточка точки: открыто до 23:00" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Открыто: кнопка «Заказать здесь» активна.</span><span lang="en">Open: “Order here” is active.</span></figcaption></figure>
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: точка закрыта"><img src="../assets/img/crispy/point-closed.webp?v=f5ab9936" width="750" height="1624" alt="Карточка точки: закрыто" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Закрыто: причина на месте часов, кнопка выключена.</span><span lang="en">Closed: the reason where the hours were, the button off.</span></figcaption></figure>
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: технический перерыв"><img src="../assets/img/crispy/point-break.webp?v=6dafe340" width="750" height="1624" alt="Карточка точки: технический перерыв" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Технический перерыв: точка работает, заказы временно нет.</span><span lang="en">Technical break: the point works, orders are paused.</span></figcaption></figure>
+    </div></div>
+    <div class="cs-col" data-fig="Text / Points / empty" data-fig-quiet>
+      <p class="reveal" lang="ru">Поиск отвечает и тогда, когда не нашёл: «Адрес не найден. Выберите ресторан на карте или укажите другой адрес». Экран называет, что делать дальше, и оставляет карту под рукой.</p>
+      <p class="reveal" lang="en">Search answers even when it finds nothing: “Address not found. Choose a restaurant on the map or enter another address.” The screen names the next step and keeps the map within reach.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Search"><div class="gal">
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: пустое состояние поиска"><img src="../assets/img/crispy/search-empty.webp?v=da88c09b" width="750" height="1624" alt="Поиск точки: адрес не найден" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Пустое состояние поиска с подсказкой и картой под рукой.</span><span lang="en">The empty search state, with a hint and the map at hand.</span></figcaption></figure>
+    </div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-cart" data-nav="Корзина" data-nav-en="Cart">
+    <div class="cs-col" data-fig="Text / Cart" data-fig-quiet>
+      <h2 id="s-cart" class="reveal"><span lang="ru">Два конфликта, два разных текста</span><span lang="en">Two conflicts, two different texts</span></h2>
+      <p class="reveal" lang="ru">Корзина привязана к точке. Гость собрал заказ на Эсамбаева, а потом поменял точку самовывоза или адрес доставки, и собранное может не собраться в другом месте: меню у точек различается. Предупреждение здесь обязательное, и я развёл его на два триггера.</p>
+      <p class="reveal" lang="en">The cart belongs to a point. The guest fills it at one address, then changes the pickup point or the delivery address, and what they collected may not exist elsewhere: menus differ between points. A warning is required here, and I split it by trigger.</p>
+      <p class="reveal" lang="ru">При смене точки самовывоза: «В этом ресторане меню может отличаться». При смене адреса доставки: «На этот адрес доставляет другой ресторан, и меню может отличаться». Заголовок у обеих один, «Придётся очистить корзину», а причина описывает то действие, которое гость только что сделал.</p>
+      <p class="reveal" lang="en">When the pickup point changes: “The menu in this restaurant may differ.” When the delivery address changes: “A different restaurant delivers to this address, and the menu may differ.” Both share a heading, “The cart will have to be emptied”, and the reason describes the action the guest has just taken.</p>
+      <p class="reveal" lang="ru">Красная заливка на «Очистить корзину» пришла из движка «Локали Еды» и осталась намеренно. Два приложения связаны одной архитектурой, и действие, которое там стирает корзину, выглядит здесь так же.</p>
+      <p class="reveal" lang="en">The red fill on “Empty the cart” came from the Lokali Food engine and stayed on purpose. The two apps share an architecture, and the action that clears a cart there looks the same here.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Dialogs / Cart"><div class="gal gal--pair">
+      <figure class="gal__item gal__item--raw"><button class="zoom" type="button" aria-label="Увеличить: модалка при смене точки"><img src="../assets/img/crispy/sheet-point.webp?v=2350328b" width="754" height="474" alt="Модалка при смене точки самовывоза" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Смена точки: меню у этой точки может быть другим.</span><span lang="en">Changing the point: this one’s menu may be different.</span></figcaption></figure>
+      <figure class="gal__item gal__item--raw"><button class="zoom" type="button" aria-label="Увеличить: модалка при смене адреса"><img src="../assets/img/crispy/sheet-address.webp?v=62d1b328" width="754" height="514" alt="Модалка при смене адреса доставки" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Смена адреса: сюда везёт другой ресторан.</span><span lang="en">Changing the address: another restaurant delivers here.</span></figcaption></figure>
+    </div></div>
+    <div class="cs-wide reveal" data-fig="Screen / Cart"><div class="gal">
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: корзина"><img src="../assets/img/crispy/cart.webp?v=b5939865" width="750" height="1624" alt="Корзина: позиции, модификаторы, недоступное блюдо" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Недоступное блюдо приглушено и убирается только крестиком.</span><span lang="en">An unavailable dish is dimmed and only leaves by the cross.</span></figcaption></figure>
+    </div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-anim" data-nav="Анимация" data-nav-en="Animation">
+    <div class="cs-col" data-fig="Text / Animation" data-fig-quiet>
+      <h2 id="s-anim" class="reveal"><span lang="ru">Два варианта заставки</span><span lang="en">Two versions of the splash</span></h2>
+      <p class="reveal" lang="ru">Заставку я собрал в двух вариантах и показал заказчику оба. Начало у них общее: из линии собирается шеф, за ним встают красные полосы и слово CRISPY. Дальше варианты расходятся: в первом логотип остаётся графичным, а паузу держит кольцо; во втором логотип цветной, а паузу держат три точки. Оба прототипа собраны прямо в Figma, без After Effects. Заказчик выбрал кольцо, оно и ушло в прод.</p>
+      <p class="reveal" lang="en">I built the splash in two versions and showed the client both. They start the same: the chef assembles from a line, the red bars rise behind him and the CRISPY wordmark lands. Then they diverge: in the first the logo stays graphic and a ring holds the pause; in the second the logo is in colour and three dots hold it. Both prototypes were built in Figma, with no After Effects. The client picked the ring, and that is what shipped.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Animation / Two versions">
+      <div class="cs-duo">
+        <figure class="cs-duo__item" data-trailer>
+          <div class="phone phone--video"><div class="phone__screen">
+            <video muted playsinline loop preload="metadata" poster="../assets/img/crispy/anim-a-poster.webp?v=9dfa5c09" aria-label="Ролик: заставка Crispy с кольцом загрузки">
+              <source src="../assets/video/crispy-anim-a.mp4?v=dfc09c00" type="video/mp4">
+            </video>
+          </div></div>
+          <figcaption><span lang="ru">Вариант с кольцом: он в проде.</span><span lang="en">The ring version: the one that shipped.</span></figcaption>
+        </figure>
+        <figure class="cs-duo__item" data-trailer>
+          <div class="phone phone--video"><div class="phone__screen">
+            <video muted playsinline loop preload="metadata" poster="../assets/img/crispy/anim-b-poster.webp?v=82368429" aria-label="Ролик: заставка Crispy с тремя точками">
+              <source src="../assets/video/crispy-anim-b.mp4?v=55117dd2" type="video/mp4">
+            </video>
+          </div></div>
+          <figcaption><span lang="ru">Вариант с цветным логотипом и тремя точками.</span><span lang="en">The version with the colour logo and three dots.</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-result" data-nav="Итоги" data-nav-en="Outcome">
+    <div class="cs-col" data-fig="Text / Outcome" data-fig-quiet>
+      <h2 id="s-result" class="reveal"><span lang="ru">Что из этого складывается</span><span lang="en">What this adds up to</span></h2>
+      <p class="reveal" lang="ru">Приложение партнёра, собранное на движке «Локали» за счёт общей архитектуры; тип и время выдачи, которые доезжают от гостя до кухни; самовывоз с точками, их статусами и пустым состоянием поиска; и корзина, которая объясняет конфликт словами того действия, что его вызвало.</p>
+      <p class="reveal" lang="en">A partner app built on the Lokali engine thanks to a shared architecture; a pickup type and time that travel from the guest to the kitchen; pickup with its points, their states and an empty search state; and a cart that explains a conflict in the words of the action that caused it.</p>
+      <p class="reveal" lang="ru">Crispy работает в App Store, тип выдачи ушёл в прод вместе с приложением.</p>
+      <p class="reveal" lang="en">Crispy is live on the App Store, and the pickup type shipped with it.</p>
+    </div>
+  </section>
+
+  <nav class="cs-next" aria-labelledby="s-next">
+    <div class="wrap">
+      <h2 id="s-next" class="cs-next__title reveal"><span lang="ru">Другие кейсы</span><span lang="en">Other cases</span></h2>
+      <div class="cs-next__row reveal">
+        <a href="../taxi/index.html" style="--c: 255 196 0">
+          <span class="nx__meta"><b><span lang="ru">Локали Такси</span><span lang="en">Lokali Taxi</span></b><i><span lang="ru">Два приложения с нуля: для пассажира и для водителя</span><span lang="en">Two apps from scratch: for passengers and for drivers</span></i><span class="nx__tags"><em><span lang="ru">Пре-релиз</span><span lang="en">Pre-release</span></em><em>2025–2026</em></span></span>
+          <span class="nx__half"><img src="../assets/img/next/taxi.webp?v=78101285" width="750" height="880" alt="" loading="lazy" decoding="async"></span>
+        </a>
+        <a href="../delivery/index.html" style="--c: 20 184 166">
+          <span class="nx__meta"><b><span lang="ru">Локали Доставка</span><span lang="en">Lokali Delivery</span></b><i><span lang="ru">Редизайн до релиза и статус заказа на экране блокировки</span><span lang="en">Redesign through to release and order status on the lock screen</span></i><span class="nx__tags"><em><span lang="ru">В App Store</span><span lang="en">On the App Store</span></em><em>2025–2026</em></span></span>
+          <span class="nx__half"><img src="../assets/img/next/delivery.webp?v=5f27ae8e" width="750" height="880" alt="" loading="lazy" decoding="async"></span>
+        </a>
+        <a href="../money/index.html" style="--c: 59 111 182">
+          <span class="nx__meta"><b><span lang="ru">Кошелёк и админка</span><span lang="en">Wallet and admin</span></b><i><span lang="ru">Общая модель денег для водителя, курьера и ресторана</span><span lang="en">One money model for the driver, the courier and the restaurant</span></i><span class="nx__tags"><em><span lang="ru">В проде</span><span lang="en">Live</span></em><em>2025–2026</em></span></span>
+          <span class="nx__half"><img src="../assets/img/next/wallet.webp?v=70c7867e" width="750" height="880" alt="" loading="lazy" decoding="async"></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</main>
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__links">
+      <a class="foot__pill" href="mailto:muhammadgadaev376@gmail.com">muhammadgadaev376@gmail.com</a>
+      <a class="foot__pill" href="https://t.me/creaperson">Telegram</a>
+    </div>
+    <a class="foot__mark" href="../index.html">gadaev</a>
+    <p class="foot__copy">© <span lang="ru">Магомед Гадаев</span><span lang="en">Magomed Gadaev</span>, 2026</p>
+  </div>
+</footer>
+<script src="../assets/site.js?v=2742a618" defer></script>
+<script src="../assets/figma.js?v=7d42030b" defer></script>
+</body>
+</html>
+

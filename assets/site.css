@@ -891,6 +891,21 @@ a:hover { text-decoration-thickness: 2px; }
 /* Обложка кейса денег: окно оператора и телефон курьера внахлёст */
 .cs-cover--desk { display: block; min-height: 0; padding-bottom: clamp(92px, 8vw, 116px); }
 .wide-fig--narrow { width: min(100%, 624px); margin-inline: auto; }
+/* Кейс Crispy: фирменный красный и обложка из трёх мокапов */
+.cs--crispy { --title: #E01010; --glow: 237 28 36; }
+:root[data-theme="dark"] .cs--crispy { --title: #FF4B4B; }
+.cs-cover--trio { display: block; min-height: 0; padding-bottom: clamp(92px, 8vw, 116px); }
+.cs-trio { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 2.2vw, 30px); align-items: end; justify-items: center; }
+.cs-trio .phone { --r: 30px; --pad: 4px; width: 100%; max-width: 250px; aspect-ratio: auto; }
+.cs-trio .phone__screen { height: auto; aspect-ratio: 750 / 1624; background: var(--surface); }
+.cs-trio .phone img { display: block; width: 100%; height: auto; }
+.cs-trio > :nth-child(2) { translate: 0 -6%; }
+@media (max-width: 560px) { .cs-trio .phone { --r: 18px; --pad: 2px; } }
+.gal--sheets { --scr: clamp(260px, 32vw, 440px); }
+.cs-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 56px); justify-items: center; }
+.cs-duo__item { margin: 0; width: 100%; display: grid; justify-items: center; gap: 14px; max-width: 300px; }
+.cs-duo .phone--video { --r: 34px; --pad: 4px; width: 100%; }
+.cs-duo figcaption { font-size: var(--step-small); color: var(--muted); text-align: center; }
 .cs-desk { position: relative; width: min(100%, 860px); margin: 0 auto; padding-right: clamp(0px, 5vw, 60px); }
 .win { display: block; border-radius: 14px; overflow: hidden; background: var(--bg); box-shadow: 0 0 0 1px var(--line), 0 30px 70px -20px rgb(0 0 0 / 0.3); }
 .win__bar { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 12px; background: var(--surface); border-bottom: 1px solid var(--line); }
