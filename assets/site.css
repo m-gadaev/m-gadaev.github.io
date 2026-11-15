@@ -642,11 +642,18 @@ a:hover { text-decoration-thickness: 2px; }
 /* Процесс: «схема → финал» и широкие карты разбора */
 .gal__item--raw { width: calc(var(--scr) * var(--k, 1)); }
 .gal__item--raw img { border-radius: 12px; box-shadow: none; }
-/* Длинные экраны живут в обычной рамке телефона, внутренность скроллится */
-.gal__item--tall .zoom { aspect-ratio: 750 / 1624; overflow-y: auto; overflow-x: hidden; border-radius: calc(var(--scr) * 0.11); box-shadow: 0 0 0 1px var(--line), 0 16px 40px rgb(0 0 0 / 0.08); scrollbar-width: none; }
-.gal__item--tall .zoom::-webkit-scrollbar { display: none; }
-.gal__item--tall .zoom img { border-radius: 0; box-shadow: none; }
-@media (pointer: fine) { .gal__item--tall .zoom { overscroll-behavior: contain; } }
+/* Длинные экраны живут в обычной рамке телефона: скроллится середина, статус-бар и нижняя панель закреплены */
+.gal__item--tall .zoom { --pin-top: 6.650%; --pin-bot: 10.222%; position: relative; aspect-ratio: 750 / 1624; overflow: hidden; border-radius: calc(var(--scr) * 0.11); box-shadow: 0 0 0 1px var(--line), 0 16px 40px rgb(0 0 0 / 0.08); }
+.gal__item--tall .shot__scroll { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; }
+.gal__item--tall .shot__scroll::-webkit-scrollbar { display: none; }
+.gal__item--tall img { display: block; width: 100%; height: auto; border-radius: 0; box-shadow: none; }
+.gal__item--tall .shot__pin { position: absolute; left: 0; right: 0; overflow: hidden; pointer-events: none; }
+.gal__item--tall .shot__pin img { position: absolute; left: 0; }
+.gal__item--tall .shot__pin--top { top: 0; height: var(--pin-top); }
+.gal__item--tall .shot__pin--top img { top: 0; }
+.gal__item--tall .shot__pin--bot { bottom: 0; height: var(--pin-bot); }
+.gal__item--tall .shot__pin--bot img { bottom: 0; }
+@media (pointer: fine) { .gal__item--tall .shot__scroll { overscroll-behavior: contain; } }
 .gal--evo { align-items: center; }
 .gal__arrow { flex: 0 0 auto; width: 40px; height: 2px; background: var(--muted); position: relative; opacity: .6; }
 .gal__arrow::after { content: ""; position: absolute; right: -1px; top: 50%; width: 10px; height: 10px; border-top: 2px solid var(--muted); border-right: 2px solid var(--muted); translate: 0 -50%; rotate: 45deg; }
