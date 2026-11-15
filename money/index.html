@@ -1,0 +1,212 @@
+<!doctype html>
+<html class="fig" lang="ru" data-lang="ru" data-title-ru="Кошелёк и админка | Кейс" data-title-en="Wallet and admin | Case Study">
+<head>
+<meta charset="utf-8">
+<!-- Страницы всегда перепроверяются у сервера: адреса стилей, скриптов и картинок несут хэш,
+     поэтому кэшировать надо их, а не страницу, иначе правка доезжает только через десять минут. -->
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Кошелёк и админка | Кейс</title>
+<meta name="description" content="Одна модель кошелька в трёх продуктах суперапа «Локали» и веб-панель оператора: лестница состояний долга, журнал с деталкой и ручные операции с причиной.">
+<meta name="theme-color" content="#19191B">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="alternate icon" type="image/webp" href="../assets/img/portrait-studio.webp?v=57e02b39">
+<link rel="preload" href="../assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="../assets/site.css?v=f175ae94">
+<link rel="stylesheet" href="../assets/figma.css?v=4b697b03">
+<script>
+// Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
+(function () {
+  var d = document.documentElement, s = {};
+  try { s.theme = localStorage.getItem('theme'); s.lang = localStorage.getItem('lang'); } catch (e) {}
+  var theme = s.theme || 'dark'; // по умолчанию тёмная, светлая — по переключателю
+  var lang = s.lang || ((navigator.language || 'ru').slice(0, 2) === 'ru' ? 'ru' : 'en');
+  d.dataset.theme = theme; d.dataset.lang = lang; d.lang = lang;
+  if (lang === 'en' && d.dataset.titleEn) document.title = d.dataset.titleEn;
+  try { if (localStorage.getItem('fig-clean') === '1') d.classList.add('fig-clean'); } catch (e) {}
+  d.classList.add('js');
+})();
+</script>
+</head>
+
+<body class="cs cs--money">
+<header class="bar">
+  <div class="bar__in">
+    <a class="wordmark" href="../index.html">gadaev</a>
+    <div class="bar__mid" data-bar-tabs aria-hidden="true"></div>
+    <div class="bar__end">
+      <div class="bar__settings" role="group" aria-label="Язык и тема / Language and theme">
+      <button type="button" class="set-btn set-btn--text" data-toggle-lang aria-label="Switch to English / Переключить на русский"><span lang="ru">EN</span><span lang="en">RU</span></button>
+      <button type="button" class="set-btn" data-toggle-theme aria-label="Сменить тему / Toggle theme">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      </div>
+      <a class="icon-btn" href="https://t.me/creaperson" aria-label="Telegram" title="Telegram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.54 21.69a.5.5 0 0 0 .94-.03l6.5-19a.5.5 0 0 0-.64-.63l-19 6.5a.5.5 0 0 0-.02.93l7.93 3.18a2 2 0 0 1 1.11 1.11z"/><path d="m21.85 2.15-10.94 10.94"/></svg>
+      </a>
+      <a class="icon-btn icon-btn--dark" href="../assets/gadaev-cv.pdf?v=f227ba24" aria-label="Резюме, PDF / CV, PDF" title="CV, PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="cs-hero__grid">
+      <a class="cs-back" href="../index.html#work"><span lang="ru">← Все работы</span><span lang="en">← All work</span></a>
+      <div class="cs-hero__text" data-fig="Header" data-fig-quiet>
+        <h1 class="reveal"><span class="cs-name"><span lang="ru">Кошелёк и админка</span><span lang="en">Wallet and admin</span></span><span class="cs-tail"><span lang="ru">Баланс решает, выйдет ли человек на смену</span><span lang="en">The balance decides whether a person starts a shift</span></span></h1>
+        <dl class="facts reveal" style="--d:80ms">
+          <div><dt><span lang="ru">Роль</span><span lang="en">Role</span></dt><dd><span lang="ru">Продуктовый дизайнер: три кошелька, админка курьеров и тарифы</span><span lang="en">Product designer: three wallets, the courier admin panel and the tariffs</span></dd></div>
+          <div><dt><span lang="ru">Объём</span><span lang="en">Scope</span></dt><dd><span lang="ru">Лестница состояний долга, журнал с деталкой, десктопная панель 1440×900 и экран тарифов</span><span lang="en">A ladder of debt states, a journal with a breakdown, a 1440×900 desktop panel and the tariff screen</span></dd></div>
+          <div><dt><span lang="ru">Платформы</span><span lang="en">Platforms</span></dt><dd><span lang="ru">iOS, Android и веб</span><span lang="en">iOS, Android and web</span></dd></div>
+          <div><dt><span lang="ru">Статус</span><span lang="en">Status</span></dt><dd><span lang="ru">Кошельки курьера и ресторана в проде</span><span lang="en">Courier and restaurant wallets are live</span></dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="wrap" data-fig="Cover · wallet &amp; admin">
+      <div class="cs-cover cs-cover--desk reveal" style="--d:160ms">
+        <div class="cs-desk">
+          <span class="win">
+            <span class="win__bar" aria-hidden="true"><i></i><i></i><i></i></span>
+            <img src="../assets/img/money/admin-card.webp?v=37857a73" width="2200" height="1044" alt="Карточка курьера в админке: баланс, ручные операции, тариф и журнал" loading="eager" decoding="async">
+          </span>
+          <div class="phone"><div class="phone__screen">
+            <img src="../assets/img/money/journal.webp?v=06eded06" width="750" height="1624" alt="Журнал операций в приложении курьера" loading="eager" decoding="async">
+          </div></div>
+        </div>
+        <p class="cs-cover__note"><span lang="ru">Одна операция с двух сторон: браузер оператора и телефон курьера</span><span lang="en">One operation from both sides: the operator’s browser and the courier’s phone</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-context" data-nav="Контекст" data-nav-en="Context">
+    <div class="cs-col" data-fig="Text / Context" data-fig-quiet>
+      <h2 id="s-context" class="reveal"><span lang="ru">Деньги здесь не раздел приложения, а условие работы</span><span lang="en">Money here is not a section of the app, it is the condition for working</span></h2>
+      <p class="reveal" lang="ru">В суперапе за работу платит тот, кто её делает: у водителя, курьера и ресторана есть счёт, и каждый выполненный заказ снимает с него комиссию. Баланс здесь не экран, куда заходят из любопытства. Ниже лимита смена не открывается и заказы перестают приходить.</p>
+      <p class="reveal" lang="en">In the super app the one who does the work pays for it: a driver, a courier and a restaurant each have an account, and every completed order takes a commission from it. The balance here is not a screen you open out of curiosity. Below the limit a shift does not start and orders stop coming.</p>
+      <p class="reveal" lang="ru">Отсюда планка для всего, что на этих экранах. Цифра, которую нельзя проверить, ничего не стоит: человеку нужно видеть не только сколько сняли, но и сколько осталось после и из чего сумма сложилась. А по ту сторону любой ручной правки сидит живой человек в офисе, поэтому у кейса две половины, телефон и браузер, и показывают они одну и ту же операцию.</p>
+      <p class="reveal" lang="en">That sets the bar for everything on these screens. A number you cannot verify is worth nothing: a person needs to see not only what was taken, but what is left after it and what the amount is made of. And on the other side of every manual correction sits a real person in the office, so this case has two halves, a phone and a browser, and they show the same operation.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-one" data-nav="Один кошелёк" data-nav-en="One wallet">
+    <div class="cs-col" data-fig="Text / One wallet" data-fig-quiet>
+      <h2 id="s-one" class="reveal"><span lang="ru">Предложение, заменившее постановку</span><span lang="en">A proposal that replaced the spec</span></h2>
+      <p class="reveal" lang="ru">Постановка по кошельку ресторана пришла с референсами: скриншоты чужих кошельков и слова «сделай примерно так». Я принял её и начал. Потом предложил другое: к тому моменту кошелёк уже существовал в двух местах экосистемы, баланс водителя в такси и кошелёк курьера, и оба собирал я по одной модели. Вместо третьего по референсам взять эту модель как есть, оставить раскладку и формулировки и поменять только токены цветов.</p>
+      <p class="reveal" lang="en">The spec for the restaurant wallet arrived with references: screenshots of other people’s wallets and the words “make something like this”. I accepted it and started. Then I proposed something else: by that point the wallet already existed in two places in the ecosystem, the driver’s balance in taxi and the courier’s wallet, and I had built both on one model. Instead of a third one built from references, take that model as it is, keep the layout and the wording, and change only the colour tokens.</p>
+      <p class="reveal" lang="ru">Менеджер взяла пару часов, согласовала с заказчиком и вернулась с моим вариантом как утверждённым. Сборка после этого заняла день, максимум два: заготовки уже были.</p>
+      <p class="reveal" lang="en">The manager took a couple of hours, agreed it with the client and came back with my version as the approved one. The build after that took a day, two at most: the parts already existed.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Three wallets"><div class="gal"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Баланс водителя в приложении такси"><img src="../assets/img/money/wallet-taxi.webp?v=346dfa43" width="750" height="1624" alt="Баланс водителя в приложении такси" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Баланс, последние операции, «Вся история».</span><span lang="en">Balance, latest operations, “All history”.</span></figcaption></figure><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Кошелёк курьера"><img src="../assets/img/money/wallet-courier.webp?v=28178e95" width="750" height="1624" alt="Кошелёк курьера" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Та же плашка, те же строки, свои токены.</span><span lang="en">The same card, the same rows, its own tokens.</span></figcaption></figure><figure class="gal__item gal__item--tall"><button class="zoom" type="button" aria-label="Увеличить: Кошелёк ресторана вверху вкладки «Настройки»"><img src="../assets/img/money/wallet-rest.webp?v=f76567a3" width="750" height="2082" alt="Кошелёк ресторана вверху вкладки «Настройки»" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Здесь кошелёк стоит вверху вкладки «Настройки», над разделами.</span><span lang="en">Here the wallet sits at the top of the Settings tab, above the sections.</span></figcaption></figure></div></div>
+    <div class="cs-col" data-fig="Text / One wallet / after" data-fig-quiet>
+      <p class="reveal" lang="ru">Одинаковой во всех трёх остаётся модель, а не картинка: сумма с копейками и круглая «+» рядом, журнал, где каждая строка заканчивается словами «Баланс после», одни и те же названия у одних и тех же операций. Человек, который переходит между двумя приложениями «Локали», не переучивает свои же деньги.</p>
+      <p class="reveal" lang="en">What stays the same across all three is the model, not the picture: an amount with kopecks and a round “+” beside it, a journal where every row ends with “Balance after”, the same names for the same operations. Someone moving between two Lokali apps does not have to relearn their own money.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-debt" data-nav="Долг и остановка" data-nav-en="Debt and the stop">
+    <div class="cs-col" data-fig="Text / Debt" data-fig-quiet>
+      <h2 id="s-debt" class="reveal"><span lang="ru">Три ступени вниз и одна кнопка внизу</span><span lang="en">Three steps down and one button at the bottom</span></h2>
+      <p class="reveal" lang="ru">У счёта не набор состояний, а лестница вниз. В плюсе экран ничего не требует. Ниже порога пополнения он предупреждает заранее, пока смена ещё идёт. В минусе внутри разрешённого лимита сумма краснеет, а строка статуса прямо называет, до какой суммы минус допустим. За лимитом смена закрывается, заказы прекращаются, и остаётся ровно одна главная кнопка, «Пополнить»: предлагать больше нечего. Каждая ступень меняет то, что предлагает экран, и ни на одной человек не гадает, что произошло.</p>
+      <p class="reveal" lang="en">The account is not a set of states but a ladder down. In the black the screen asks for nothing. Below the top-up threshold it warns in advance, while the shift is still running. In the red but inside the allowed limit the amount turns red and the status line names exactly how far into the red you may go. Past the limit the shift closes, orders stop, and exactly one primary button is left, “Top up”: there is nothing else to offer. Every step changes what the screen offers, and on none of them is the person left guessing.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Debt ladder"><div class="gal"><figure class="gal__item gal__item--tall"><button class="zoom" type="button" aria-label="Увеличить: Кошелёк ресторана ниже порога пополнения"><img src="../assets/img/money/state-low-rest.webp?v=a914e501" width="750" height="2082" alt="Кошелёк ресторана ниже порога пополнения" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Баланс ещё в плюсе, предупреждение уже есть.</span><span lang="en">The balance is still in the black, the warning is already there.</span></figcaption></figure><figure class="gal__item gal__item--tall"><button class="zoom" type="button" aria-label="Увеличить: Кошелёк ресторана в минусе внутри разрешённого лимита"><img src="../assets/img/money/state-limit.webp?v=fd4ff1dc" width="750" height="2082" alt="Кошелёк ресторана в минусе внутри разрешённого лимита" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Минус внутри лимита: смена идёт, глубина названа вслух.</span><span lang="en">In the red inside the limit: the shift runs, the depth is named out loud.</span></figcaption></figure><figure class="gal__item gal__item--tall"><button class="zoom" type="button" aria-label="Увеличить: Кошелёк ресторана за лимитом: смена закрыта"><img src="../assets/img/money/state-closed.webp?v=40713fb4" width="750" height="2082" alt="Кошелёк ресторана за лимитом: смена закрыта" loading="lazy" decoding="async"></button><figcaption><span lang="ru">За лимитом: баннер с причиной и единственное главное действие.</span><span lang="en">Past the limit: a banner with the reason and a single primary action.</span></figcaption></figure></div></div>
+    <div class="cs-col" data-fig="Text / Debt / colour" data-fig-quiet>
+      <p class="reveal" lang="ru">Одно решение по самой плашке. Сумма и подпись стоят основным цветом текста, а не акцентным зелёным: зелёный на цветной подложке плохо читается в светлой теме и хуже в тёмной, а цвет подложки сообщение уже несёт. Зелёный оставлен ровно за одним, строкой статуса, которая говорит, что со счётом всё в порядке.</p>
+      <p class="reveal" lang="en">One decision about the card itself. The amount and the label use the primary text colour rather than the accent green: green on a coloured background reads badly in the light theme and worse in the dark one, and the background colour already carries the message. Green is kept for exactly one thing, the status line that says the account is fine.</p>
+      <p class="reveal" lang="ru">Правило родилось на кошельке курьера и до остальных само не доехало. Проходя по трём продуктам ради этой страницы, я нашёл в такси подпись «Баланс», всё ещё привязанную к токену заливки кнопки, который в тёмной теме не осветляется. Двенадцать нод в одном файле, и теперь подпись читается одинаково во всех трёх. Общая модель остаётся общей ровно до тех пор, пока её кто-то сверяет.</p>
+      <p class="reveal" lang="en">The rule was born on the courier wallet and did not travel to the others by itself. Walking through the three products for this page, I found the “Balance” label in taxi still bound to the button-fill token, which does not lighten in the dark theme. Twelve nodes in one file, and now the label reads the same across all three. A shared model stays shared exactly as long as someone keeps checking it.</p>
+      <p class="reveal" lang="ru">Красный при этом дозирован: плашка остаётся нейтральной, краснеет сама сумма, а запрет приходит отдельным баннером под ней. Общий здесь не цвет, а правило чтения.</p>
+      <p class="reveal" lang="en">The red is rationed: the card stays neutral, the amount itself turns red, and the block arrives as a separate banner underneath. What is shared here is not the colour but the rule for reading it.</p>
+      <p class="reveal" lang="ru">И отказ показан там, где человек его встретит. Тот, у кого баланс ниже лимита, не идёт выяснять это в кошелёк, он жмёт «Открыть смену» и получает ответ прямо там, с причиной и суммой. Оставить его только в кошельке значило бы, что о блокировке человек узнаёт уже после попытки работать.</p>
+      <p class="reveal" lang="en">And the refusal is shown where the person will meet it. Someone whose balance is below the limit does not go to the wallet to find out, they tap “Start shift” and the answer comes right there, with the reason and the amount. Leaving it only in the wallet would mean learning about the block after already trying to work.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Refusal"><div class="gal"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Отказ в открытии смены с причиной и суммой"><img src="../assets/img/money/state-refuse.webp?v=04af526f" width="750" height="1624" alt="Отказ в открытии смены с причиной и суммой" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Отказ в точке попытки, а не в разделе, который ещё надо найти.</span><span lang="en">The refusal at the point of the attempt, not in a section you still have to find.</span></figcaption></figure></div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-journal" data-nav="Журнал" data-nav-en="Journal">
+    <div class="cs-col" data-fig="Text / Journal" data-fig-quiet>
+      <h2 id="s-journal" class="reveal"><span lang="ru">Одна строка в журнале и человек, который её сделал</span><span lang="en">One row in the journal and the person who made it</span></h2>
+      <p class="reveal" lang="ru">Каждая строка в журнале заканчивается словами «Баланс после». В этом весь смысл журнала: человек проверяет не операцию, а счёт, сходится ли остаток. Без этого числа каждая строка это отдельный факт, и арифметику приходится держать в голове.</p>
+      <p class="reveal" lang="en">Every row in the journal ends with “Balance after”. That is the whole point of the journal: a person checks the account rather than the operation, whether the remainder adds up. Without that number every row is a separate fact and the arithmetic has to be held in your head.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Journal"><div class="gal"><figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Журнал операций с балансом после каждой строки"><img src="../assets/img/money/journal.webp?v=06eded06" width="750" height="1624" alt="Журнал операций с балансом после каждой строки" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Тип, сумма, номер заказа, баланс после. Фильтры по периоду и типу.</span><span lang="en">Type, amount, order number, balance after. Filters by period and type.</span></figcaption></figure></div></div>
+    <div class="cs-col" data-fig="Text / Journal / desktop" data-fig-quiet>
+      <p class="reveal" lang="ru">Часть строк в этом журнале порождают не заказы. Сторно, пополнение, проведённое в офисе, доначисление, изменение лимита: каждая появляется потому, что оператор открыл браузер и сделал это руками. Это вторая половина кейса и единственный десктоп в моём портфолио. Десктопного канона в файле не было, и я собрал 1440×900 с нуля на тех же токенах, что и приложения.</p>
+      <p class="reveal" lang="en">Some rows in this journal are not created by orders. A reversal, a top-up made in the office, an extra charge, a change of limit: each appears because an operator opened a browser and did it by hand. This is the second half of the case and the only desktop work in my portfolio. There was no desktop standard in the file, so I built 1440×900 from scratch on the same tokens as the apps.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Admin list"><figure class="wide-fig"><button class="zoom" type="button" aria-label="Увеличить: Список кошельков курьеров в админке"><img src="../assets/img/money/admin-list.webp?v=ec05bb31" width="2200" height="1044" alt="Список кошельков курьеров в админке" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Поиск, город, транспорт и состояние, экспорт в Excel, пагинация по 50. Колонка баланса это то, с чего оператор начинает: минусы и есть строки, требующие действия.</span><span lang="en">Search, city, transport and state, export to Excel, pages of 50. The balance column is where the operator starts: the minuses are the rows that need action.</span></figcaption></figure></div>
+    <div class="cs-wide reveal" data-fig="Screen / Admin card"><figure class="wide-fig"><button class="zoom" type="button" aria-label="Увеличить: Карточка курьера в админке"><img src="../assets/img/money/admin-card.webp?v=37857a73" width="2200" height="1044" alt="Карточка курьера в админке" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Сводка и пять ручных операций сверху, ниже действующий тариф, смены и лимит и тот же журнал, что в телефоне, с одной колонкой, которой в телефоне нет: оператор, проведший операцию.</span><span lang="en">The summary and five manual operations at the top, below them the current tariff, shifts and limit, and the same journal as on the phone, with one column the phone does not have: the operator who made the entry.</span></figcaption></figure></div>
+    <div class="cs-col" data-fig="Text / Journal / dialogs" data-fig-quiet>
+      <p class="reveal" lang="ru">Пять действий стоят на карточке одним рядом, и каждое открывает диалог, а не срабатывает сразу. Причина обязательна, это из постановки, а необратимые предупреждают об этом до подтверждения: сторно говорит, что отменить его нельзя, а возврат остатка показывает будущий баланс до нажатия. В шапке диалога стоит имя и табельный номер, так что подтверждаешь операцию по конкретному курьеру, а не по форме вообще.</p>
+      <p class="reveal" lang="en">The five actions sit on the card in one row, and each opens a dialog instead of firing immediately. A reason is required, that came from the spec, and the irreversible ones say so before you confirm: a reversal says it cannot be undone, and the refund shows the resulting balance before you press. The dialog header carries the name and the staff number, so you confirm an operation for a specific courier rather than for a form in general.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Dialogs / Irreversible"><div class="gal gal--pair"><figure class="gal__item gal__item--raw"><button class="zoom" type="button" aria-label="Увеличить: Диалог сторно операции"><img src="../assets/img/money/admin-storno.webp?v=8ecb468c" width="1100" height="793" alt="Диалог сторно операции" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Называет отменяемую операцию, требует причину и прямо говорит, что отменить это нельзя.</span><span lang="en">Names the operation being reversed, requires a reason and says plainly that this cannot be undone.</span></figcaption></figure><figure class="gal__item gal__item--raw"><button class="zoom" type="button" aria-label="Увеличить: Диалог выплаты остатка"><img src="../assets/img/money/admin-refund.webp?v=81f62cce" width="1100" height="1008" alt="Диалог выплаты остатка" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Называет остаток, который получится после возврата, и прямо говорит, кто переводит деньги.</span><span lang="en">Names the balance that will be left after the refund and says plainly who actually moves the money.</span></figcaption></figure></div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-tariff" data-nav="Тариф" data-nav-en="Tariff">
+    <div class="cs-col" data-fig="Text / Tariff" data-fig-quiet>
+      <h2 id="s-tariff" class="reveal"><span lang="ru">Экран, где одно поле касается всех</span><span lang="en">The screen where one field touches everyone</span></h2>
+      <p class="reveal" lang="ru">Те 10% и 30 ₽ из деталки не константы в коде, их задают здесь, на экране тарифа, двумя секциями, потому что моделей две. С заказов еды берут комиссию плюс сервисный сбор. С независимых доставок C2C удерживают всю сумму доставки по ставке, зависящей от типа транспорта: пеший, велосипед, самокат, автомобиль.</p>
+      <p class="reveal" lang="en">That 10% and 30 ₽ from the breakdown are not constants in code, they are set here, on the tariff screen, in two sections, because there are two models. Food orders take a commission plus a service fee. Independent C2C deliveries withhold the whole delivery fee at a rate that depends on the kind of transport: on foot, bicycle, scooter, car.</p>
+      <p class="reveal" lang="ru">Тариф общий, не персональный, и экран говорит об этом строкой над полями: изменения применяются ко всем курьерам. Это важно, потому что больше об этом на экране ничего не сообщает. Оператор, пришедший сюда с карточки конкретного курьера, в одном поле от того, чтобы поменять ставку всему парку, и между этими двумя состояниями стоит только эта фраза.</p>
+      <p class="reveal" lang="en">The tariff is shared, not personal, and the screen says so in a line above the fields: changes apply to all couriers. That matters, because nothing else on the screen says it. An operator who arrived here from one courier’s card is one field away from changing the rate for the whole fleet, and only this sentence stands between those two states.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Tariff"><figure class="wide-fig"><button class="zoom" type="button" aria-label="Увеличить: Настройки кошельков курьеров в админке"><img src="../assets/img/money/wallet-settings.webp?v=41bd0fe9" width="2200" height="1044" alt="Настройки кошельков курьеров в админке" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Значения по умолчанию для всех новых кошельков: минимум пополнения, порог предупреждения и глубина минуса.</span><span lang="en">The defaults for every new wallet: the minimum top-up, the warning threshold and how far into the red it may go.</span></figcaption></figure></div>
+    <div class="cs-wide reveal" data-fig="Dialog / Tariff"><figure class="wide-fig wide-fig--narrow"><button class="zoom" type="button" aria-label="Увеличить: Диалог изменения тарифа"><img src="../assets/img/money/tariff-modal.webp?v=f46f2dd6" width="624" height="640" alt="Диалог изменения тарифа: комиссия, сервисный сбор и ставка C2C" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Две секции по двум моделям, старое и новое значение под каждым полем и строка о том, что тариф общий.</span><span lang="en">Two sections for two models, the old and the new value under every field, and the line saying the tariff is shared.</span></figcaption></figure></div>
+    <div class="cs-col" data-fig="Text / Tariff / cut" data-fig-quiet>
+      <p class="reveal" lang="ru">Часть этого экрана не добавленное, а убранное. Посреди работы пришла ревизия от менеджера: учёта наличных на руках нет, значит лимит наличных уходит; ручной блокировки нет, значит состояние «Заблокирован» рисовать нельзя; партнёрских курьеров в этой версии нет, значит ни колонки, ни фильтра; абонплаты за смену нет; а то, что в постановке звалось «минимумом за доставку», это сервисный сбор, и называться должно так. Макет, который продолжает обещать то, чего в продукте нет, хуже неполного, поэтому всё это вышло.</p>
+      <p class="reveal" lang="en">Part of this screen is not what was added but what was removed. Halfway through, a revision came from the manager: there is no accounting for cash in hand, so the cash limit goes; there is no manual blocking, so the “Blocked” state cannot be drawn; there are no partner couriers in this version, so neither the column nor the filter; there is no shift subscription fee; and what the spec called “delivery minimum” is the service fee and should be named that way. A mockup that keeps promising what the product does not have is worse than an incomplete one, so all of it went out.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-result" data-nav="Итоги" data-nav-en="Outcome">
+    <div class="cs-col" data-fig="Text / Outcome" data-fig-quiet>
+      <h2 id="s-result" class="reveal"><span lang="ru">Что из этого складывается</span><span lang="en">What this adds up to</span></h2>
+      <p class="reveal" lang="ru">Одна модель кошелька, живущая в трёх продуктах; лестница состояний долга, которая всюду читается одинаково; журнал, где каждую строку можно сверить со счётом; и десктопная сторона, где ручные операции и совершаются, с причиной и предупреждением перед необратимыми.</p>
+      <p class="reveal" lang="en">One wallet model living in three products; a ladder of debt states that reads the same everywhere; a journal where every row can be checked against the account; and the desktop side where the manual operations actually happen, with a reason and a warning before the irreversible ones.</p>
+      <p class="reveal" lang="ru">Кошельки курьера и ресторана работают в проде: курьеры выходят на смену по этому балансу, рестораны его пополняют. Такси-часть ещё в активной разработке.</p>
+      <p class="reveal" lang="en">The courier and restaurant wallets are live: couriers start their shifts against this balance and restaurants top it up. The taxi part is still in active development.</p>
+    </div>
+  </section>
+
+  <nav class="cs-next" aria-labelledby="s-next">
+    <div class="cs-col">
+      <h2 id="s-next" class="reveal"><span lang="ru">Другие кейсы</span><span lang="en">Other cases</span></h2>
+    </div>
+    <div class="cs-wide reveal">
+      <div class="cs-next__row">
+          <a href="../taxi/index.html" style="--c: 255 196 0">
+          <span class="nx__meta"><b><span lang="ru">Локали Такси</span><span lang="en">Lokali Taxi</span></b><i><span lang="ru">Два приложения с нуля: для пассажира и для водителя</span><span lang="en">Two apps from scratch: for passengers and for drivers</span></i><span class="nx__tags"><em><span lang="ru">Перед релизом</span><span lang="en">Pre-release</span></em><em>2025–2026</em></span></span>
+          <span class="nx__half"><img src="../assets/img/next/taxi.webp?v=78101285" alt="" width="750" height="880" loading="lazy" decoding="async"></span>
+        </a>
+          <a href="../delivery/index.html" style="--c: 20 184 166">
+          <span class="nx__meta"><b><span lang="ru">Локали Доставка</span><span lang="en">Lokali Delivery</span></b><i><span lang="ru">Редизайн до релиза и статус заказа на экране блокировки</span><span lang="en">Redesign through to release and order status on the lock screen</span></i><span class="nx__tags"><em><span lang="ru">В App Store</span><span lang="en">On the App Store</span></em><em>2025–2026</em></span></span>
+          <span class="nx__half"><img src="../assets/img/next/delivery.webp?v=5f27ae8e" alt="" width="750" height="880" loading="lazy" decoding="async"></span>
+        </a>
+          <a href="https://apps.apple.com/ru/app/id6766522570" target="_blank" rel="noopener" style="--c: 228 52 52">
+          <span class="nx__meta"><b><span lang="ru">Локали Ресторан и Crispy</span><span lang="en">Lokali Restaurant and Crispy</span></b><i><span lang="ru">Приложение для сотрудников и моноапп ресторана-партнёра</span><span lang="en">An app for restaurant staff and a standalone app for a partner restaurant</span></i><span class="nx__tags"><em><span lang="ru">В App Store</span><span lang="en">On the App Store</span></em><em>2025–2026</em></span></span>
+          <span class="nx__half"><img src="../assets/img/next/crispy.webp?v=c3423a87" alt="" width="750" height="880" loading="lazy" decoding="async"></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</main>
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__links">
+      <a class="foot__pill" href="mailto:muhammadgadaev376@gmail.com">muhammadgadaev376@gmail.com</a>
+      <a class="foot__pill" href="https://t.me/creaperson">Telegram</a>
+    </div>
+    <a class="foot__mark" href="../index.html">gadaev</a>
+    <p class="foot__copy">© <span lang="ru">Магомед Гадаев</span><span lang="en">Magomed Gadaev</span>, 2026</p>
+  </div>
+</footer>
+<script src="../assets/site.js?v=2742a618" defer></script>
+<script src="../assets/figma.js?v=7d42030b" defer></script>
+</body>
+</html>
+

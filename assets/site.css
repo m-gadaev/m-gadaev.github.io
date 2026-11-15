@@ -616,7 +616,7 @@ a:hover { text-decoration-thickness: 2px; }
 .gal__item { flex: 0 0 auto; width: var(--scr); margin: 0; display: grid; gap: 12px; scroll-snap-align: center; }
 .gal__item--sheet { width: calc(var(--scr) * 846 / 750); }
 .gal img { display: block; width: 100%; height: auto; }
-.gal__item:not(.gal__item--sheet) img { border-radius: calc(var(--scr) * 0.11); box-shadow: 0 0 0 1px var(--line), 0 16px 40px rgb(0 0 0 / 0.08); }
+.gal__item:not(.gal__item--sheet):not(.gal__item--raw) img { border-radius: calc(var(--scr) * 0.11); box-shadow: 0 0 0 1px var(--line), 0 16px 40px rgb(0 0 0 / 0.08); }
 .gal figcaption { font-size: var(--step-small); line-height: 1.35; color: var(--muted); text-align: center; text-wrap: balance; }
 .gal .zoom { display: block; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: inherit; transition: transform 200ms var(--ease-out); }
 @media (hover: hover) and (pointer: fine) { .gal .zoom:hover { transform: translateY(-4px); } }
@@ -624,7 +624,7 @@ a:hover { text-decoration-thickness: 2px; }
 /* Мини-ряд внутри карточек блока новых возможностей */
 .gal--mini { --scr: 88px; gap: 8px; margin: 8px 0 0; padding: 12px; border-radius: 16px; background: var(--bg); justify-content: flex-start; }
 .gal--mini > :first-child, .gal--mini > :last-child { margin-inline: 0; }
-.gal--mini .gal__item:not(.gal__item--sheet) img { box-shadow: 0 0 0 1px var(--line); }
+.gal--mini .gal__item:not(.gal__item--sheet):not(.gal__item--raw) img { box-shadow: 0 0 0 1px var(--line); }
 .gal__item.only-dark { display: none; }
 :root[data-theme="dark"] .gal__item.only-dark { display: grid; }
 :root[data-theme="dark"] .gal__item.only-light { display: none; }
@@ -641,7 +641,12 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* Процесс: «схема → финал» и широкие карты разбора */
 .gal__item--raw { width: calc(var(--scr) * var(--k, 1)); }
-.gal__item--raw img { border-radius: 12px; }
+.gal__item--raw img { border-radius: 12px; box-shadow: none; }
+/* Длинные экраны живут в обычной рамке телефона, внутренность скроллится */
+.gal__item--tall .zoom { aspect-ratio: 750 / 1624; overflow-y: auto; overflow-x: hidden; border-radius: calc(var(--scr) * 0.11); box-shadow: 0 0 0 1px var(--line), 0 16px 40px rgb(0 0 0 / 0.08); scrollbar-width: none; }
+.gal__item--tall .zoom::-webkit-scrollbar { display: none; }
+.gal__item--tall .zoom img { border-radius: 0; box-shadow: none; }
+@media (pointer: fine) { .gal__item--tall .zoom { overscroll-behavior: contain; } }
 .gal--evo { align-items: center; }
 .gal__arrow { flex: 0 0 auto; width: 40px; height: 2px; background: var(--muted); position: relative; opacity: .6; }
 .gal__arrow::after { content: ""; position: absolute; right: -1px; top: 50%; width: 10px; height: 10px; border-top: 2px solid var(--muted); border-right: 2px solid var(--muted); translate: 0 -50%; rotate: 45deg; }
@@ -867,14 +872,17 @@ a:hover { text-decoration-thickness: 2px; }
 @media (prefers-reduced-motion: reduce) { .layers, .layers__item, .layers__tick { transition: none; } }
 
 /* Обложка кейса денег: окно оператора и телефон курьера внахлёст */
-.cs-cover--desk { display: block; }
+.cs-cover--desk { display: block; min-height: 0; padding-bottom: clamp(92px, 8vw, 116px); }
+.wide-fig--narrow { width: min(100%, 624px); margin-inline: auto; }
 .cs-desk { position: relative; width: min(100%, 860px); margin: 0 auto; padding-right: clamp(0px, 5vw, 60px); }
 .win { display: block; border-radius: 14px; overflow: hidden; background: var(--bg); box-shadow: 0 0 0 1px var(--line), 0 30px 70px -20px rgb(0 0 0 / 0.3); }
 .win__bar { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 12px; background: var(--surface); border-bottom: 1px solid var(--line); }
 .win__bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); opacity: 0.4; }
 .win img { display: block; width: 100%; height: auto; }
-.cs-desk .phone { position: absolute; right: 0; bottom: -9%; width: clamp(104px, 15vw, 172px); aspect-ratio: 750 / 1624; }
+.cs-desk .phone { position: absolute; right: 0; bottom: -9%; width: clamp(104px, 15vw, 172px); aspect-ratio: auto; }
+.cs-desk .phone__screen { height: auto; aspect-ratio: 750 / 1624; }
 .cs-desk .phone__screen { background: var(--surface); }
+.cs-desk .phone img { object-fit: cover; }
 .cs-desk .phone img { display: block; width: 100%; height: auto; }
 @media (max-width: 860px) { .cs-desk { padding-right: 0; } .cs-desk .phone { right: -6px; bottom: -12%; width: 92px; } }
 /* Пара горизонтальных диалогов: в колонке 248 px они нечитаемы */
