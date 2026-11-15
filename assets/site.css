@@ -463,7 +463,8 @@ a:hover { text-decoration-thickness: 2px; }
 .cs-next { padding-block: clamp(64px, 8vw, 120px); }
 .cs-next h2 { font-size: var(--step-head); margin-bottom: 24px; }
 .cs-next__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto auto auto; gap: 8px; }
-.cs-next__row a { grid-row: span 3; position: relative; overflow: hidden; isolation: isolate; border-radius: var(--radius); background: var(--surface); color: var(--ink); text-decoration: none; display: grid; grid-template-columns: 1fr 35%; grid-template-rows: subgrid; transition: translate 300ms var(--ease-out); }
+.nx__frame { grid-row: span 3; display: grid; grid-template-rows: subgrid; }
+.cs-next__row a { grid-row: 1 / -1; position: relative; overflow: hidden; isolation: isolate; border-radius: var(--radius); background: var(--surface); color: var(--ink); text-decoration: none; display: grid; grid-template-columns: 1fr 35%; grid-template-rows: subgrid; transition: translate 300ms var(--ease-out); }
 .cs-next__row a::after { content: ""; position: absolute; inset: auto -20% -70% -20%; height: 100%; z-index: 0; background: radial-gradient(closest-side, rgb(var(--c) / 0.3), rgb(var(--c) / 0)); } /* taste-skill-ignore: цвет продукта */
 .nx__meta { grid-column: 1; grid-row: 1 / -1; position: relative; z-index: 2; display: grid; grid-template-rows: subgrid; align-content: start; gap: 7px; padding: 24px 10px 26px 24px; }
 .nx__meta b { font-weight: 600; font-size: 1.125rem; line-height: 1.2; align-self: start; }
@@ -547,6 +548,7 @@ a:hover { text-decoration-thickness: 2px; }
   .pair__legend > span:first-child { grid-column: 1; }
   .cs-stats { grid-template-columns: 1fr; }
   .cs-next__row { grid-template-columns: 1fr; grid-template-rows: none; }
+  .nx__frame { grid-row: auto; display: block; }
   .cs-next__row a { grid-row: auto; grid-template-rows: auto auto auto; grid-template-columns: 1fr 34%; }
   .nx__meta { grid-template-rows: auto auto auto; padding: 18px 8px 20px 18px; }
   .nx__meta b { font-size: 1rem; }
@@ -865,3 +867,19 @@ a:hover { text-decoration-thickness: 2px; }
 .readbar { position: fixed; left: 0; top: 0; z-index: 60; height: 2px; width: 100%; transform: scaleX(var(--p, 0)); transform-origin: left; background: #FFC400; pointer-events: none; }
 @media (min-width: 1100px) and (hover: hover) { .readbar { display: none; } }
 @media (prefers-reduced-motion: reduce) { .layers, .layers__item, .layers__tick { transition: none; } }
+
+/* Обложка кейса денег: окно оператора и телефон курьера внахлёст */
+.cs-cover--desk { display: block; }
+.cs-desk { position: relative; width: min(100%, 860px); margin: 0 auto; padding-right: clamp(0px, 5vw, 60px); }
+.win { display: block; border-radius: 14px; overflow: hidden; background: var(--bg); box-shadow: 0 0 0 1px var(--line), 0 30px 70px -20px rgb(0 0 0 / 0.3); }
+.win__bar { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 12px; background: var(--surface); border-bottom: 1px solid var(--line); }
+.win__bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); opacity: 0.4; }
+.win img { display: block; width: 100%; height: auto; }
+.cs-desk .phone { position: absolute; right: 0; bottom: -9%; width: clamp(104px, 15vw, 172px); aspect-ratio: 750 / 1624; }
+.cs-desk .phone__screen { background: var(--surface); }
+.cs-desk .phone img { display: block; width: 100%; height: auto; }
+@media (max-width: 860px) { .cs-desk { padding-right: 0; } .cs-desk .phone { right: -6px; bottom: -12%; width: 92px; } }
+/* Пара горизонтальных диалогов: в колонке 248 px они нечитаемы */
+.gal--pair { --scr: 340px; align-items: flex-start; }
+.gal--pair .gal__item--raw { width: var(--scr); }
+@media (max-width: 760px) { .gal--pair { --scr: 260px; } }
