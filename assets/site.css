@@ -345,10 +345,14 @@ a:hover { text-decoration-thickness: 2px; }
 .ui-wallet__state { font-size: 13px; color: #55555C; min-height: 2.6em; }
 
 /* Ресторан и Crispy */
-.ui-order { display: grid; grid-template-columns: auto auto auto; align-items: center; gap: 18px; }
-.ui-order__guest, .ui-order__kitchen { display: grid; gap: 8px; justify-items: start; }
+.ui-order { display: grid; grid-template-columns: auto auto auto; grid-template-rows: auto auto; align-items: center; column-gap: 18px; row-gap: 8px; }
+.ui-order__guest, .ui-order__kitchen { display: contents; }
+.ui-order__guest > * { grid-column: 1; justify-self: start; }
+.ui-order__kitchen > * { grid-column: 3; justify-self: start; }
+.ui-order > * > .ui-order__cap { grid-row: 1; }
+.ui-order > * > :not(.ui-order__cap) { grid-row: 2; }
 .ui-order__cap { font-size: 12px; color: var(--muted); }
-.ui-order__arrow { width: 28px; height: 2px; background: var(--soft); position: relative; }
+.ui-order__arrow { grid-column: 2; grid-row: 2; width: 28px; height: 2px; background: var(--soft); position: relative; }
 .ui-order__arrow::after { content: ""; position: absolute; right: -1px; top: -4px; width: 8px; height: 8px; border-top: 2px solid var(--soft); border-right: 2px solid var(--soft); transform: rotate(45deg); }
 .ui-order__card { display: grid; grid-template-columns: 40px 1fr; grid-template-rows: auto auto; column-gap: 12px; row-gap: 4px; align-items: center; padding: 14px 16px; width: 230px; border-radius: 16px; background: #fff; box-shadow: 0 20px 50px -24px rgb(0 0 0 / 0.3); } /* taste-skill-ignore: тень внутри макета продукта (data-ui) */
 .ui-order__icon { grid-row: span 2; width: 40px; height: 40px; border-radius: 12px; background: #F1F1EF; display: grid; place-items: center; }
@@ -902,6 +906,12 @@ a:hover { text-decoration-thickness: 2px; }
 .cs-trio > :nth-child(2) { translate: 0 -6%; }
 @media (max-width: 560px) { .cs-trio .phone { --r: 18px; --pad: 2px; } }
 .gal--sheets { --scr: clamp(260px, 32vw, 440px); }
+/* Карточка Crispy: демка рядом с роликом */
+.case__demo--duo { padding-bottom: clamp(40px, 5vw, 64px); }
+.case__duo { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: clamp(20px, 4vw, 56px); justify-items: center; }
+.case__duo-demo { display: grid; justify-items: center; }
+.case__duo .phone--video { --r: 30px; --pad: 4px; width: clamp(150px, 17vw, 204px); }
+@media (max-width: 760px) { .case__duo { grid-template-columns: 1fr; gap: 26px; } .case__duo .phone--video { width: clamp(150px, 42vw, 190px); } }
 .cs-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 56px); justify-items: center; }
 .cs-duo__item { margin: 0; width: 100%; display: grid; justify-items: center; gap: 14px; max-width: 300px; }
 .cs-duo .phone--video { --r: 34px; --pad: 4px; width: 100%; }
