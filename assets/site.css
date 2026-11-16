@@ -908,6 +908,10 @@ a:hover { text-decoration-thickness: 2px; }
 .gal--sheets { --scr: clamp(260px, 32vw, 440px); }
 /* Карточка Crispy: демка рядом с роликом */
 .case__demo--duo { padding-bottom: clamp(40px, 5vw, 64px); }
+.case__demo--peek { display: grid; justify-items: center; padding-bottom: clamp(32px, 4vw, 56px); }
+.case__demo--peek .phone { --r: 26px; --pad: 3px; width: clamp(150px, 16vw, 184px); aspect-ratio: auto; }
+.case__demo--peek .phone__screen { height: auto; aspect-ratio: 375 / 812; background: var(--surface); }
+.case__demo--peek .phone img { display: block; width: 100%; height: auto; }
 .case__duo { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: clamp(20px, 4vw, 56px); justify-items: center; }
 .case__duo-demo { display: grid; justify-items: center; }
 .case__duo .phone--video { --r: 30px; --pad: 4px; width: clamp(150px, 17vw, 204px); }
