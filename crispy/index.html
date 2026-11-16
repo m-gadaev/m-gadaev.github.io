@@ -66,20 +66,27 @@
         </dl>
       </div>
     </div>
-    <div class="wrap" data-fig="Cover · Crispy">
-      <div class="cs-cover cs-cover--trio reveal" style="--d:160ms">
-        <div class="cs-trio">
-          <div class="phone"><div class="phone__screen">
-            <img src="../assets/img/crispy/point-open.webp?v=87b53498" width="750" height="1624" alt="Карточка точки самовывоза на карте" loading="eager" decoding="async"><span class="phone__island" aria-hidden="true"></span>
-          </div></div>
-          <div class="phone"><div class="phone__screen">
-            <img src="../assets/img/crispy/home.webp?v=c6e566d7" width="750" height="1624" alt="Главный экран Crispy с баннером и лентой блюд" loading="eager" decoding="async"><span class="phone__island" aria-hidden="true"></span>
-          </div></div>
-          <div class="phone"><div class="phone__screen">
-            <img src="../assets/img/crispy/cover-pickup.webp?v=09ec2429" width="750" height="1624" alt="Оформление самовывоза: тип выдачи и время" loading="eager" decoding="async"><span class="phone__island" aria-hidden="true"></span>
+    <div class="wrap" data-fig="Cover · trailer">
+      <div class="cs-cover cs-cover--trailer reveal" style="--d:160ms" data-trailer>
+        <div class="cs-cover__bg" aria-hidden="true"></div>
+        <ol class="cs-chapters" aria-label="Главы ролика" data-chapters>
+          <li><button type="button" data-t="0"><span lang="ru">Запуск</span><span lang="en">Launch</span></button></li>
+          <li><button type="button" data-t="3.3"><span lang="ru">Лента</span><span lang="en">Feed</span></button></li>
+          <li><button type="button" data-t="5.83"><span lang="ru">Корзина</span><span lang="en">Cart</span></button></li>
+          <li><button type="button" data-t="8.67"><span lang="ru">Оформление</span><span lang="en">Checkout</span></button></li>
+          <li><button type="button" data-t="12.87"><span lang="ru">Время выдачи</span><span lang="en">Handover time</span></button></li>
+          <li><button type="button" data-t="15.6"><span lang="ru">Точки</span><span lang="en">Points</span></button></li>
+          <li><button type="button" data-t="17.6"><span lang="ru">Другой ресторан</span><span lang="en">Another restaurant</span></button></li>
+        </ol>
+        <div class="cs-cover__phone">
+          <div class="phone phone--video"><div class="phone__screen">
+            <video muted playsinline loop preload="metadata" poster="../assets/img/crispy/trailer-poster.webp?v=7810a8c8" aria-label="Ролик: путь заказа в Crispy от заставки до выбора точки самовывоза">
+              <source src="../assets/video/crispy-trailer.mp4?v=6a31a10f" type="video/mp4">
+            </video>
+            <span class="phone__island" aria-hidden="true"></span>
           </div></div>
         </div>
-        <p class="cs-cover__note"><span lang="ru">Один ресторан вместо каталога: точка, лента, оформление</span><span lang="en">One restaurant instead of a catalogue: the point, the feed, the checkout</span></p>
+        <p class="cs-cover__note" data-chapter-now><span lang="ru">Путь заказа: от заставки до выбора точки</span><span lang="en">The order journey: from the splash to choosing a point</span></p>
       </div>
     </div>
   </section>
