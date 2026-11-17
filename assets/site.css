@@ -220,7 +220,7 @@ a:hover { text-decoration-thickness: 2px; }
   background: radial-gradient(580px circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.05), transparent 72%); /* taste-skill-ignore */
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.075); /* taste-skill-ignore */
 }
-.case__head { display: grid; gap: 16px; align-content: start; }
+.case__head { position: relative; z-index: 1; display: grid; gap: 16px; align-content: start; }
 .case h3 { font-size: var(--step-head); max-width: 18em; line-height: 1.1; }
 .case h3 .soft { color: var(--ink); }
 /* Название продукта в цвете продукта; цвета подобраны под контраст в каждой теме */
@@ -238,8 +238,8 @@ a:hover { text-decoration-thickness: 2px; }
   transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out); }
 .chip-link svg { width: 13px; height: 13px; transition: transform 200ms var(--ease-out); }
 @media (hover: hover) and (pointer: fine) { .chip-link a:hover { background: var(--ink); color: var(--bg); } .chip-link a:hover svg { transform: translate(1px, -1px); } }
-.case__demo { display: grid; place-items: center; padding-bottom: 56px; }
-.case__open { position: absolute; right: clamp(24px, 3.4vw, 48px); bottom: clamp(24px, 3.4vw, 48px); background: var(--bg); }
+.case__demo { position: relative; z-index: 1; display: grid; place-items: center; padding-bottom: 56px; }
+.case__open { position: absolute; z-index: 2; right: clamp(24px, 3.4vw, 48px); bottom: clamp(24px, 3.4vw, 48px); background: var(--bg); }
 .case__open:hover { background: var(--ink); color: var(--bg); }
 
 /* Карточка такси: карта растворяется слева, телефон справа выходит за верх карточки */
@@ -597,7 +597,7 @@ a:hover { text-decoration-thickness: 2px; }
   .case--taxi .case__head { max-width: none; }
   /* На телефоне мокап целиком не помещается в экран вместе с заголовком: показываем нижнюю часть —
      конец маршрута и шторку с ценой, верх растворяется. Вся карточка влезает в один экран */
-  .case__demo.case__demo--phone { position: static; margin: 0; padding: 0 0 60px; height: 400px; overflow: hidden; display: flex; justify-content: center; align-items: flex-end;
+  .case__demo.case__demo--phone { position: relative; margin: 0; padding: 0 0 60px; height: 400px; overflow: hidden; display: flex; justify-content: center; align-items: flex-end;
     -webkit-mask-image: linear-gradient(to bottom, transparent, #000 28%); mask-image: linear-gradient(to bottom, transparent, #000 28%); } /* taste-skill-ignore: растворение верха мокапа */
   .case__demo--phone .phone { width: 236px; flex: none; }
   .phone { width: 270px; }
@@ -616,6 +616,7 @@ a:hover { text-decoration-thickness: 2px; }
   .ui-order__kitchen > .ui-order__cap { grid-row: 4; }
   .ui-order__kitchen > :not(.ui-order__cap) { grid-row: 5; }
   .ui-order__card { width: min(230px, 100%); }
+  .cs-cover__route, .deliv-deco { display: none; } /* декор уходит под мокап, а мокап на мобилке растворяется по краю */
   .bar__in { height: 60px; }
   .bar__mid { display: none; }
 }
