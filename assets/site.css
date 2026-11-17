@@ -608,8 +608,14 @@ a:hover { text-decoration-thickness: 2px; }
   .case { min-height: 0; }
   .how__item { grid-template-columns: 1fr; }
   .case__demo { padding-bottom: 72px; }
-  .ui-order { grid-template-columns: 1fr; justify-items: center; }
-  .ui-order__arrow { transform: rotate(90deg); }
+  .ui-order { grid-template-columns: minmax(0, 1fr); grid-template-rows: repeat(5, auto); justify-items: center; row-gap: 6px; }
+  .ui-order__guest > *, .ui-order__kitchen > * { grid-column: 1; justify-self: center; }
+  .ui-order__guest > .ui-order__cap { grid-row: 1; }
+  .ui-order__guest > :not(.ui-order__cap) { grid-row: 2; }
+  .ui-order__arrow { grid-column: 1; grid-row: 3; justify-self: center; margin: 14px 0; transform: rotate(90deg); }
+  .ui-order__kitchen > .ui-order__cap { grid-row: 4; }
+  .ui-order__kitchen > :not(.ui-order__cap) { grid-row: 5; }
+  .ui-order__card { width: min(230px, 100%); }
   .bar__in { height: 60px; }
   .bar__mid { display: none; }
 }
