@@ -226,10 +226,10 @@ a:hover { text-decoration-thickness: 2px; }
 /* Название продукта в цвете продукта; цвета подобраны под контраст в каждой теме */
 .case h3 > span { color: var(--title, var(--ink)); }
 .case--taxi { --title: #F5B800; }  .case--delivery { --title: #0F8F82; }  .case--wallet { --title: #3B6FB6; }
-.case--food { --title: #D62F2F; }  .case--rim { --title: #D45200; }
+.case--food { --title: #D62F2F; }  .case--rim { --title: #D45200; }  .case--rest { --title: #0E8C6B; }
 :root[data-theme="dark"] .case--taxi { --title: #FFC400; }  :root[data-theme="dark"] .case--delivery { --title: #2DD4BF; }
 :root[data-theme="dark"] .case--wallet { --title: #7FA8E8; }  :root[data-theme="dark"] .case--food { --title: #FF6464; }
-:root[data-theme="dark"] .case--rim { --title: #FF8A3D; }
+:root[data-theme="dark"] .case--rim { --title: #FF8A3D; }  :root[data-theme="dark"] .case--rest { --title: #34D399; }
 .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .chips li { padding: 6px 12px; border-radius: 999px; background: var(--bg); font-size: 13px; line-height: 1.2; color: var(--muted); }
 /* Плашка-ссылка на стор: тот же вид, но тёмный текст, стрелка и отклик на наведение — видно, что нажимается */
@@ -953,3 +953,19 @@ a:hover { text-decoration-thickness: 2px; }
 .gal--pair { --scr: 340px; align-items: flex-start; }
 .gal--pair .gal__item--raw { width: var(--scr); }
 @media (max-width: 760px) { .gal--pair { --scr: 260px; } }
+
+/* Кейс «Локали Ресторан»: обложка из двух телефонов, доставка и заказы рядом */
+.cs--rest { --title: #0E8C6B; --glow: 16 185 129; }
+:root[data-theme="dark"] .cs--rest { --title: #34D399; }
+.cs-cover--pair { display: block; min-height: 0; padding-bottom: clamp(92px, 8vw, 116px); }
+.cs-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(18px, 4vw, 64px); justify-items: center; align-items: start; width: min(100%, 680px); margin: 0 auto; }
+.cs-pair__item { width: 100%; display: grid; justify-items: center; }
+.cs-pair .phone { --r: 38px; --pad: 5px; width: min(100%, 272px); aspect-ratio: auto; }
+.cs-pair .phone__screen { height: auto; aspect-ratio: 375 / 812; background: var(--surface); }
+.cs-pair .phone img { display: block; width: 100%; height: auto; }
+.cs-pair__item:last-child { margin-top: clamp(20px, 4vw, 56px); }
+@media (max-width: 860px) {
+  .cs-pair { gap: 14px; }
+  .cs-pair .phone { --r: 26px; --pad: 3px; }
+  .cs-pair__item:last-child { margin-top: 28px; }
+}

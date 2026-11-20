@@ -1,0 +1,221 @@
+<!doctype html>
+<html class="fig" lang="ru" data-lang="ru" data-title-ru="Локали Ресторан | Кейс" data-title-en="Lokali Restaurant | Case Study">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Локали Ресторан | Кейс</title>
+<meta name="description" content="Приложение зала и кухни: три схемы тарифа доставки с пересчётом примерами, информер в настройках, тип выдачи на карточке заказа и меню со стоп-листом.">
+<meta name="theme-color" content="#19191B">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="alternate icon" type="image/webp" href="../assets/img/portrait-studio.webp?v=57e02b39">
+<link rel="preload" href="../assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="../assets/site.css?v=51813287">
+<link rel="stylesheet" href="../assets/figma.css?v=4b697b03">
+<script>
+// Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
+(function () {
+  var d = document.documentElement, s = {};
+  try { s.theme = localStorage.getItem('theme'); s.lang = localStorage.getItem('lang'); } catch (e) {}
+  var theme = s.theme || 'dark';
+  var lang = s.lang || ((navigator.language || 'ru').slice(0, 2) === 'ru' ? 'ru' : 'en');
+  d.dataset.theme = theme; d.dataset.lang = lang; d.lang = lang;
+  if (lang === 'en' && d.dataset.titleEn) document.title = d.dataset.titleEn;
+  try { if (localStorage.getItem('fig-clean') === '1') d.classList.add('fig-clean'); } catch (e) {}
+  d.classList.add('js');
+})();
+</script>
+</head>
+
+<body class="cs cs--rest">
+<header class="bar">
+  <div class="bar__in">
+    <a class="wordmark" href="../index.html">gadaev</a>
+    <div class="bar__mid" data-bar-tabs aria-hidden="true"></div>
+    <div class="bar__end">
+      <div class="bar__settings" role="group" aria-label="Язык и тема / Language and theme">
+      <button type="button" class="set-btn set-btn--text" data-toggle-lang aria-label="Switch to English / Переключить на русский"><span lang="ru">EN</span><span lang="en">RU</span></button>
+      <button type="button" class="set-btn" data-toggle-theme aria-label="Сменить тему / Toggle theme">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      </div>
+      <a class="icon-btn" href="https://t.me/creaperson" aria-label="Telegram" title="Telegram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.54 21.69a.5.5 0 0 0 .94-.03l6.5-19a.5.5 0 0 0-.64-.63l-19 6.5a.5.5 0 0 0-.02.93l7.93 3.18a2 2 0 0 1 1.11 1.11z"/><path d="m21.85 2.15-10.94 10.94"/></svg>
+      </a>
+      <a class="icon-btn icon-btn--dark" href="../assets/gadaev-cv.pdf?v=f227ba24" aria-label="Резюме, PDF / CV, PDF" title="CV, PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="cs-hero__grid">
+      <a class="cs-back" href="../index.html#work"><span lang="ru">← Все работы</span><span lang="en">← All work</span></a>
+      <div class="cs-hero__text" data-fig="Header" data-fig-quiet>
+        <h1 class="reveal"><span class="cs-name"><span lang="ru">Локали Ресторан</span><span lang="en">Lokali Restaurant</span></span><span class="cs-tail"><span lang="ru">Приложение зала и кухни: тариф доставки, тип выдачи и меню</span><span lang="en">The app for the floor and the kitchen: delivery pricing, handover type and menu</span></span></h1>
+        <dl class="facts reveal" style="--d:80ms">
+          <div><dt><span lang="ru">Роль</span><span lang="en">Role</span></dt><dd><span lang="ru">Продуктовый дизайнер: тариф доставки целиком, тип выдачи на карточке заказа, переработка меню</span><span lang="en">Product designer: the delivery pricing end to end, the handover type on the order card, the menu rework</span></dd></div>
+          <div><dt><span lang="ru">Объём</span><span lang="en">Scope</span></dt><dd><span lang="ru">Условия и параметры доставки, зона, информер, список и деталка заказа, история, меню и стоп-лист, корзина клиента</span><span lang="en">Delivery terms and parameters, the zone, the informer, the order list and detail, history, menu and stop list, the client’s cart</span></dd></div>
+          <div><dt><span lang="ru">Платформы</span><span lang="en">Platforms</span></dt><dd><span lang="ru">iOS и Android</span><span lang="en">iOS and Android</span></dd></div>
+          <div><dt><span lang="ru">Статус</span><span lang="en">Status</span></dt><dd><a href="https://apps.apple.com/ru/app/id6766522570" target="_blank" rel="noopener"><span lang="ru">В App Store</span><span lang="en">On the App Store</span></a></dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="wrap" data-fig="Cover">
+      <div class="cs-cover cs-cover--pair reveal" style="--d:160ms">
+        <div class="cs-pair">
+          <div class="cs-pair__item"><div class="phone"><div class="phone__screen">
+            <img src="../assets/img/rest/cover-tariff.webp?v=f27e156b" width="750" height="1624" alt="Экран «Условия доставки»: базовая цена с доплатой за километр и зона на карте" loading="eager" decoding="async"><span class="phone__island" aria-hidden="true"></span>
+          </div></div></div>
+          <div class="cs-pair__item"><div class="phone"><div class="phone__screen">
+            <img src="../assets/img/rest/orders-after.webp?v=2009fcbc" width="750" height="1624" alt="Список заказов с метками «С собой» и «В ресторане»" loading="eager" decoding="async"><span class="phone__island" aria-hidden="true"></span>
+          </div></div></div>
+        </div>
+        <p class="cs-cover__note"><span lang="ru">Ресторан задаёт правила доставки, смена видит тип выдачи</span><span lang="en">The restaurant sets the delivery rules, the shift sees the handover type</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-context" data-nav="Контекст" data-nav-en="Context">
+    <div class="cs-col" data-fig="Text / Context" data-fig-quiet>
+      <h2 id="s-context" class="reveal"><span lang="ru">Приложение, в котором работает смена</span><span lang="en">The app a shift works in</span></h2>
+      <p class="reveal" lang="ru">Локали Ресторан стоит на стороне партнёра: зал и кухня принимают заказы, ведут меню и настраивают доставку. Заказы приходят с двух сторон, из Локали Еды и из моноаппов вроде Crispy, поэтому правка здесь видна сразу в нескольких продуктах.</p>
+      <p class="reveal" lang="en">Lokali Restaurant sits on the partner’s side: the floor and the kitchen take orders, keep the menu and set up delivery. Orders arrive from two directions, from Lokali Food and from single-restaurant apps like Crispy, so a change here shows up in several products at once.</p>
+      <p class="reveal" lang="ru">Три мои задачи в нём: тариф доставки для ресторанов со своими курьерами, тип выдачи на карточке заказа и переработка меню.</p>
+      <p class="reveal" lang="en">Three tasks of mine here: delivery pricing for restaurants with their own couriers, the handover type on the order card, and the menu rework.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-tariff" data-nav="Тариф" data-nav-en="Pricing">
+    <div class="cs-col" data-fig="Text / Pricing" data-fig-quiet>
+      <h2 id="s-tariff" class="reveal"><span lang="ru">Три схемы вместо одной цены</span><span lang="en">Three schemes instead of one price</span></h2>
+      <p class="reveal" lang="ru">У ресторанов со своими курьерами доставку считает не Локали, а сам ресторан. Кто-то считает за километр, кто-то от суммы заказа, кто-то держит базовую цену и добавляет за расстояние сверх порога. Нужны были все три, и так, чтобы выбор не требовал объяснений.</p>
+      <p class="reveal" lang="en">For restaurants with their own couriers, delivery is priced by the restaurant, not by Lokali. Some charge per kilometre, some by order total, some keep a base price and add a surcharge past a threshold. All three were needed, and the choice had to work without explanation.</p>
+      <p class="reveal" lang="ru">Схемы собраны карточками: название, строчка о том, от чего зависит цена, и два действия. «Выбрать» для тех, кто уже знает, «Подробнее» для остальных. Пока схема не выбрана и значения не заполнены, сохранить нельзя, и это написано под кнопкой, а не всплывает ошибкой после нажатия.</p>
+      <p class="reveal" lang="en">The schemes are cards: a name, one line on what the price depends on, and two actions. “Choose” for those who already know, “Details” for everyone else. Until a scheme is picked and filled in, saving is off, and that is written under the button rather than thrown as an error after the tap.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Pricing"><div class="gal">
+      <figure class="gal__item gal__item--tall" style="--pin-top: 5.908%; --pin-bot: 0"><button class="zoom" type="button" aria-label="Увеличить: Выбор схемы расчёта доставки: три карточки"><span class="shot__scroll"><img src="../assets/img/rest/tariff-chooser.webp?v=b51eae86" width="750" height="1828" alt="Выбор схемы расчёта доставки: три карточки" loading="lazy" decoding="async"></span><span class="shot__pin shot__pin--top"><img src="../assets/img/rest/tariff-chooser.webp?v=b51eae86" width="750" height="1828" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></button><figcaption><span lang="ru">Выбор схемы: за км, от суммы заказа, базовая цена с доплатой.</span><span lang="en">Choosing a scheme: per km, by order total, base price plus a surcharge.</span></figcaption></figure>
+      <figure class="gal__item gal__item--tall" style="--pin-top: 5.708%; --pin-bot: 0"><button class="zoom" type="button" aria-label="Увеличить: Схема «За км»: 35 ₽ за километр и зона доставки"><span class="shot__scroll"><img src="../assets/img/rest/tariff-km.webp?v=544658e2" width="750" height="1892" alt="Схема «За км»: 35 ₽ за километр и зона доставки" loading="lazy" decoding="async"></span><span class="shot__pin shot__pin--top"><img src="../assets/img/rest/tariff-km.webp?v=544658e2" width="750" height="1892" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></button><figcaption><span lang="ru">«За км»: одна цифра и зона доставки на карте.</span><span lang="en">“Per km”: one figure and the delivery zone on the map.</span></figcaption></figure>
+      <figure class="gal__item gal__item--tall" style="--pin-top: 5.708%; --pin-bot: 0"><button class="zoom" type="button" aria-label="Увеличить: Схема «От суммы заказа»: три ступени"><span class="shot__scroll"><img src="../assets/img/rest/tariff-sum.webp?v=13bf85ba" width="750" height="1892" alt="Схема «От суммы заказа»: три ступени" loading="lazy" decoding="async"></span><span class="shot__pin shot__pin--top"><img src="../assets/img/rest/tariff-sum.webp?v=13bf85ba" width="750" height="1892" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></button><figcaption><span lang="ru">«От суммы заказа»: ровно три ступени, последняя бесплатная.</span><span lang="en">“By order total”: exactly three tiers, the last one free.</span></figcaption></figure>
+      <figure class="gal__item gal__item--tall" style="--pin-top: 5.708%; --pin-bot: 0"><button class="zoom" type="button" aria-label="Увеличить: Схема «Базовая цена плюс доплата за километр сверх порога»"><span class="shot__scroll"><img src="../assets/img/rest/tariff-base.webp?v=ffa30c3c" width="750" height="1892" alt="Схема «Базовая цена плюс доплата за километр сверх порога»" loading="lazy" decoding="async"></span><span class="shot__pin shot__pin--top"><img src="../assets/img/rest/tariff-base.webp?v=ffa30c3c" width="750" height="1892" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></button><figcaption><span lang="ru">«Базовая плюс доплата»: порог, доплата и пересчёт примерами.</span><span lang="en">“Base plus surcharge”: the threshold, the surcharge and worked examples.</span></figcaption></figure>
+    </div></div>
+    <div class="cs-col" data-fig="Text / Pricing / examples" data-fig-quiet>
+      <p class="reveal" lang="ru">На экране каждой схемы я добавил пересчёт примерами: не только поля ввода, но и готовые строки вида «4 км, 155 ₽». В ТЗ этого не было. Человек видит, во что превращаются его цифры, до того как сохранит тариф, и не проверяет это потом на живом заказе.</p>
+      <p class="reveal" lang="en">On each scheme’s screen I added worked examples: not just the input fields, but ready lines like “4 km, 155 ₽”. The brief did not ask for them. People see what their numbers turn into before they save, instead of checking it later on a live order.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Parameters"><div class="gal">
+      <figure class="gal__item gal__item--tall" style="--pin-top: 5.243%; --pin-bot: 0"><button class="zoom" type="button" aria-label="Увеличить: Параметры доставки: минимальный заказ, время, схема и зона"><span class="shot__scroll"><img src="../assets/img/rest/delivery-params.webp?v=cdc75710" width="750" height="2060" alt="Параметры доставки: минимальный заказ, время, схема и зона" loading="lazy" decoding="async"></span><span class="shot__pin shot__pin--top"><img src="../assets/img/rest/delivery-params.webp?v=cdc75710" width="750" height="2060" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></button><figcaption><span lang="ru">Параметры доставки собраны на одном экране, вместе с зоной.</span><span lang="en">The delivery parameters on one screen, the zone included.</span></figcaption></figure>
+    </div></div>
+    <div class="cs-col" data-fig="Text / Informer" data-fig-quiet>
+      <h2 class="reveal"><span lang="ru">Где показать, что тариф стоит по умолчанию</span><span lang="en">Where to show that the pricing is still the default</span></h2>
+      <p class="reveal" lang="ru">У ресторанов со своими курьерами тариф уже стоял, такой же, как в Локали Доставке, и доставка работала с первого дня. Нужно было мягко сказать об этом, без дедлайнов и угроз. Место ПМ оставила за мной: главный экран, настройки или оба.</p>
+      <p class="reveal" lang="en">Restaurants with their own couriers already had pricing in place, the same as in Lokali Delivery, and delivery worked from day one. It had to be said gently, with no deadlines and no threats. The PM left the placement to me: the home screen, the settings, or both.</p>
+      <p class="reveal" lang="ru">Я выбрал только настройки. На главном баннер пришлось бы держать постоянно, занимая заметный кусок экрана у каждой смены. Во вкладке «Настройки» он попадается ровно тогда, когда человек пришёл что-то настраивать, и не требует идти вглубь: открыл вкладку, статус уже виден. Формулировку я тоже поправил: в ТЗ стояло «в Условиях доставки», а раздел в интерфейсе называется «Параметры доставки».</p>
+      <p class="reveal" lang="en">I chose the settings only. On the home screen the banner would have to stay there permanently, taking a visible slice of the screen from every shift. On the “Settings” tab it appears exactly when someone came to set something up, and needs no digging: open the tab and the status is already there. I changed the wording too: the brief said “in Delivery terms”, while the section in the interface is called “Delivery parameters”.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screen / Informer"><div class="gal">
+      <figure class="gal__item gal__item--tall" style="--pin-top: 4.478%; --pin-bot: 0"><button class="zoom" type="button" aria-label="Увеличить: Настройки с баннером о тарифе по умолчанию"><span class="shot__scroll"><img src="../assets/img/rest/informer.webp?v=3e9bd9dd" width="750" height="2412" alt="Настройки с баннером о тарифе по умолчанию" loading="lazy" decoding="async"></span><span class="shot__pin shot__pin--top"><img src="../assets/img/rest/informer.webp?v=3e9bd9dd" width="750" height="2412" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></button><figcaption><span lang="ru">Баннер стоит над «Профилем», первым, что видит человек во вкладке.</span><span lang="en">The banner sits above “Profile”, the first thing on the tab.</span></figcaption></figure>
+    </div></div>
+    <div class="cs-col" data-fig="Text / Cart" data-fig-quiet>
+      <h2 class="reveal"><span lang="ru">Та же задача со стороны клиента</span><span lang="en">The same task from the client’s side</span></h2>
+      <p class="reveal" lang="ru">Настройка ресторана заканчивается строкой в чужом приложении: в корзине Локали Еды. Там же видно, работает ли схема так, как её задумали: при схеме от суммы заказа клиент получает подсказку, сколько осталось добрать до бесплатной доставки.</p>
+      <p class="reveal" lang="en">The restaurant’s setting ends as a line in someone else’s app: the Lokali Food cart. That is also where you see whether the scheme works as intended: with the by-total scheme the client gets a hint on how much is left to free delivery.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Cart"><div class="gal gal--pair">
+      <figure class="gal__item gal__item--raw"><button class="zoom" type="button" aria-label="Увеличить: Низ корзины: доставка 150 ₽ и подсказка о бесплатной доставке"><img src="../assets/img/rest/cart-calc-total.webp?v=64d4fc1d" width="750" height="1002" alt="Низ корзины: доставка 150 ₽ и подсказка о бесплатной доставке" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Схема от суммы: 150 ₽ и строка о том, сколько осталось добрать.</span><span lang="en">The by-total scheme: 150 ₽ and a line on how much is left to add.</span></figcaption></figure>
+      <figure class="gal__item gal__item--raw"><button class="zoom" type="button" aria-label="Увеличить: Низ корзины: базовая стоимость доставки 120 ₽"><img src="../assets/img/rest/cart-noaddr-total.webp?v=9aab717f" width="750" height="1002" alt="Низ корзины: базовая стоимость доставки 120 ₽" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Базовая стоимость тарифа, пока адрес не выбран.</span><span lang="en">The scheme’s base price, while no address is chosen.</span></figcaption></figure>
+    </div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-pickup" data-nav="Тип выдачи" data-nav-en="Handover">
+    <div class="cs-col" data-fig="Text / Handover" data-fig-quiet>
+      <h2 id="s-pickup" class="reveal"><span lang="ru">Тип выдачи доезжает до кухни</span><span lang="en">The handover type reaches the kitchen</span></h2>
+      <p class="reveal" lang="ru">В Crispy гость выбирает, заберёт он заказ с собой или сядет в зале. Этот выбор должен доехать до смены и читаться с одного взгляда: в списке заказов, в истории и на деталке. Макет при этом обязан покрывать iOS и Android.</p>
+      <p class="reveal" lang="en">In Crispy the guest chooses whether to take the order away or eat in. That choice has to reach the shift and read at a glance: in the order list, in the history and on the detail screen. And the design had to cover iOS and Android.</p>
+      <p class="reveal" lang="ru">Метку я положил в уже существующую строку предзаказа, справа. Карточка не выросла ни на пиксель, а в списке появилось то, чего там не было.</p>
+      <p class="reveal" lang="en">I put the label into the pre-order row that was already there, on the right. The card did not grow by a pixel, and the list gained something it did not have.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Handover"><div class="gal">
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Список заказов до правки: иконки без меток типа выдачи"><img src="../assets/img/rest/orders-before.webp?v=84884728" width="750" height="1624" alt="Список заказов до правки: иконки без меток типа выдачи" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Было: тип выдачи на карточке не читался.</span><span lang="en">Before: the handover type was not readable on the card.</span></figcaption></figure>
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Список заказов с метками «С собой» и «В ресторане»"><img src="../assets/img/rest/orders-after.webp?v=2009fcbc" width="750" height="1624" alt="Список заказов с метками «С собой» и «В ресторане»" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Стало: метка справа, в строке предзаказа. Карточка не выросла.</span><span lang="en">After: the label on the right, in the pre-order row. The card did not grow.</span></figcaption></figure>
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: История заказов с метками типа выдачи"><img src="../assets/img/rest/history-after.webp?v=e292a043" width="750" height="1624" alt="История заказов с метками типа выдачи" loading="lazy" decoding="async"></button><figcaption><span lang="ru">В истории метка работает так же, включая отменённые заказы.</span><span lang="en">In the history the label works the same, cancelled orders included.</span></figcaption></figure>
+    </div></div>
+    <div class="cs-col" data-fig="Text / Handover / icon" data-fig-quiet>
+      <p class="reveal" lang="ru">Вариантов карточки я собрал три и показал их ПМ и заказчику вместе, с тем вариантом, который считал верным. Заказчик хотел видеть в левом слоте логотип ресторана. Я предложил оставить там иконку типа заказа: скутер значит доставку, пакет значит самовывоз. Это единственное место на карточке, где статус читается без чтения, и логотип занял бы именно его, а статус пришлось бы добавлять отдельным элементом. Бренд остался чипом рядом с номером заказа. Решение приняли.</p>
+      <p class="reveal" lang="en">I put together three versions of the card and showed them to the PM and the client together, with the one I stood behind. The client wanted the restaurant’s logo in the left slot. I proposed keeping the order-type icon there: a scooter means delivery, a bag means pickup. It is the one place on the card where the status reads without reading, the logo would have taken exactly that place, and the status would then need an element of its own. The brand stayed as a chip next to the order number. The proposal went through.</p>
+      <p class="reveal" lang="ru">Старые заказы и заказы из Локали Еды метку не получают, для доставки поле не применяется. Заказ без интеграции с iiko смена видит, но провести его в iiko не может, поэтому на деталке остаются «Принять заказ» и «Отменить», а из списка то же самое делается свайпом.</p>
+      <p class="reveal" lang="en">Older orders and orders from Lokali Food get no label, and for delivery the field does not apply. An order without the iiko integration is visible to the shift but cannot be pushed into iiko, so the detail screen keeps “Accept order” and “Cancel”, and the list does the same by swipe.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Order"><div class="gal gal--pair">
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Детальный экран заказа без интеграции с iiko"><img src="../assets/img/rest/order-no-iiko.webp?v=a9a9b697" width="750" height="1624" alt="Детальный экран заказа без интеграции с iiko" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Заказ без iiko: все данные на месте, провести его нужно руками.</span><span lang="en">An order without iiko: all the data is there, the staff handles it by hand.</span></figcaption></figure>
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Свайп по карточке заказа: принять и отменить"><img src="../assets/img/rest/swipe.webp?v=b6bd5b99" width="750" height="1624" alt="Свайп по карточке заказа: принять и отменить" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Принять и отменить можно свайпом, не открывая заказ.</span><span lang="en">Accept and cancel by swipe, without opening the order.</span></figcaption></figure>
+    </div></div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-menu" data-nav="Меню" data-nav-en="Menu">
+    <div class="cs-col" data-fig="Text / Menu" data-fig-quiet>
+      <h2 id="s-menu" class="reveal"><span lang="ru">Меню и стоп-лист без лишних переходов</span><span lang="en">The menu and the stop list without extra screens</span></h2>
+      <p class="reveal" lang="ru">Стоп-лист правят в разгар смены, когда что-то кончилось на кухне. Я переделал раздел так, чтобы путь до позиции стал короче: в списке категорий сразу видно, сколько в каждой позиций и сколько из них уже в стопе, а сам стоп-лист вынесен отдельной вкладкой. Смена видит картину, не открывая категории по одной.</p>
+      <p class="reveal" lang="en">The stop list gets edited mid-shift, when something runs out in the kitchen. I reworked the section to shorten the path to an item: the category list shows how many items each one holds and how many are already stopped, and the stop list itself became its own tab. The shift sees the picture without opening categories one by one.</p>
+      <p class="reveal" lang="ru">Для действий над категорией ПМ предлагала выпадающее меню рядом со строкой. Я возразил: в приложении уже есть шторка для действий над позицией, и второй паттерн для той же работы заставит смену гадать, где что лежит. Сделали шторку, одинаковую для категории и для позиции, она открывается по точкам слева от названия.</p>
+      <p class="reveal" lang="en">For actions on a category the PM proposed a dropdown next to the row. I pushed back: the app already has a sheet for actions on an item, and a second pattern for the same job would make the shift guess where things live. We went with the sheet, the same one for a category and for an item, opened by the dots to the left of the name.</p>
+    </div>
+    <div class="cs-wide reveal" data-fig="Screens / Menu"><div class="gal">
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Меню: список категорий со счётчиками и позициями в стоп-листе"><img src="../assets/img/rest/menu-collapsed.webp?v=aa6d2094" width="750" height="1624" alt="Меню: список категорий со счётчиками и позициями в стоп-листе" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Категории со счётчиками: сколько позиций и сколько из них в стопе.</span><span lang="en">Categories with counters: how many items, and how many are stopped.</span></figcaption></figure>
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Вкладка «Стоп-лист» с позициями"><img src="../assets/img/rest/menu-expanded.webp?v=38bd7d07" width="750" height="1624" alt="Вкладка «Стоп-лист» с позициями" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Стоп-лист вынесен вкладкой: что сейчас выключено, видно сразу.</span><span lang="en">The stop list as its own tab: what is off right now is visible at once.</span></figcaption></figure>
+      <figure class="gal__item"><button class="zoom" type="button" aria-label="Увеличить: Меню, синхронизированное с iiko: редактирование выключено"><img src="../assets/img/rest/menu-iiko.webp?v=804a1339" width="750" height="1624" alt="Меню, синхронизированное с iiko: редактирование выключено" loading="lazy" decoding="async"></button><figcaption><span lang="ru">Меню из iiko: редактирование выключено, и на экране написано почему.</span><span lang="en">A menu from iiko: editing is off, and the screen says why.</span></figcaption></figure>
+    </div></div>
+    <div class="cs-col" data-fig="Text / Menu / iiko" data-fig-quiet>
+      <p class="reveal" lang="ru">У ресторанов на iiko меню приезжает из учётной системы, и править его в приложении нельзя. Вместо выключенных без объяснений кнопок на экране стоит прямая причина и кнопка обновления: смена понимает, куда идти, и не ищет поломку.</p>
+      <p class="reveal" lang="en">For restaurants on iiko the menu comes from the accounting system and cannot be edited in the app. Instead of buttons that are simply off, the screen states the reason and offers a refresh: the shift knows where to go and does not hunt for a bug.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec" aria-labelledby="s-result" data-nav="Итоги" data-nav-en="Outcome">
+    <div class="cs-col" data-fig="Text / Outcome" data-fig-quiet>
+      <h2 id="s-result" class="reveal"><span lang="ru">Что из этого складывается</span><span lang="en">What this adds up to</span></h2>
+      <p class="reveal" lang="ru">Тариф доставки, закрывающий три способа считать и показывающий результат до сохранения; информер, поставленный туда, где его ищут; тип выдачи, доезжающий от гостя до кухни без роста карточки; меню, где действия над категорией и позицией живут в одном паттерне.</p>
+      <p class="reveal" lang="en">Delivery pricing that covers three ways of charging and shows the result before saving; an informer placed where people look for it; a handover type that travels from the guest to the kitchen without growing the card; a menu where actions on a category and on an item live in one pattern.</p>
+      <p class="reveal" lang="ru">Приложение работает в App Store, тариф и тип выдачи ушли в прод.</p>
+      <p class="reveal" lang="en">The app is live on the App Store, and both the pricing and the handover type shipped.</p>
+    </div>
+  </section>
+
+  <nav class="cs-next" aria-labelledby="s-next">
+    <div class="wrap">
+      <h2 id="s-next" class="cs-next__title reveal"><span lang="ru">Другие кейсы</span><span lang="en">Other cases</span></h2>
+      <div class="cs-next__row reveal">
+        <a href="../crispy/index.html" style="--c: 237 28 36">
+          <span class="nx__meta"><b>Crispy</b><i><span lang="ru">Моноапп партнёрского ресторана на движке «Локали»</span><span lang="en">A single-restaurant app built on the Lokali engine</span></i><span class="nx__tags"><em><span lang="ru">В App Store</span><span lang="en">On the App Store</span></em><em>2025–2026</em></span></span>
+          <span class="nx__half"><img src="../assets/img/next/crispy.webp?v=c3423a87" width="750" height="880" alt="" loading="lazy" decoding="async"></span>
+        </a>
+        <a href="../delivery/index.html" style="--c: 20 184 166">
+          <span class="nx__meta"><b><span lang="ru">Локали Доставка</span><span lang="en">Lokali Delivery</span></b><i><span lang="ru">Редизайн до релиза и статус заказа на экране блокировки</span><span lang="en">Redesign through to release and order status on the lock screen</span></i><span class="nx__tags"><em><span lang="ru">В App Store</span><span lang="en">On the App Store</span></em><em>2025–2026</em></span></span>
+          <span class="nx__half"><img src="../assets/img/next/delivery.webp?v=5f27ae8e" width="750" height="880" alt="" loading="lazy" decoding="async"></span>
+        </a>
+        <a href="../taxi/index.html" style="--c: 255 196 0">
+          <span class="nx__meta"><b><span lang="ru">Локали Такси</span><span lang="en">Lokali Taxi</span></b><i><span lang="ru">Два приложения с нуля: для пассажира и для водителя</span><span lang="en">Two apps from scratch: for passengers and for drivers</span></i><span class="nx__tags"><em><span lang="ru">Пре-релиз</span><span lang="en">Pre-release</span></em><em>2025–2026</em></span></span>
+          <span class="nx__half"><img src="../assets/img/next/taxi.webp?v=78101285" width="750" height="880" alt="" loading="lazy" decoding="async"></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</main>
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__links">
+      <a class="foot__pill" href="mailto:muhammadgadaev376@gmail.com">muhammadgadaev376@gmail.com</a>
+      <a class="foot__pill" href="https://t.me/creaperson">Telegram</a>
+    </div>
+    <a class="foot__mark" href="../index.html">gadaev</a>
+    <p class="foot__copy">© <span lang="ru">Магомед Гадаев</span><span lang="en">Magomed Gadaev</span>, 2026</p>
+  </div>
+</footer>
+<script src="../assets/site.js?v=2742a618" defer></script>
+<script src="../assets/figma.js?v=7d42030b" defer></script>
+</body>
+</html>
