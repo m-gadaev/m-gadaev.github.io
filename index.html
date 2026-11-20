@@ -12,7 +12,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" type="image/webp" href="assets/img/portrait-studio.webp?v=57e02b39">
 <link rel="preload" href="assets/fonts/onest.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=51813287">
+<link rel="stylesheet" href="assets/site.css?v=152341fc">
 <link rel="stylesheet" href="assets/figma.css?v=4b697b03">
 <script>
 // Тема и язык до первой отрисовки, чтобы не мигало. Выбор помним в браузере. Тема по умолчанию тёмная, язык — по системе.
@@ -214,7 +214,7 @@
 
         <div class="fig-card" data-fig="Case / L.Restaurant">
 
-          <article class="case case--rest" style="--glow: 16 185 129">
+          <article class="case case--rest" style="--glow: 16 185 129" data-trailer>
           <header class="case__head">
             <ul class="chips">
               <li><span lang="ru">Для сотрудников</span><span lang="en">Staff app</span></li>
@@ -223,10 +223,12 @@
             </ul>
             <h3><span lang="ru">Локали Ресторан <span class="soft">приложение зала и кухни: заказы, меню и тариф доставки</span></span><span lang="en">Lokali Restaurant <span class="soft">an app for the floor and the kitchen: orders, menu and delivery tariff</span></span></h3>
           </header>
-          <div class="case__demo case__demo--peek">
-            <div class="phone"><div class="phone__screen">
-              <img src="assets/img/rest/orders-peek.webp?v=befa8a47" width="750" height="1624" alt="Экран заказов: карточки с типом выдачи" loading="lazy" decoding="async"><span class="phone__island" aria-hidden="true"></span>
-            </div></div>
+          <div class="case__demo case__demo--video">
+            <div class="phone phone--video"><div class="phone__screen">
+            <video muted playsinline loop preload="metadata" poster="assets/img/rest/trailer-poster.webp?v=94203fa3" aria-label="Ролик: путь по приложению ресторана от списка заказов до стоп-листа">
+              <source src="assets/video/rest-trailer.mp4?v=81aaf700" type="video/mp4">
+            </video>
+          </div></div>
           </div>
           <a class="btn btn--quiet case__open" href="rest/index.html"><span lang="ru">Открыть кейс</span><span lang="en">Open case</span></a>
         </article>
