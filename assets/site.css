@@ -923,6 +923,17 @@ a:hover { text-decoration-thickness: 2px; }
 .case__duo-demo { display: grid; justify-items: center; }
 .case__duo .phone--video { --r: 30px; --pad: 4px; width: clamp(150px, 17vw, 204px); }
 @media (max-width: 760px) { .case__duo { grid-template-columns: 1fr; gap: 26px; } .case__duo .phone--video { width: clamp(150px, 42vw, 190px); } }
+/* На мобилке схема «гость → кухня» уходит: стопкой она занимает пол-экрана и спорит с мокапом.
+   Остаётся телефон, обрезанный и размытый снизу — как на карточке доставки, чтобы высоты совпадали */
+@media (max-width: 860px) {
+  .case__demo--duo .case__duo-demo { display: none; }
+  .case__duo { gap: 0; }
+  .case__demo--duo, .case__demo--peek { position: relative; height: 290px; overflow: hidden; padding: 0; margin-bottom: 64px; align-items: start; place-items: start center;
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent); mask-image: linear-gradient(to bottom, #000 62%, transparent); } /* taste-skill-ignore: растворение низа мокапа */
+  .case__demo--duo::after, .case__demo--peek::after { content: ""; position: absolute; z-index: 2; inset: auto 0 0; height: 110px; pointer-events: none;
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); -webkit-mask-image: linear-gradient(transparent, #000); mask-image: linear-gradient(transparent, #000); }
+  .case__demo--duo .phone.phone--video, .case__demo--peek .phone { width: min(220px, 62vw); }
+}
 .cs-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 56px); justify-items: center; }
 .cs-duo__item { margin: 0; width: 100%; display: grid; justify-items: center; gap: 14px; max-width: 300px; }
 .cs-duo .phone--video { --r: 34px; --pad: 4px; width: 100%; }
