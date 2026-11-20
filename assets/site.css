@@ -965,3 +965,12 @@ a:hover { text-decoration-thickness: 2px; }
   .cs-pair .phone { --r: 26px; --pad: 3px; }
   .cs-pair__item:last-child { margin-top: 28px; }
 }
+
+
+/* Карточка ресторана: тариф рядом с роликом, как на обложке кейса */
+.case--rest .case__duo { grid-template-columns: auto auto; justify-content: center; align-items: end; gap: clamp(18px, 3vw, 48px); }
+.case--rest .case__duo-demo { width: auto; }
+.case--rest .case__duo-demo .phone { --r: 30px; --pad: 4px; width: clamp(132px, 15vw, 182px); aspect-ratio: auto; margin-bottom: clamp(16px, 3vw, 44px); }
+.case--rest .case__duo-demo .phone__screen { height: auto; aspect-ratio: 375 / 812; background: var(--surface); }
+.case--rest .case__duo-demo .phone img { display: block; width: 100%; height: auto; }
+.case--rest .case__duo .phone--video { --r: 34px; --pad: 4px; width: clamp(168px, 19vw, 232px); }
